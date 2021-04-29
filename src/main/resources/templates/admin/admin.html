@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org"
+xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+>
+
+<head th:replace="head :: head">
+
+</head>
+<body>
+<span sec:authentication="principal.authorities"></span>
+
+</body>
+</html>
