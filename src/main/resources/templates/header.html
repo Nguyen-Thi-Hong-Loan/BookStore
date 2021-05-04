@@ -64,7 +64,7 @@
 				<div class="col-sm-4 col-lg-6">
 					<div class="logo text-center">
 						<a th:href="@{/bookstore/home}">
-							<img src="img/header/logo.png" alt="" />
+							<img src="/img/header/logo.png" alt="" />
 							<h4>online book store</h4>
 						</a>
 					</div>
@@ -72,31 +72,10 @@
 				<div class="col-sm-4 col-lg-3">
 					<div class="cart-info float-right">
 						<a th:href="@{/bookstore/cart}">
-							<h5>My cart <span>2</span> items - <span>$390</span></h5>
+							<h5>My cart <span>2</span> items - <span>390.000 vnđ</span></h5>
 							<i class="fa fa-shopping-cart"></i>
 						</a>
-						<div class="cart-hover">
-							<ul class="header-cart-pro">
-								<li>
-									<div class="image"><a href="#"><img alt="cart item" src="img/cart-1.jpg"></a></div>
-									<div class="content fix"><a href="#">Product Name</a><span class="price">Price:
-											$130</span><span class="quantity">Quantity: 1</span></div>
-									<i class="fa fa-trash delete"></i>
-								</li>
-								<li>
-									<div class="image"><a href="#"><img alt="cart item" src="img/cart-2.jpg"></a></div>
-									<div class="content fix"><a href="#">Product Name</a><span class="price">Price:
-											$130</span><span class="quantity">Quantity: 2</span></div>
-									<i class="fa fa-trash delete"></i>
-								</li>
-							</ul>
-							<div class="header-button-price">
-								<a th:href="@{/bookstore/checkout}"><i class="fa fa-sign-out"></i><span>Check Out</span></a>
-								<div class="total-price">
-									<h3>Total Price : <span>$390</span></h3>
-								</div>
-							</div>
-						</div>
+						
 					</div>
 					<div class="search float-right">
 						<input type="text" value="" placeholder="Search Here...." />

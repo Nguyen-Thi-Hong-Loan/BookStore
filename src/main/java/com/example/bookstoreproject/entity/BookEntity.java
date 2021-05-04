@@ -28,9 +28,6 @@ public class BookEntity extends BaseEntity {
     @Column
     String author;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    private UserEntity userEntity;
-
 
     @OneToMany(mappedBy = "book_id", cascade = CascadeType.ALL)
     private List<ImageEntity> image;
@@ -49,14 +46,13 @@ public class BookEntity extends BaseEntity {
 	}
 
 	public BookEntity(Long id, Date createDate, String createBy, Date modifyDate, String modifyBy, String name,
-			String description, Double price, String author, UserEntity userEntity, List<ImageEntity> image,
-			List<CategoryEntity> category, List<FeedbackEntity> feedback, List<BillDetailEntity> billdetail) {
+			String description, Double price, String author, List<ImageEntity> image, List<CategoryEntity> category,
+			List<FeedbackEntity> feedback, List<BillDetailEntity> billdetail) {
 		super(id, createDate, createBy, modifyDate, modifyBy);
 		this.name = name;
 		this.description = description;
 		this.price = price;
 		this.author = author;
-		this.userEntity = userEntity;
 		this.image = image;
 		this.category = category;
 		this.feedback = feedback;
@@ -95,14 +91,6 @@ public class BookEntity extends BaseEntity {
 		this.author = author;
 	}
 
-	public UserEntity getUserEntity() {
-		return userEntity;
-	}
-
-	public void setUserEntity(UserEntity userEntity) {
-		this.userEntity = userEntity;
-	}
-
 	public List<ImageEntity> getImage() {
 		return image;
 	}
@@ -135,8 +123,7 @@ public class BookEntity extends BaseEntity {
 		this.billdetail = billdetail;
 	}
 
-
-
+	
 	
 
 	
