@@ -21,6 +21,12 @@ public class BookEntity extends BaseEntity {
 
     @Column
     String description;
+    
+    @Column
+    Double price;
+    
+    @Column
+    String author;
 
     @ManyToOne(cascade = CascadeType.ALL)
     private UserEntity userEntity;
@@ -28,30 +34,112 @@ public class BookEntity extends BaseEntity {
 
     @OneToMany(mappedBy = "book_id", cascade = CascadeType.ALL)
     private List<ImageEntity> image;
+    
+    @OneToMany(mappedBy = "book_id", cascade = CascadeType.ALL)
+    private List<CategoryEntity> category;
 
     @OneToMany(mappedBy = "book_id")
     private List<FeedbackEntity> feedback;
 
-    @OneToMany(mappedBy = "bookEntity")
-    private List<BillEntity> bill;
-
+    @OneToMany(mappedBy = "book_id", cascade = CascadeType.ALL)
+    private List<BillDetailEntity> billdetail;
     
 	public BookEntity() {
 		super();
 	}
 
-
 	public BookEntity(Long id, Date createDate, String createBy, Date modifyDate, String modifyBy, String name,
-			String description, UserEntity userEntity, List<ImageEntity> image, List<FeedbackEntity> feedback,
-			List<BillEntity> bill) {
+			String description, Double price, String author, UserEntity userEntity, List<ImageEntity> image,
+			List<CategoryEntity> category, List<FeedbackEntity> feedback, List<BillDetailEntity> billdetail) {
 		super(id, createDate, createBy, modifyDate, modifyBy);
 		this.name = name;
 		this.description = description;
+		this.price = price;
+		this.author = author;
 		this.userEntity = userEntity;
 		this.image = image;
+		this.category = category;
 		this.feedback = feedback;
-		this.bill = bill;
+		this.billdetail = billdetail;
 	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public Double getPrice() {
+		return price;
+	}
+
+	public void setPrice(Double price) {
+		this.price = price;
+	}
+
+	public String getAuthor() {
+		return author;
+	}
+
+	public void setAuthor(String author) {
+		this.author = author;
+	}
+
+	public UserEntity getUserEntity() {
+		return userEntity;
+	}
+
+	public void setUserEntity(UserEntity userEntity) {
+		this.userEntity = userEntity;
+	}
+
+	public List<ImageEntity> getImage() {
+		return image;
+	}
+
+	public void setImage(List<ImageEntity> image) {
+		this.image = image;
+	}
+
+	public List<CategoryEntity> getCategory() {
+		return category;
+	}
+
+	public void setCategory(List<CategoryEntity> category) {
+		this.category = category;
+	}
+
+	public List<FeedbackEntity> getFeedback() {
+		return feedback;
+	}
+
+	public void setFeedback(List<FeedbackEntity> feedback) {
+		this.feedback = feedback;
+	}
+
+	public List<BillDetailEntity> getBilldetail() {
+		return billdetail;
+	}
+
+	public void setBilldetail(List<BillDetailEntity> billdetail) {
+		this.billdetail = billdetail;
+	}
+
+
+
+	
+
+	
 
    
   

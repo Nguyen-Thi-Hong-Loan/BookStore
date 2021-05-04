@@ -5,16 +5,19 @@ import java.util.Date;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+
 
 @Entity
 @Table(name = "bill")
 public class BillEntity extends BaseEntity {
 	@Column
 	String content;
-	@Column
-	String time;
 
 	@Column
 	double totalmoney;
@@ -26,17 +29,19 @@ public class BillEntity extends BaseEntity {
 	@ManyToOne(cascade = CascadeType.ALL)
 	private BookEntity bookEntity;
 
-
+	@OneToOne(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    @JoinColumn(name = "billDetail_id")
+    private BillDetailEntity billDetail;
+	
 	public BillEntity() {
 		super();
 	}
 
 
 	public BillEntity(Long id, Date createDate, String createBy, Date modifyDate, String modifyBy, String content,
-			String time, double totalmoney, UserEntity userEntity, BookEntity bookEntity) {
+		 double totalmoney, UserEntity userEntity, BookEntity bookEntity) {
 		super(id, createDate, createBy, modifyDate, modifyBy);
 		this.content = content;
-		this.time = time;
 		this.totalmoney = totalmoney;
 		this.userEntity = userEntity;
 		this.bookEntity = bookEntity;
@@ -52,15 +57,6 @@ public class BillEntity extends BaseEntity {
 		this.content = content;
 	}
 
-
-	public String getTime() {
-		return time;
-	}
-
-
-	public void setTime(String time) {
-		this.time = time;
-	}
 
 
 	public double getTotalmoney() {
