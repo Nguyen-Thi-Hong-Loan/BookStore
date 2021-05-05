@@ -27,6 +27,14 @@ public class BookEntity extends BaseEntity {
     
     @Column
     String author;
+	@Column
+	String publisher;
+	@Column
+	int publishYear;
+	@Column
+	int qualityPage;
+	@Column
+	String supplier;
 
 
     @OneToMany(mappedBy = "book_id", cascade = CascadeType.ALL)

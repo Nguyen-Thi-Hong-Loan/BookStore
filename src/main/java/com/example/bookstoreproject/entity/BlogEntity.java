@@ -18,9 +18,13 @@ public class BlogEntity extends BaseEntity {
     String title;
 
     @Column
-    String description;
-    
+    String bookName;
 
+	@Column
+	String bookAuthor;
+
+	@Column
+	String description;
     @ManyToOne(cascade = CascadeType.ALL)
     private UserEntity userEntity;
 
