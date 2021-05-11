@@ -12,6 +12,8 @@ public class UserEntity extends BaseEntity {
 	@Column
 	String email;
 	@Column
+	String name;
+	@Column
 	String password;
 	@Column
 	int phone;
@@ -39,12 +41,13 @@ public class UserEntity extends BaseEntity {
 		super();
 	}
 
-
-	public UserEntity(Long id, Date createDate, String createBy, Date modifyDate, String modifyBy, String email,
-			String password, int phone, String address, String resetPasswordToken, List<RoleEntity> roles,
-			List<BillEntity> bill, List<FeedbackEntity> feedback) {
+	public UserEntity(Long id, Date createDate, String createBy, Date modifyDate, String modifyBy,
+					  String email, String name, String password, int phone, String address,
+					  String resetPasswordToken, List<RoleEntity> roles, List<BillEntity> bill,
+					  List<FeedbackEntity> feedback) {
 		super(id, createDate, createBy, modifyDate, modifyBy);
 		this.email = email;
+		this.name = name;
 		this.password = password;
 		this.phone = phone;
 		this.address = address;
@@ -53,7 +56,6 @@ public class UserEntity extends BaseEntity {
 		this.bill = bill;
 		this.feedback = feedback;
 	}
-
 
 	public String getEmail() {
 		return email;
@@ -134,6 +136,12 @@ public class UserEntity extends BaseEntity {
 		this.feedback = feedback;
 	}
 
-	
-	
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
 }
