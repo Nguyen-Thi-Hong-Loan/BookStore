@@ -35,14 +35,13 @@ public class BillEntity extends BaseEntity {
 	}
 
 
-	public BillEntity(Long id, Date createDate, String createBy, Date modifyDate, String modifyBy, String content,
-					  double totalMoney, UserEntity userEntity) {
-		super(id, createDate, createBy, modifyDate, modifyBy);
+	public BillEntity(Long id, Date createDate, String createBy, Date modifyDate, String modifyBy, int check, String content, double totalMoney, UserEntity userEntity, BillDetailEntity billDetail) {
+		super(id, createDate, createBy, modifyDate, modifyBy, check);
 		this.content = content;
 		this.totalMoney = totalMoney;
 		this.userEntity = userEntity;
+		this.billDetail = billDetail;
 	}
-
 
 	public String getContent() {
 		return content;

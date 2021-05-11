@@ -38,15 +38,15 @@ public class BlogEntity extends BaseEntity {
 	}
 
 
-	public BlogEntity(Long id, Date createDate, String createBy, Date modifyDate, String modifyBy, String title,
-			String description, UserEntity userEntity, List<ImageBlogEntity> imageBlog) {
-		super(id, createDate, createBy, modifyDate, modifyBy);
+	public BlogEntity(Long id, Date createDate, String createBy, Date modifyDate, String modifyBy, int check, String title, String bookName, String bookAuthor, String description, UserEntity userEntity, List<ImageBlogEntity> imageBlog) {
+		super(id, createDate, createBy, modifyDate, modifyBy, check);
 		this.title = title;
+		this.bookName = bookName;
+		this.bookAuthor = bookAuthor;
 		this.description = description;
 		this.userEntity = userEntity;
 		this.imageBlog = imageBlog;
 	}
-
 
 	public String getTitle() {
 		return title;

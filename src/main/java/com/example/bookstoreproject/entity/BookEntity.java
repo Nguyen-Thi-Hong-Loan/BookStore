@@ -49,14 +49,16 @@ public class BookEntity extends BaseEntity {
 		super();
 	}
 
-	public BookEntity(Long id, Date createDate, String createBy, Date modifyDate, String modifyBy, String name,
-			String description, Double price, String author, List<ImageEntity> image, List<CategoryEntity> category,
-			List<FeedbackEntity> feedback, List<BillDetailEntity> billDetail) {
-		super(id, createDate, createBy, modifyDate, modifyBy);
+	public BookEntity(Long id, Date createDate, String createBy, Date modifyDate, String modifyBy, int check, String name, String description, Double price, String author, String publisher, int publishYear, int qualityPage, String supplier, List<ImageEntity> image, List<CategoryEntity> category, List<FeedbackEntity> feedback, List<BillDetailEntity> billDetail) {
+		super(id, createDate, createBy, modifyDate, modifyBy, check);
 		this.name = name;
 		this.description = description;
 		this.price = price;
 		this.author = author;
+		this.publisher = publisher;
+		this.publishYear = publishYear;
+		this.qualityPage = qualityPage;
+		this.supplier = supplier;
 		this.image = image;
 		this.category = category;
 		this.feedback = feedback;
