@@ -29,8 +29,18 @@ public class BillDetailEntity extends BaseEntity {
 	@Column
 	private Double price;
 
+	
 	public BillDetailEntity() {
 		super();
+	}
+
+	public BillDetailEntity(Long id, Date createDate, String createBy, Date modifyDate, String modifyBy,
+			BookEntity book_id, BillEntity bill, Integer quality, Double price) {
+		super(id, createDate, createBy, modifyDate, modifyBy);
+		this.book_id = book_id;
+		this.bill = bill;
+		this.quality = quality;
+		this.price = price;
 	}
 
 	public BookEntity getBook_id() {
