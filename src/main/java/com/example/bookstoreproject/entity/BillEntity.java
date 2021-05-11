@@ -20,14 +20,14 @@ public class BillEntity extends BaseEntity {
 	String content;
 
 	@Column
-	double totalmoney;
+	double totalMoney;
 
 
 	@ManyToOne(cascade = CascadeType.ALL)
 	private UserEntity userEntity;
 
-	@ManyToOne(cascade = CascadeType.ALL)
-	private BookEntity bookEntity;
+//	@ManyToOne(cascade = CascadeType.ALL)
+//	private BookEntity bookEntity;
 
 	@OneToOne(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     @JoinColumn(name = "billDetail_id")
@@ -39,12 +39,12 @@ public class BillEntity extends BaseEntity {
 
 
 	public BillEntity(Long id, Date createDate, String createBy, Date modifyDate, String modifyBy, String content,
-		 double totalmoney, UserEntity userEntity, BookEntity bookEntity) {
+					  double totalMoney, UserEntity userEntity, BookEntity bookEntity) {
 		super(id, createDate, createBy, modifyDate, modifyBy);
 		this.content = content;
-		this.totalmoney = totalmoney;
+		this.totalMoney = totalMoney;
 		this.userEntity = userEntity;
-		this.bookEntity = bookEntity;
+//		this.bookEntity = bookEntity;
 	}
 
 
@@ -59,13 +59,13 @@ public class BillEntity extends BaseEntity {
 
 
 
-	public double getTotalmoney() {
-		return totalmoney;
+	public double getTotalMoney() {
+		return totalMoney;
 	}
 
 
-	public void setTotalmoney(double totalmoney) {
-		this.totalmoney = totalmoney;
+	public void setTotalMoney(double totalMoney) {
+		this.totalMoney = totalMoney;
 	}
 
 
@@ -79,14 +79,14 @@ public class BillEntity extends BaseEntity {
 	}
 
 
-	public BookEntity getBookEntity() {
-		return bookEntity;
-	}
-
-
-	public void setBookEntity(BookEntity bookEntity) {
-		this.bookEntity = bookEntity;
-	}
+//	public BookEntity getBookEntity() {
+//		return bookEntity;
+//	}
+//
+//
+//	public void setBookEntity(BookEntity bookEntity) {
+//		this.bookEntity = bookEntity;
+//	}
 
 
 	

@@ -30,7 +30,7 @@ public class BlogEntity extends BaseEntity {
 
 
     @OneToMany(mappedBy = "blog_id", cascade = CascadeType.ALL)
-    private List<ImageBlogEntity> imageblog;
+    private List<ImageBlogEntity> imageBlog;
 
 
 	public BlogEntity() {
@@ -39,12 +39,12 @@ public class BlogEntity extends BaseEntity {
 
 
 	public BlogEntity(Long id, Date createDate, String createBy, Date modifyDate, String modifyBy, String title,
-			String description, UserEntity userEntity, List<ImageBlogEntity> imageblog) {
+			String description, UserEntity userEntity, List<ImageBlogEntity> imageBlog) {
 		super(id, createDate, createBy, modifyDate, modifyBy);
 		this.title = title;
 		this.description = description;
 		this.userEntity = userEntity;
-		this.imageblog = imageblog;
+		this.imageBlog = imageBlog;
 	}
 
 
@@ -78,14 +78,28 @@ public class BlogEntity extends BaseEntity {
 	}
 
 
-	public List<ImageBlogEntity> getImageblog() {
-		return imageblog;
+	public List<ImageBlogEntity> getImageBlog() {
+		return imageBlog;
 	}
 
 
-	public void setImageblog(List<ImageBlogEntity> imageblog) {
-		this.imageblog = imageblog;
+	public void setImageBlog(List<ImageBlogEntity> imageBlog) {
+		this.imageBlog = imageBlog;
 	}
-    
-    
+
+	public String getBookName() {
+		return bookName;
+	}
+
+	public void setBookName(String bookName) {
+		this.bookName = bookName;
+	}
+
+	public String getBookAuthor() {
+		return bookAuthor;
+	}
+
+	public void setBookAuthor(String bookAuthor) {
+		this.bookAuthor = bookAuthor;
+	}
 }
