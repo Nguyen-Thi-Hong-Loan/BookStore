@@ -5,11 +5,7 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -47,7 +43,7 @@ public class BookEntity extends BaseEntity {
     private List<FeedbackEntity> feedback;
 
     @OneToMany(mappedBy = "book_id", cascade = CascadeType.ALL)
-    private List<BillDetailEntity> billdetail;
+    private List<BillDetailEntity> billDetail;
     
 	public BookEntity() {
 		super();
@@ -55,7 +51,7 @@ public class BookEntity extends BaseEntity {
 
 	public BookEntity(Long id, Date createDate, String createBy, Date modifyDate, String modifyBy, String name,
 			String description, Double price, String author, List<ImageEntity> image, List<CategoryEntity> category,
-			List<FeedbackEntity> feedback, List<BillDetailEntity> billdetail) {
+			List<FeedbackEntity> feedback, List<BillDetailEntity> billDetail) {
 		super(id, createDate, createBy, modifyDate, modifyBy);
 		this.name = name;
 		this.description = description;
@@ -64,7 +60,7 @@ public class BookEntity extends BaseEntity {
 		this.image = image;
 		this.category = category;
 		this.feedback = feedback;
-		this.billdetail = billdetail;
+		this.billDetail = billDetail;
 	}
 
 	public String getName() {
@@ -123,20 +119,44 @@ public class BookEntity extends BaseEntity {
 		this.feedback = feedback;
 	}
 
-	public List<BillDetailEntity> getBilldetail() {
-		return billdetail;
+	public List<BillDetailEntity> getBillDetail() {
+		return billDetail;
 	}
 
-	public void setBilldetail(List<BillDetailEntity> billdetail) {
-		this.billdetail = billdetail;
+	public void setBillDetail(List<BillDetailEntity> billdetail) {
+		this.billDetail = billdetail;
 	}
 
-	
-	
 
-	
+	public String getPublisher() {
+		return publisher;
+	}
 
-   
-  
+	public void setPublisher(String publisher) {
+		this.publisher = publisher;
+	}
 
+	public int getPublishYear() {
+		return publishYear;
+	}
+
+	public void setPublishYear(int publishYear) {
+		this.publishYear = publishYear;
+	}
+
+	public int getQualityPage() {
+		return qualityPage;
+	}
+
+	public void setQualityPage(int qualityPage) {
+		this.qualityPage = qualityPage;
+	}
+
+	public String getSupplier() {
+		return supplier;
+	}
+
+	public void setSupplier(String supplier) {
+		this.supplier = supplier;
+	}
 }

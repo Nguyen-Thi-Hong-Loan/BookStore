@@ -33,4 +33,35 @@ public class BillDetailEntity extends BaseEntity {
 		super();
 	}
 
+	public BookEntity getBook_id() {
+		return book_id;
+	}
+
+	public void setBook_id(BookEntity book_id) {
+		this.book_id = book_id;
+	}
+
+	public BillEntity getBill() {
+		return bill;
+	}
+
+	public void setBill(BillEntity bill) {
+		this.bill = bill;
+	}
+
+	public Integer getQuality() {
+		return quality;
+	}
+
+	public void setQuality(Integer quality) {
+		this.quality = quality;
+	}
+
+	public Double getPrice() {
+		return price;
+	}
+
+	public void setPrice(Double price) {
+		this.price = price;
+	}
 }
