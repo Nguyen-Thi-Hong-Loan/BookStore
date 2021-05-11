@@ -31,14 +31,12 @@ public class FeedbackEntity extends BaseEntity{
 	}
 
 
-	public FeedbackEntity(Long id, Date createDate, String createBy, Date modifyDate, String modifyBy, String content,
-			UserEntity userEntity, BookEntity book_id) {
-		super(id, createDate, createBy, modifyDate, modifyBy);
+	public FeedbackEntity(Long id, Date createDate, String createBy, Date modifyDate, String modifyBy, int check, String content, UserEntity userEntity, BookEntity book_id) {
+		super(id, createDate, createBy, modifyDate, modifyBy, check);
 		this.content = content;
 		this.userEntity = userEntity;
 		this.book_id = book_id;
 	}
-
 
 	public String getContent() {
 		return content;

@@ -28,13 +28,8 @@ public class ImageEntity extends BaseEntity {
         this.link = imgLink;
     }
 
-    public ImageEntity(Long id, Date createDate, String createBy, Date modifyDate, String modifyBy) {
-        super(id, createDate, createBy, modifyDate, modifyBy);
-    }
-
-    public ImageEntity(Long id, Date createDate, String createBy, Date modifyDate, String modifyBy, String link,
-                       BookEntity book_id) {
-        super(id, createDate, createBy, modifyDate, modifyBy);
+    public ImageEntity(Long id, Date createDate, String createBy, Date modifyDate, String modifyBy, int check, String link, BookEntity book_id) {
+        super(id, createDate, createBy, modifyDate, modifyBy, check);
         this.link = link;
         this.book_id = book_id;
     }

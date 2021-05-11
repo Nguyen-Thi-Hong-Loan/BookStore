@@ -30,14 +30,26 @@ public abstract class BaseEntity {
     @LastModifiedBy
     private String modifyBy;
 
-    public BaseEntity(Long id, Date createDate, String createBy, Date modifyDate, String modifyBy) {
+    @Column
+    private int check;
+
+    public int isCheck() {
+        return check;
+    }
+
+    public void setCheck(int check) {
+        this.check = check;
+    }
+
+    public BaseEntity(Long id, Date createDate, String createBy, Date modifyDate, String modifyBy,
+                      int check) {
         this.id = id;
         this.createDate = createDate;
         this.createBy = createBy;
         this.modifyDate = modifyDate;
         this.modifyBy = modifyBy;
+        this.check = check;
     }
- 
 
     public BaseEntity() {
 		super();

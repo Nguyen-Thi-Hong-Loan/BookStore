@@ -21,14 +21,9 @@ public class CategoryEntity extends BaseEntity {
     public CategoryEntity() {
     	super();
     }
-	public CategoryEntity(Long id, Date createDate, String createBy, Date modifyDate, String modifyBy) {
-		super(id, createDate, createBy, modifyDate, modifyBy);
-	}
 
-
-	public CategoryEntity(Long id, Date createDate, String createBy, Date modifyDate, String modifyBy,
-			String category_name, BookEntity book_id) {
-		super(id, createDate, createBy, modifyDate, modifyBy);
+	public CategoryEntity(Long id, Date createDate, String createBy, Date modifyDate, String modifyBy, int check, String category_name, BookEntity book_id) {
+		super(id, createDate, createBy, modifyDate, modifyBy, check);
 		this.category_name = category_name;
 		this.book_id = book_id;
 	}

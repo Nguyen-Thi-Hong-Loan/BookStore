@@ -19,7 +19,8 @@ public class UserEntity extends BaseEntity {
 	int phone;
 	@Column
 	String address;
-	
+
+
 
 	@Column
 	String resetPasswordToken;
@@ -41,11 +42,8 @@ public class UserEntity extends BaseEntity {
 		super();
 	}
 
-	public UserEntity(Long id, Date createDate, String createBy, Date modifyDate, String modifyBy,
-					  String email, String name, String password, int phone, String address,
-					  String resetPasswordToken, List<RoleEntity> roles, List<BillEntity> bill,
-					  List<FeedbackEntity> feedback) {
-		super(id, createDate, createBy, modifyDate, modifyBy);
+	public UserEntity(Long id, Date createDate, String createBy, Date modifyDate, String modifyBy, int check, String email, String name, String password, int phone, String address, String resetPasswordToken, List<RoleEntity> roles, List<BillEntity> bill, List<FeedbackEntity> feedback) {
+		super(id, createDate, createBy, modifyDate, modifyBy, check);
 		this.email = email;
 		this.name = name;
 		this.password = password;

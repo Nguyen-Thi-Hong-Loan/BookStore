@@ -21,15 +21,10 @@ public class RoleEntity extends BaseEntity {
         super();
     }
 
-    public RoleEntity(Long id, Date createDate, String createBy, Date modifyDate, String modifyBy, String roleName,
-                      List<UserEntity> users) {
-        super(id, createDate, createBy, modifyDate, modifyBy);
+    public RoleEntity(Long id, Date createDate, String createBy, Date modifyDate, String modifyBy, int check, String roleName, List<UserEntity> users) {
+        super(id, createDate, createBy, modifyDate, modifyBy, check);
         this.roleName = roleName;
         this.users = users;
-    }
-
-    public RoleEntity(Long id, Date createDate, String createBy, Date modifyDate, String modifyBy) {
-        super(id, createDate, createBy, modifyDate, modifyBy);
     }
 
     public RoleEntity(String roleName) {

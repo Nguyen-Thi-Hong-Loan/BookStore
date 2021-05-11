@@ -22,9 +22,8 @@ public class ImageBlogEntity extends BaseEntity {
 		super();
 	}
 
-	public ImageBlogEntity(Long id, Date createDate, String createBy, Date modifyDate, String modifyBy, String link,
-			BlogEntity blog_id) {
-		super(id, createDate, createBy, modifyDate, modifyBy);
+	public ImageBlogEntity(Long id, Date createDate, String createBy, Date modifyDate, String modifyBy, int check, String link, BlogEntity blog_id) {
+		super(id, createDate, createBy, modifyDate, modifyBy, check);
 		this.link = link;
 		this.blog_id = blog_id;
 	}
