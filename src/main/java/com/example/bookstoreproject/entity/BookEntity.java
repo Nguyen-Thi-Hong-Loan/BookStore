@@ -12,17 +12,17 @@ import javax.persistence.Table;
 @Table(name = "book")
 public class BookEntity extends BaseEntity {
 
-    @Column
-    String name;
+	@Column
+	String name;
 
-    @Column
-    String description;
-    
-    @Column
-    Double price;
-    
-    @Column
-    String author;
+	@Column
+	String description;
+
+	@Column
+	Double price;
+
+	@Column
+	String author;
 	@Column
 	String publisher;
 	@Column
@@ -31,26 +31,30 @@ public class BookEntity extends BaseEntity {
 	int qualityPage;
 	@Column
 	String supplier;
+	@Column
+	String checked;
 
+	@OneToMany(mappedBy = "book_id", cascade = CascadeType.ALL)
+	private List<ImageEntity> image;
 
-    @OneToMany(mappedBy = "book_id", cascade = CascadeType.ALL)
-    private List<ImageEntity> image;
-    
-    @OneToMany(mappedBy = "book_id", cascade = CascadeType.ALL)
-    private List<CategoryEntity> category;
+	@OneToMany(mappedBy = "book_id", cascade = CascadeType.ALL)
+	private List<CategoryEntity> category;
 
-    @OneToMany(mappedBy = "book_id")
-    private List<FeedbackEntity> feedback;
+	@OneToMany(mappedBy = "book_id")
+	private List<FeedbackEntity> feedback;
 
-    @OneToMany(mappedBy = "book_id", cascade = CascadeType.ALL)
-    private List<BillDetailEntity> billDetail;
-    
+	@OneToMany(mappedBy = "book_id", cascade = CascadeType.ALL)
+	private List<BillDetailEntity> billDetail;
+
 	public BookEntity() {
 		super();
 	}
 
-	public BookEntity(Long id, Date createDate, String createBy, Date modifyDate, String modifyBy, int check, String name, String description, Double price, String author, String publisher, int publishYear, int qualityPage, String supplier, List<ImageEntity> image, List<CategoryEntity> category, List<FeedbackEntity> feedback, List<BillDetailEntity> billDetail) {
-		super(id, createDate, createBy, modifyDate, modifyBy, check);
+	public BookEntity(Long id, Date createDate, String createBy, Date modifyDate, String modifyBy, String name,
+			String description, Double price, String author, String publisher, int publishYear, int qualityPage,
+			String supplier, String checked, List<ImageEntity> image, List<CategoryEntity> category,
+			List<FeedbackEntity> feedback, List<BillDetailEntity> billDetail) {
+		super(id, createDate, createBy, modifyDate, modifyBy);
 		this.name = name;
 		this.description = description;
 		this.price = price;
@@ -59,6 +63,7 @@ public class BookEntity extends BaseEntity {
 		this.publishYear = publishYear;
 		this.qualityPage = qualityPage;
 		this.supplier = supplier;
+		this.checked = checked;
 		this.image = image;
 		this.category = category;
 		this.feedback = feedback;
@@ -97,39 +102,6 @@ public class BookEntity extends BaseEntity {
 		this.author = author;
 	}
 
-	public List<ImageEntity> getImage() {
-		return image;
-	}
-
-	public void setImage(List<ImageEntity> image) {
-		this.image = image;
-	}
-
-	public List<CategoryEntity> getCategory() {
-		return category;
-	}
-
-	public void setCategory(List<CategoryEntity> category) {
-		this.category = category;
-	}
-
-	public List<FeedbackEntity> getFeedback() {
-		return feedback;
-	}
-
-	public void setFeedback(List<FeedbackEntity> feedback) {
-		this.feedback = feedback;
-	}
-
-	public List<BillDetailEntity> getBillDetail() {
-		return billDetail;
-	}
-
-	public void setBillDetail(List<BillDetailEntity> billdetail) {
-		this.billDetail = billdetail;
-	}
-
-
 	public String getPublisher() {
 		return publisher;
 	}
@@ -161,4 +133,45 @@ public class BookEntity extends BaseEntity {
 	public void setSupplier(String supplier) {
 		this.supplier = supplier;
 	}
+
+	public List<ImageEntity> getImage() {
+		return image;
+	}
+
+	public void setImage(List<ImageEntity> image) {
+		this.image = image;
+	}
+
+	public List<CategoryEntity> getCategory() {
+		return category;
+	}
+
+	public void setCategory(List<CategoryEntity> category) {
+		this.category = category;
+	}
+
+	public List<FeedbackEntity> getFeedback() {
+		return feedback;
+	}
+
+	public void setFeedback(List<FeedbackEntity> feedback) {
+		this.feedback = feedback;
+	}
+
+	public List<BillDetailEntity> getBillDetail() {
+		return billDetail;
+	}
+
+	public void setBillDetail(List<BillDetailEntity> billDetail) {
+		this.billDetail = billDetail;
+	}
+
+	public String getChecked() {
+		return checked;
+	}
+
+	public void setChecked(String checked) {
+		this.checked = checked;
+	}
+
 }

@@ -23,7 +23,7 @@ public class CategoryEntity extends BaseEntity {
     }
 
 	public CategoryEntity(Long id, Date createDate, String createBy, Date modifyDate, String modifyBy, int check, String category_name, BookEntity book_id) {
-		super(id, createDate, createBy, modifyDate, modifyBy, check);
+		super(id, createDate, createBy, modifyDate, modifyBy);
 		this.category_name = category_name;
 		this.book_id = book_id;
 	}

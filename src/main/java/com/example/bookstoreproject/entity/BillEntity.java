@@ -11,7 +11,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import org.springframework.lang.NonNull;
 
+import com.sun.istack.NotNull;
 
 @Entity
 @Table(name = "bill")
@@ -21,58 +23,69 @@ public class BillEntity extends BaseEntity {
 
 	@Column
 	double totalMoney;
+	
+	public String getChecked() {
+		return checked;
+	}
 
+	public void setChecked(String checked) {
+		this.checked = checked;
+	}
+
+	@Column
+	String checked;
 
 	@ManyToOne(cascade = CascadeType.ALL)
 	private UserEntity userEntity;
 
 	@OneToOne(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
-    @JoinColumn(name = "billDetail_id")
-    private BillDetailEntity billDetail;
-	
+	@JoinColumn(name = "billDetail_id")
+	private BillDetailEntity billDetail;
+
 	public BillEntity() {
 		super();
 	}
 
-
-	public BillEntity(Long id, Date createDate, String createBy, Date modifyDate, String modifyBy, int check, String content, double totalMoney, UserEntity userEntity, BillDetailEntity billDetail) {
-		super(id, createDate, createBy, modifyDate, modifyBy, check);
+	public BillEntity(Long id, Date createDate, String createBy, Date modifyDate, String modifyBy, String content,
+			double totalMoney, UserEntity userEntity, BillDetailEntity billDetail) {
+		super(id, createDate, createBy, modifyDate, modifyBy);
 		this.content = content;
 		this.totalMoney = totalMoney;
 		this.userEntity = userEntity;
 		this.billDetail = billDetail;
+
 	}
 
 	public String getContent() {
 		return content;
 	}
 
-
 	public void setContent(String content) {
 		this.content = content;
 	}
-
-
 
 	public double getTotalMoney() {
 		return totalMoney;
 	}
 
-
 	public void setTotalMoney(double totalMoney) {
 		this.totalMoney = totalMoney;
 	}
-
 
 	public UserEntity getUserEntity() {
 		return userEntity;
 	}
 
-
 	public void setUserEntity(UserEntity userEntity) {
 		this.userEntity = userEntity;
 	}
 
-	
+	public BillDetailEntity getBillDetail() {
+		return billDetail;
+	}
+
+	public void setBillDetail(BillDetailEntity billDetail) {
+		this.billDetail = billDetail;
+	}
 
 }

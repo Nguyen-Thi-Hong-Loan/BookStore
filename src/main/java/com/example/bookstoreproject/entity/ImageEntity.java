@@ -29,7 +29,7 @@ public class ImageEntity extends BaseEntity {
     }
 
     public ImageEntity(Long id, Date createDate, String createBy, Date modifyDate, String modifyBy, int check, String link, BookEntity book_id) {
-        super(id, createDate, createBy, modifyDate, modifyBy, check);
+        super(id, createDate, createBy, modifyDate, modifyBy);
         this.link = link;
         this.book_id = book_id;
     }
