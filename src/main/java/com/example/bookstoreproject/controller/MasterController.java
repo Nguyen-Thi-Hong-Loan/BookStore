@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/bookstore")
+@RequestMapping("/bookStore")
 public class MasterController {
 	Double priceFee = 299.0;
 	String ktx = "Ký túc xá";

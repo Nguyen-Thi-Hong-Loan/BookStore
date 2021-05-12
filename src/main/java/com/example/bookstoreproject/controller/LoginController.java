@@ -1,0 +1,9 @@
+package com.example.bookstoreproject.controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+@Controller
+@RequestMapping("/bookStore")
+public class LoginController {
+}
