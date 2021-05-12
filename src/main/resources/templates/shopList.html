@@ -22,16 +22,13 @@
 				<div class="shop-sidebar fix">
 					<!-- single-sidebar start -->
 					<div class="sin-shop-sidebar shop-category">
-						<h2>Category</h2>
+						<h2>Thể loại</h2>
 						<ul>
-							<li><a href="#">Rings</a></li>
-							<li><a href="#">Necklaces</a></li>
-							<li><a href="#">BRACELETS</a></li>
-							<li><a href="#">EARRINGS</a></li>
-							<li><a href="#">CHURIES</a></li>
-							<li><a href="#">Jewelry Sets</a></li>
-							<li><a href="#">KIDS JEWELRY</a></li>
-							<li><a href="#">Others</a></li>
+							<li><a href="#">Tiểu thuyết</a></li>
+							<li><a href="#">Trinh thám</a></li>
+							<li><a href="#">Tình cảm</a></li>
+							<li><a href="#">Phiêu lưu</a></li>
+							<li><a href="#">Kinh tế</a></li>
 						</ul>
 					</div>
 					<!-- single-sidebar end -->
@@ -42,51 +39,21 @@
 					<!-- single-sidebar end -->
 					<!-- single-sidebar start -->
 					<div class="sin-shop-sidebar shop-brands">
-						<h2>Brands</h2>
+						<h2>Tác giả</h2>
 						<ul>
-							<li><a href="#">Da Vonna<span>(25)</span></a></li>
-							<li><a href="#">Glitzly Rocks<span>(20)</span></a></li>
-							<li><a href="#">Hira Jewelrs<span>(35)</span></a></li>
-							<li><a href="#">Diamond World<span>(65)</span></a></li>
-							<li><a href="#">Apon Jewelrs<span>(35)</span></a></li>
-							<li><a href="#">Grameen Jewelrs<span>(25)</span></a></li>
-							<li><a href="#">Devs Jewelry<span>(85)</span></a></li>
-							<li><a href="#">Sanonda Jewelrs<span>(15)</span></a></li>
+							<li><a href="#">J.K.Rowling<span>(5)</span></a></li>
+							<li><a href="#">EL James<span>(10)</span></a></li>
+							<li><a href="#">Colleen Mccullough<span>(7)</span></a></li>
+							<li><a href="#">Rosalind Miles<span>(5)</span></a></li>
+							<li><a href="#">Catherine Fisher<span>(3)</span></a></li>
+							<li><a href="#">Grameen Jewelrs<span>(13)</span></a></li>
+							
 						</ul>
 					</div>
 					<!-- single-sidebar end -->
-					<!-- single-sidebar start -->
-					<div class="sin-shop-sidebar product-price-range">
-						<h2>Price</h2>
-						<div class="slider-range-container">
-							<div id="slider-range"></div>
-							<p>
-								<input type="text" id="price-amount" readonly>
-							</p>
-						</div>
-					</div>
-					<!-- single-sidebar end -->
-					<!-- single-sidebar start -->
-					<div class="sin-shop-sidebar shop-add">
-						<a href="#"><img src="img/shop-add-2.jpg" alt=""></a>
-					</div>
-					<!-- single-sidebar end -->
-					<!-- single-sidebar start -->
-					<div class="sin-shop-sidebar shop-tags">
-						<h2>Tags</h2>
-						<ul>
-							<li><a href="#">JEWELRY</a></li>
-							<li><a href="#">Rings</a></li>
-							<li><a href="#">EARRINGS</a></li>
-							<li><a href="#">BRACELETS</a></li>
-							<li><a href="#">Necklaces</a></li>
-							<li><a href="#">Locket</a></li>
-							<li><a href="#">Jewelry Sets</a></li>
-							<li><a href="#">Churi</a></li>
-							<li><a href="#">Watch</a></li>
-						</ul>
-					</div>
-					<!-- single-sidebar end -->
+					
+					
+					
 				</div>
 			</div>
 			<div class="col-md-9">
@@ -95,7 +62,7 @@
 					<div class="shop-tool-bar col-sm-12 fix">
 						<div class="view-mode">
 						
-							<a href="shopList.html" class="active"><i class="fa fa-th-list"></i></a>
+							<a href="shop-list.html" class="active"><i class="fa fa-th-list"></i></a>
 						</div>
 						<div class="sort-by">
 							<span>Sort By</span>
@@ -109,26 +76,24 @@
 						<div class="show-product">
 							<span>Show</span>
 							<select name="sort-by">
-								<option selected="selected" value="mercede">16</option>
+								<option selected="selected" value="mercede">10</option>
 								<option value="saab">20</option>
-								<option value="mercedes">24</option>
+							
 							</select>
 							<span>Per Page</span>
 						</div>
-						<div class="pro-Showing">
-							<span>Showing 1 - 12 of 16 items</span>
-						</div>
+						
 					</div>
 					<div class="shop-products">
 						<!-- Single Product -->
-						<div class="single-list-product col-sm-12">
+						<div class="single-list-product col-sm-12" th:each="listbook : ${listbooks}">
 							<div class="list-pro-image">
-								<a href="productDetails.html">
-									<img src="img/product/1.jpg" alt="" />
+								<a th:href="@{'/bookstore/detailBook/'+${listbook.id}}">
+									<img th:src="@{'/img/upload/' + ${listbook.image[0].link}}" alt="" />
 								</a>
 							</div>
 							<div class="list-pro-des fix">
-								<a class="pro-name" href="productDetails.html">Product Name Demo</a>
+								<a class="pro-name" th:href="@{'/bookstore/detailBook/'+${listbook.id}}" th:text="${listbook.name}"></a>
 								<div class="pro-ratting">
 									<i class="fa fa-star on"></i>
 									<i class="fa fa-star on"></i>
@@ -136,8 +101,9 @@
 									<i class="fa fa-star on"></i>
 									<i class="fa fa-star-half-o on"></i>
 								</div>
-								<h4 class="list-pro-price"><span class="new">$152</span><span class="old">$175</span></h4>
-								<p>Lorem ipsum dolor sit amet, consectetur adicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua magna aliqua consectetur adicing elit, sed do eiusmod tempor incididunt ut labore magna aliqua consectetur adicing elit, sed do eiusmod tempor incunt ut labore magna aliqua consectetur adicing elit.</p>
+								<h4 class="list-pro-price"><span class="new" th:text="${listbook.price}"></span>VNĐ</h4>
+								<p ><span class="new">Tác giả: </span><span class="new" th:text="${listbook.author}"></span></p>
+								<p > <span class="new">Nhà xuất bản: </span><span class="new" th:text="${listbook.publisher}"></span> </p>
 								<div class="list-actions-btn">
 									<a class="quick-view" href="#"><i class="fa fa-search"></i></a>
 									<a class="favorite" href="#"><i class="fa fa-heart-o"></i></a>
@@ -146,230 +112,7 @@
 							</div>
 						</div>
 						<!-- Single Product -->
-						<div class="single-list-product col-sm-12">
-							<div class="list-pro-image">
-								<a href="productDetails.html">
-									<img src="img/product/2.jpg" alt="" />
-								</a>
-							</div>
-							<div class="list-pro-des fix">
-								<a class="pro-name" href="productDetails.html">Product Name Demo</a>
-								<div class="pro-ratting">
-									<i class="fa fa-star on"></i>
-									<i class="fa fa-star on"></i>
-									<i class="fa fa-star on"></i>
-									<i class="fa fa-star on"></i>
-									<i class="fa fa-star-half-o on"></i>
-								</div>
-								<h4 class="list-pro-price"><span class="new">$152</span><span class="old">$175</span></h4>
-								<p>Lorem ipsum dolor sit amet, consectetur adicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua magna aliqua consectetur adicing elit, sed do eiusmod tempor incididunt ut labore magna aliqua consectetur adicing elit, sed do eiusmod tempor incunt ut labore magna aliqua consectetur adicing elit.</p>
-								<div class="list-actions-btn">
-									<a class="quick-view" href="#"><i class="fa fa-search"></i></a>
-									<a class="favorite" href="#"><i class="fa fa-heart-o"></i></a>
-									<a class="cart" href="#"><i class="fa fa-shopping-cart"></i></a>
-								</div>
-							</div>
-						</div>
-						<!-- Single Product -->
-						<div class="single-list-product col-sm-12">
-							<div class="list-pro-image">
-								<a href="productDetails.html">
-									<img src="img/product/3.jpg" alt="" />
-								</a>
-							</div>
-							<div class="list-pro-des fix">
-								<a class="pro-name" href="productDetails.html">Product Name Demo</a>
-								<div class="pro-ratting">
-									<i class="fa fa-star on"></i>
-									<i class="fa fa-star on"></i>
-									<i class="fa fa-star on"></i>
-									<i class="fa fa-star on"></i>
-									<i class="fa fa-star-half-o on"></i>
-								</div>
-								<h4 class="list-pro-price"><span class="new">$152</span><span class="old">$175</span></h4>
-								<p>Lorem ipsum dolor sit amet, consectetur adicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua magna aliqua consectetur adicing elit, sed do eiusmod tempor incididunt ut labore magna aliqua consectetur adicing elit, sed do eiusmod tempor incunt ut labore magna aliqua consectetur adicing elit.</p>
-								<div class="list-actions-btn">
-									<a class="quick-view" href="#"><i class="fa fa-search"></i></a>
-									<a class="favorite" href="#"><i class="fa fa-heart-o"></i></a>
-									<a class="cart" href="#"><i class="fa fa-shopping-cart"></i></a>
-								</div>
-							</div>
-						</div>
-						<!-- Single Product -->
-						<div class="single-list-product col-sm-12">
-							<div class="list-pro-image">
-								<a href="productDetails.html">
-									<img src="img/product/4.jpg" alt="" />
-								</a>
-							</div>
-							<div class="list-pro-des fix">
-								<a class="pro-name" href="productDetails.html">Product Name Demo</a>
-								<div class="pro-ratting">
-									<i class="fa fa-star on"></i>
-									<i class="fa fa-star on"></i>
-									<i class="fa fa-star on"></i>
-									<i class="fa fa-star on"></i>
-									<i class="fa fa-star-half-o on"></i>
-								</div>
-								<h4 class="list-pro-price"><span class="new">$152</span><span class="old">$175</span></h4>
-								<p>Lorem ipsum dolor sit amet, consectetur adicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua magna aliqua consectetur adicing elit, sed do eiusmod tempor incididunt ut labore magna aliqua consectetur adicing elit, sed do eiusmod tempor incunt ut labore magna aliqua consectetur adicing elit.</p>
-								<div class="list-actions-btn">
-									<a class="quick-view" href="#"><i class="fa fa-search"></i></a>
-									<a class="favorite" href="#"><i class="fa fa-heart-o"></i></a>
-									<a class="cart" href="#"><i class="fa fa-shopping-cart"></i></a>
-								</div>
-							</div>
-						</div>
-						<!-- Single Product -->
-						<div class="single-list-product col-sm-12">
-							<div class="list-pro-image">
-								<a href="productDetails.html">
-									<img src="img/product/5.jpg" alt="" />
-								</a>
-							</div>
-							<div class="list-pro-des fix">
-								<a class="pro-name" href="productDetails.html">Product Name Demo</a>
-								<div class="pro-ratting">
-									<i class="fa fa-star on"></i>
-									<i class="fa fa-star on"></i>
-									<i class="fa fa-star on"></i>
-									<i class="fa fa-star on"></i>
-									<i class="fa fa-star-half-o on"></i>
-								</div>
-								<h4 class="list-pro-price"><span class="new">$152</span><span class="old">$175</span></h4>
-								<p>Lorem ipsum dolor sit amet, consectetur adicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua magna aliqua consectetur adicing elit, sed do eiusmod tempor incididunt ut labore magna aliqua consectetur adicing elit, sed do eiusmod tempor incunt ut labore magna aliqua consectetur adicing elit.</p>
-								<div class="list-actions-btn">
-									<a class="quick-view" href="#"><i class="fa fa-search"></i></a>
-									<a class="favorite" href="#"><i class="fa fa-heart-o"></i></a>
-									<a class="cart" href="#"><i class="fa fa-shopping-cart"></i></a>
-								</div>
-							</div>
-						</div>
-						<!-- Single Product -->
-						<div class="single-list-product col-sm-12">
-							<div class="list-pro-image">
-								<a href="productDetails.html">
-									<img src="img/product/6.jpg" alt="" />
-								</a>
-							</div>
-							<div class="list-pro-des fix">
-								<a class="pro-name" href="productDetails.html">Product Name Demo</a>
-								<div class="pro-ratting">
-									<i class="fa fa-star on"></i>
-									<i class="fa fa-star on"></i>
-									<i class="fa fa-star on"></i>
-									<i class="fa fa-star on"></i>
-									<i class="fa fa-star-half-o on"></i>
-								</div>
-								<h4 class="list-pro-price"><span class="new">$152</span><span class="old">$175</span></h4>
-								<p>Lorem ipsum dolor sit amet, consectetur adicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua magna aliqua consectetur adicing elit, sed do eiusmod tempor incididunt ut labore magna aliqua consectetur adicing elit, sed do eiusmod tempor incunt ut labore magna aliqua consectetur adicing elit.</p>
-								<div class="list-actions-btn">
-									<a class="quick-view" href="#"><i class="fa fa-search"></i></a>
-									<a class="favorite" href="#"><i class="fa fa-heart-o"></i></a>
-									<a class="cart" href="#"><i class="fa fa-shopping-cart"></i></a>
-								</div>
-							</div>
-						</div>
-						<!-- Single Product -->
-						<div class="single-list-product col-sm-12">
-							<div class="list-pro-image">
-								<a href="productDetails.html">
-									<img src="img/product/7.jpg" alt="" />
-								</a>
-							</div>
-							<div class="list-pro-des fix">
-								<a class="pro-name" href="productDetails.html">Product Name Demo</a>
-								<div class="pro-ratting">
-									<i class="fa fa-star on"></i>
-									<i class="fa fa-star on"></i>
-									<i class="fa fa-star on"></i>
-									<i class="fa fa-star on"></i>
-									<i class="fa fa-star-half-o on"></i>
-								</div>
-								<h4 class="list-pro-price"><span class="new">$152</span><span class="old">$175</span></h4>
-								<p>Lorem ipsum dolor sit amet, consectetur adicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua magna aliqua consectetur adicing elit, sed do eiusmod tempor incididunt ut labore magna aliqua consectetur adicing elit, sed do eiusmod tempor incunt ut labore magna aliqua consectetur adicing elit.</p>
-								<div class="list-actions-btn">
-									<a class="quick-view" href="#"><i class="fa fa-search"></i></a>
-									<a class="favorite" href="#"><i class="fa fa-heart-o"></i></a>
-									<a class="cart" href="#"><i class="fa fa-shopping-cart"></i></a>
-								</div>
-							</div>
-						</div>
-						<!-- Single Product -->
-						<div class="single-list-product col-sm-12">
-							<div class="list-pro-image">
-								<a href="productDetails.html">
-									<img src="img/product/8.jpg" alt="" />
-								</a>
-							</div>
-							<div class="list-pro-des fix">
-								<a class="pro-name" href="productDetails.html">Product Name Demo</a>
-								<div class="pro-ratting">
-									<i class="fa fa-star on"></i>
-									<i class="fa fa-star on"></i>
-									<i class="fa fa-star on"></i>
-									<i class="fa fa-star on"></i>
-									<i class="fa fa-star-half-o on"></i>
-								</div>
-								<h4 class="list-pro-price"><span class="new">$152</span><span class="old">$175</span></h4>
-								<p>Lorem ipsum dolor sit amet, consectetur adicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua magna aliqua consectetur adicing elit, sed do eiusmod tempor incididunt ut labore magna aliqua consectetur adicing elit, sed do eiusmod tempor incunt ut labore magna aliqua consectetur adicing elit.</p>
-								<div class="list-actions-btn">
-									<a class="quick-view" href="#"><i class="fa fa-search"></i></a>
-									<a class="favorite" href="#"><i class="fa fa-heart-o"></i></a>
-									<a class="cart" href="#"><i class="fa fa-shopping-cart"></i></a>
-								</div>
-							</div>
-						</div>
-						<!-- Single Product -->
-						<div class="single-list-product col-sm-12">
-							<div class="list-pro-image">
-								<a href="productDetails.html">
-									<img src="img/product/9.jpg" alt="" />
-								</a>
-							</div>
-							<div class="list-pro-des fix">
-								<a class="pro-name" href="productDetails.html">Product Name Demo</a>
-								<div class="pro-ratting">
-									<i class="fa fa-star on"></i>
-									<i class="fa fa-star on"></i>
-									<i class="fa fa-star on"></i>
-									<i class="fa fa-star on"></i>
-									<i class="fa fa-star-half-o on"></i>
-								</div>
-								<h4 class="list-pro-price"><span class="new">$152</span><span class="old">$175</span></h4>
-								<p>Lorem ipsum dolor sit amet, consectetur adicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua magna aliqua consectetur adicing elit, sed do eiusmod tempor incididunt ut labore magna aliqua consectetur adicing elit, sed do eiusmod tempor incunt ut labore magna aliqua consectetur adicing elit.</p>
-								<div class="list-actions-btn">
-									<a class="quick-view" href="#"><i class="fa fa-search"></i></a>
-									<a class="favorite" href="#"><i class="fa fa-heart-o"></i></a>
-									<a class="cart" href="#"><i class="fa fa-shopping-cart"></i></a>
-								</div>
-							</div>
-						</div>
-						<!-- Single Product -->
-						<div class="single-list-product col-sm-12">
-							<div class="list-pro-image">
-								<a href="productDetails.html">
-									<img src="img/product/10.jpg" alt="" />
-								</a>
-							</div>
-							<div class="list-pro-des fix">
-								<a class="pro-name" href="productDetails.html">Product Name Demo</a>
-								<div class="pro-ratting">
-									<i class="fa fa-star on"></i>
-									<i class="fa fa-star on"></i>
-									<i class="fa fa-star on"></i>
-									<i class="fa fa-star on"></i>
-									<i class="fa fa-star-half-o on"></i>
-								</div>
-								<h4 class="list-pro-price"><span class="new">$152</span><span class="old">$175</span></h4>
-								<p>Lorem ipsum dolor sit amet, consectetur adicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua magna aliqua consectetur adicing elit, sed do eiusmod tempor incididunt ut labore magna aliqua consectetur adicing elit, sed do eiusmod tempor incunt ut labore magna aliqua consectetur adicing elit.</p>
-								<div class="list-actions-btn">
-									<a class="quick-view" href="#"><i class="fa fa-search"></i></a>
-									<a class="favorite" href="#"><i class="fa fa-heart-o"></i></a>
-									<a class="cart" href="#"><i class="fa fa-shopping-cart"></i></a>
-								</div>
-							</div>
-						</div>
+						
 						<!-- Pagination -->
 						<div class="pagination">
 							<ul>

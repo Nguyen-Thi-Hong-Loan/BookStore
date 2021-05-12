@@ -33,6 +33,8 @@ public interface BookService {
 
 	List<BookEntity> findByPublisher(String title);
 
+	List<BookEntity> findByAuthor(String author);
+
 	
 
 }

@@ -1,399 +1,278 @@
 <!DOCTYPE HTML>
 <html lang="vi" xmlns:th="http://www.thymeleaf.org"
-	  xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head th:replace="head :: head">
 
 </head>
 
 <body>
-<div class="header-top"><!--Start Header Top Area-->
-	<header th:replace="header :: header"> </header>
-		</div>
-<div class="page-title fix"><!--Start Title-->
-	<div class="overlay section">
-		<h2>Product Details</h2>
+	<div class="header-top">
+		<!--Start Header Top Area-->
+		<header th:replace="header :: header"> </header>
 	</div>
-</div><!--End Title-->
-<section class="product-page page fix"><!--Start Product Details Area-->
-	<div class="container">
-		<div class="row">
-			<div class="col-sm-6">
-				<div class="details-pro-tab">
-			<!-- Tab panes -->
-					<div class="tab-content details-pro-tab-content">
-						<div class="tab-pane fade in active" id="image-1">
-							<div class="simpleLens-big-image-container">
-								<a class="simpleLens-lens-image" data-lens-image="/img/single-product/1.jpg">
-									<img src="/img/single-product/1.jpg" alt="" class="simpleLens-big-image">
-								</a>
-							</div>
-						</div>
-						<div class="tab-pane fade" id="image-2">
-							<div class="simpleLens-big-image-container">
-								<a class="simpleLens-lens-image" data-lens-image="/img/single-product/2.jpg">
-									<img src="/img/single-product/2.jpg" alt="" class="simpleLens-big-image">
-								</a>
-							</div>
-						</div>
-						<div class="tab-pane fade" id="image-3">
-							<div class="simpleLens-big-image-container">
-								<a class="simpleLens-lens-image" data-lens-image="/img/single-product/3.jpg">
-									<img src="/img/single-product/3.jpg" alt="" class="simpleLens-big-image">
-								</a>
-							</div>
-						</div>
-						<div class="tab-pane fade" id="image-4">
-							<div class="simpleLens-big-image-container">
-								<a class="simpleLens-lens-image" data-lens-image="/img/single-product/4.jpg">
-									<img src="/img/single-product/4.jpg" alt="" class="simpleLens-big-image">
-								</a>
-							</div>
-						</div>
-					</div>
-					<!-- Nav tabs -->
-					<ul class="tabs-list details-pro-tab-list" role="tablist">
-						<li class="active"><a href="#image-1" data-toggle="tab"><img src="/img/single-product/1.jpg" alt="" /></a></li>
-						<li><a href="#image-2" data-toggle="tab"><img src="/img/single-product/2.jpg" alt="" /></a></li>
-						<li><a href="#image-3" data-toggle="tab"><img src="/img/single-product/3.jpg" alt="" /></a></li>
-						<li><a href="#image-4" data-toggle="tab"><img src="/img/single-product/4.jpg" alt="" /></a></li>
-					</ul>
-				</div>
-			</div>
-			<div class="col-sm-6">
-				<div class="shop-details">
-					<!-- Product Name -->
-					<h2>PRODUCT NAME DEMO</h2>
-					<!-- Product Ratting -->
-					<div class="pro-ratting">
-						<i class="on fa fa-star"></i>
-						<i class="on fa fa-star"></i>
-						<i class="on fa fa-star"></i>
-						<i class="on fa fa-star"></i>
-						<i class="on fa fa-star-half-o"></i>
-					</div>
-					<h3><span>$165</span>$150</h3>
-					<h4>10 Reviews</h4>
-					<h5>Availability - <span>In Stock</span></h5>
-					<h6>QUICK OVERVIEW</h6>
-					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco aboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepte.</p>
-					<div class="select-menu fix">
-						<div class="sort fix">
-							<h4>Amount</h4>
-							<div class="cart-plus-minus">
-								<input type="text" value="0" name="qtybutton" class="cart-plus-minus-box">
-							</div>
-						</div>
-						
-					</div>
-					<div class="review">
-						<textarea rows="4" placeholder="Write Your Review..."></textarea>
-					</div>
-					<div class="action-btn">
-						<a href="#"><i class="fa fa-shopping-cart"></i></a>
-						<a href="#"><i class="fa fa-heart-o"></i></a>
-						<a href="#"><i class="fa fa-refresh"></i></a>
-					</div>
-				</div>
-			</div>
-			<div class="col-sm-12 fix">
-				<div class="description">
-					<!-- Nav tabs -->
-					<ul class="nav product-nav">
-						<li class="active"><a data-toggle="tab" href="#description">DESCRIPTION</a></li>
-						<li class=""><a data-toggle="tab" href="#review">REVIEWS</a></li>
-					
-					</ul>
-					<!-- Tab panes -->
-					<div class="tab-content">
-						<div id="description" class="tab-pane fade active in" role="tabpanel">
-							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco aboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepte.</p>
-							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamc.</p>
-						</div>
-						<div id="review" class="tab-pane fade" role="tabpanel">
-							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco aboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepte.</p>
-							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamc.</p>
-						</div>
-						
-					</div>
-				</div>
-			</div>
-			<div class="col-md-12 fix">
-				<div class="section-title">
-					<h2>RELATEDE PRODUCT</h2>
-					<div class="underline"></div>
-				</div>
-				<div class="related-pro-slider owl-carousel">
-					<!-- Single Product Start -->
-					<div class="product-item fix">
-						<div class="product-img-hover">
-							<!-- Product image -->
-							<a href="productDetails.html" class="pro-image fix"><img src="/img/product/1.jpg" alt="product" /></a>
-							<!-- Product action Btn -->
-							<div class="product-action-btn">
-								<a class="quick-view" href="#"><i class="fa fa-search"></i></a>
-								<a class="favorite" href="#"><i class="fa fa-heart-o"></i></a>
-								<a class="add-cart" href="#"><i class="fa fa-shopping-cart"></i></a>
-							</div>
-						</div>
-						<div class="pro-name-price-ratting">
-							<!-- Product Name -->
-							<div class="pro-name">
-								<a href="productDetails.html">Product Name Demo</a>
-							</div>
-							<!-- Product Ratting -->
-							<div class="pro-ratting">
-								<i class="on fa fa-star"></i>
-								<i class="on fa fa-star"></i>
-								<i class="on fa fa-star"></i>
-								<i class="on fa fa-star"></i>
-								<i class="on fa fa-star-half-o"></i>
-							</div>
-							<!-- Product Price -->
-							<div class="pro-price fix">
-								<p><span class="old">$165</span><span class="new">$150</span></p>
-							</div>
-						</div>
-					</div><!-- Single Product End -->
-					<!-- Single Product Start -->
-					<div class="product-item fix">
-						<div class="product-img-hover">
-							<!-- Product image -->
-							<a href="productDetails.html" class="pro-image fix"><img src="/img/product/2.jpg" alt="product" /></a>
-							<!-- Product action Btn -->
-							<div class="product-action-btn">
-								<a class="quick-view" href="#"><i class="fa fa-search"></i></a>
-								<a class="favorite" href="#"><i class="fa fa-heart-o"></i></a>
-								<a class="add-cart" href="#"><i class="fa fa-shopping-cart"></i></a>
-							</div>
-						</div>
-						<div class="pro-name-price-ratting">
-							<!-- Product Name -->
-							<div class="pro-name">
-								<a href="productDetails.html">Product Name Demo</a>
-							</div>
-							<!-- Product Ratting -->
-							<div class="pro-ratting">
-								<i class="on fa fa-star"></i>
-								<i class="on fa fa-star"></i>
-								<i class="on fa fa-star"></i>
-								<i class="on fa fa-star"></i>
-								<i class="on fa fa-star-half-o"></i>
-							</div>
-							<!-- Product Price -->
-							<div class="pro-price fix">
-								<p><span class="old">$165</span><span class="new">$150</span></p>
-							</div>
-						</div>
-					</div><!-- Single Product End -->
-					<!-- Single Product Start -->
-					<div class="product-item fix">
-						<div class="product-img-hover">
-							<!-- Product image -->
-							<a href="productDetails.html" class="pro-image fix"><img src="/img/product/3.jpg" alt="product" /></a>
-							<!-- Product action Btn -->
-							<div class="product-action-btn">
-								<a class="quick-view" href="#"><i class="fa fa-search"></i></a>
-								<a class="favorite" href="#"><i class="fa fa-heart-o"></i></a>
-								<a class="add-cart" href="#"><i class="fa fa-shopping-cart"></i></a>
-							</div>
-						</div>
-						<div class="pro-name-price-ratting">
-							<!-- Product Name -->
-							<div class="pro-name">
-								<a href="productDetails.html">Product Name Demo</a>
-							</div>
-							<!-- Product Ratting -->
-							<div class="pro-ratting">
-								<i class="on fa fa-star"></i>
-								<i class="on fa fa-star"></i>
-								<i class="on fa fa-star"></i>
-								<i class="on fa fa-star"></i>
-								<i class="on fa fa-star-half-o"></i>
-							</div>
-							<!-- Product Price -->
-							<div class="pro-price fix">
-								<p><span class="old">$165</span><span class="new">$150</span></p>
-							</div>
-						</div>
-					</div><!-- Single Product End -->
-					<!-- Single Product Start -->
-					<div class="product-item fix">
-						<div class="product-img-hover">
-							<!-- Product image -->
-							<a href="productDetails.html" class="pro-image fix"><img src="/img/product/4.jpg" alt="product" /></a>
-							<!-- Product action Btn -->
-							<div class="product-action-btn">
-								<a class="quick-view" href="#"><i class="fa fa-search"></i></a>
-								<a class="favorite" href="#"><i class="fa fa-heart-o"></i></a>
-								<a class="add-cart" href="#"><i class="fa fa-shopping-cart"></i></a>
-							</div>
-						</div>
-						<div class="pro-name-price-ratting">
-							<!-- Product Name -->
-							<div class="pro-name">
-								<a href="productDetails.html">Product Name Demo</a>
-							</div>
-							<!-- Product Ratting -->
-							<div class="pro-ratting">
-								<i class="on fa fa-star"></i>
-								<i class="on fa fa-star"></i>
-								<i class="on fa fa-star"></i>
-								<i class="on fa fa-star"></i>
-								<i class="on fa fa-star-half-o"></i>
-							</div>
-							<!-- Product Price -->
-							<div class="pro-price fix">
-								<p><span class="old">$165</span><span class="new">$150</span></p>
-							</div>
-						</div>
-					</div><!-- Single Product End -->
-					<!-- Single Product Start -->
-					<div class="product-item fix">
-						<div class="product-img-hover">
-							<!-- Product image -->
-							<a href="productDetails.html" class="pro-image fix"><img src="/img/product/5.jpg" alt="product" /></a>
-							<!-- Product action Btn -->
-							<div class="product-action-btn">
-								<a class="quick-view" href="#"><i class="fa fa-search"></i></a>
-								<a class="favorite" href="#"><i class="fa fa-heart-o"></i></a>
-								<a class="add-cart" href="#"><i class="fa fa-shopping-cart"></i></a>
-							</div>
-						</div>
-						<div class="pro-name-price-ratting">
-							<!-- Product Name -->
-							<div class="pro-name">
-								<a href="productDetails.html">Product Name Demo</a>
-							</div>
-							<!-- Product Ratting -->
-							<div class="pro-ratting">
-								<i class="on fa fa-star"></i>
-								<i class="on fa fa-star"></i>
-								<i class="on fa fa-star"></i>
-								<i class="on fa fa-star"></i>
-								<i class="on fa fa-star-half-o"></i>
-							</div>
-							<!-- Product Price -->
-							<div class="pro-price fix">
-								<p><span class="old">$165</span><span class="new">$150</span></p>
-							</div>
-						</div>
-					</div><!-- Single Product End -->
-				</div>
-			</div>
+	<div class="page-title fix">
+		<!--Start Title-->
+		<div class="overlay section">
+			<h2>Product Details</h2>
 		</div>
 	</div>
-</section><!--End Product Details Area-->
+	<!--End Title-->
+	<section class="product-page page fix">
+		<!--Start Product Details Area-->
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-6">
+					<div class="details-pro-tab">
+						<!-- Tab panes -->
+						<div class="tab-content details-pro-tab-content">
+							<div class="tab-pane fade in active" th:id="${image[0].id}">
+								<div class="simpleLens-big-image-container">
+									<a class="simpleLens-lens-image"
+										th:data-lens-image="@{'/img/upload/' + ${image[0].link}}"> <img
+										th:src="@{'/img/upload/' + ${image[0].link}}" alt=""
+										class="simpleLens-big-image">
+									</a>
+								</div>
+							</div>
 
-<div class="support-area section fix"><!--Start Support Area-->
-	<div class="container">
-		<div class="row">
-			<div class="support col-sm-3">
-				<i class="fa fa-thumbs-up"></i>
-				<h3>High quality</h3>
-				<p>Lorem ipsum dolor sit amet, conseetur adipiscing elit, consectetur</p>
-			</div>
-			<div class="support col-sm-3">
-				<i class="fa fa-bus"></i>
-				<h3>Fast Delivery</h3>
-				<p>Lorem ipsum dolor sit amet, conseetur adipiscing elit, consectetur</p>
-			</div>
-			<div class="support col-sm-3">
-				<i class="fa fa-phone"></i>
-				<h3>24/7 support</h3>
-				<p>Lorem ipsum dolor sit amet, conseetur adipiscing elit, consectetur</p>
-			</div>
-			<div class="support col-sm-3">
-				<i class="fa fa-random"></i>
-				<h3>14 - Day Returns</h3>
-				<p>Lorem ipsum dolor sit amet, conseetur adipiscing elit, consectetur</p>
-			</div>
-		</div>
-	</div>
-</div><!--Start Support Area-->
-<div class="footer-top-area fix">	<!--Start Footer top area-->
-	<div class="container">
-		<div class="row">
-			<div class="col-sm-6 col-md-3">
-				<div class="footer-about">
-					<div class="image">
-						<img src="/img/header/booklogo.png" alt="" />
-						<h3>online book store</h3>
-					</div>
-					
-				</div>
-				<div class="footer-contact">
-					<div class="single-contact">
-						<div class="icon">
-							<i class="fa fa-map-marker"></i>
 						</div>
-						<div class="details">
-							<p>Main town, Anystreen</p>
-							<p>C/A 1254 New Yourk</p>
-						</div>
-					</div>
-					<div class="single-contact">
-						<div class="icon">
-							<i class="fa fa-phone"></i>
-						</div>
-						<div class="details">
-							<p>+012 456 456 456</p>
-							<p>+012 356 897 222</p>
-						</div>
-					</div>
-					<div class="single-contact">
-						<div class="icon">
-							<i class="fa fa-dribbble"></i>
-						</div>
-						<div class="details">
-							<a href="#">info@olongker.com</a>
-							<a href="#">www.olongker.com</a>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="col-sm-6 col-md-3">
-				<div class="footer-quick-link footer-links">
-					<h2>QUICK LINK</h2>
-					<ul>
-						<li><a href="index.html">Home</a></li>
-						<li><a href="shop-left-sidebar.html">New Arrivals</a></li>
-						<li><a href="services.html">Services</a></li>
-						<li><a href="portfolio-1.html">Portfolio</a></li>
-						<li><a href="blog.html">Blog</a></li>
-						<li><a href="contact.html">Contact</a></li>
-					</ul>
-				</div>
-			</div>
-			<div class="col-sm-12 col-md-6">
-				<div class="row">
-					<div class="col-sm-8 footer-support footer-links">
-						<h2>OUR SUPPORT</h2>
-						<ul>
-							<li><a href="#">Site Map</a></li>
-							<li><a href="#">privacy Policy</a></li>
-							<li><a href="#">Help & FAQs</a></li>
-							<li><a href="#">Gift Voucher</a></li>
-							<li><a href="contact.html">Contact Us</a></li>
-						</ul>
-					</div>
-					<div class="col-sm-4 footer-account footer-links">
-						<h2>my Account</h2>
-						<ul>
-							<li><a href="#">my Account</a></li>
-							<li><a href="#">order History</a></li>
-					
+						<!-- Nav tabs -->
+						<ul class="tabs-list details-pro-tab-list" role="tablist">
+
+							<li th:each="img : ${image}"><a th:href="@{'#'+${img.id}}"
+								data-toggle="tab"> <img
+									th:src="@{'/img/upload/' + ${img.link}}" alt="" />
+							</a></li>
+
 						</ul>
 					</div>
 				</div>
-				
+				<div class="col-sm-6">
+					<div class="shop-details">
+						<!-- Product Name -->
+						<h2 th:text="${book.name}"></h2>
+						<!-- Product Ratting -->
+						<div class="pro-ratting">
+							<i class="on fa fa-star"></i> <i class="on fa fa-star"></i> <i
+								class="on fa fa-star"></i> <i class="on fa fa-star"></i> <i
+								class="on fa fa-star-half-o"></i>
+						</div>
+						<h2>
+							<span th:text="${book.price}" ></span>VNĐ
+						</h2>
+						<h2>Tác giả:</h2>
+						<h3 th:text="${book.author}" ></h3>
+						<h5>Còn hàng</h5>
+						<h6>Tổng quát:</h6>
+						<p th:text="${book.description}"></p>
+						<div class="select-menu fix">
+							<div class="sort fix">
+								<h4>Số lượng</h4>
+								<div class="cart-plus-minus">
+									<input type="text" value="0" name="qtybutton"
+										class="cart-plus-minus-box">
+								</div>
+							</div>
+
+						</div>
+						<div class="review">
+							<textarea rows="4" placeholder="Write Your Review..."></textarea>
+						</div>
+						<div class="action-btn">
+							<a href="#"><i class="fa fa-shopping-cart"></i></a> <a href="#"><i
+								class="fa fa-heart-o"></i></a> <a href="#"><i
+								class="fa fa-refresh"></i></a>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-12 fix">
+					<div class="description">
+						<!-- Nav tabs -->
+						<ul class="nav product-nav">
+							<li class="active"><a data-toggle="tab" href="#description">DESCRIPTION</a></li>
+							<li class=""><a data-toggle="tab" href="#review">REVIEWS</a></li>
+
+						</ul>
+						<!-- Tab panes -->
+						<div class="tab-content">
+							<div id="description" class="tab-pane fade active in"
+								role="tabpanel">
+								<p th:text="${book.description}"></p>
+							</div>
+							<div id="review" class="tab-pane fade" role="tabpanel">
+								
+								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+									sed do eiusmod tempor incididunt ut labore et dolore magna
+									aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+									ullamc.</p>
+							</div>
+
+						</div>
+					</div>
+				</div>
+				<div class="col-md-12 fix">
+					<div class="section-title">
+						<h2>Sách gợi ý</h2>
+						<div class="underline"></div>
+					</div>
+					<div class="related-pro-slider owl-carousel">
+						<!-- Single Product Start -->
+						<div class="product-item fix" th:each="suggestion : ${listsuggestions}">
+							<div class="product-img-hover">
+								<!-- Product image -->
+								<a href="product-details.html" class="pro-image fix"><img
+									th:src="@{'/img/upload/' + ${suggestion.image[0].link}}" alt="product" /></a>
+								<!-- Product action Btn -->
+								<div class="product-action-btn">
+									<a class="quick-view" href="#"><i class="fa fa-search"></i></a>
+									<a class="favorite" href="#"><i class="fa fa-heart-o"></i></a>
+									<a class="add-cart" href="#"><i class="fa fa-shopping-cart"></i></a>
+								</div>
+							</div>
+							<div class="pro-name-price-ratting">
+								<!-- Product Name -->
+								<div class="pro-name">
+									<a  th:href="@{'/bookstore/detailBook/'+${suggestion.id}}" th:text="${suggestion.name}"></a>
+								</div>
+								<!-- Product Ratting -->
+								<div class="pro-ratting">
+									<i class="on fa fa-star"></i> <i class="on fa fa-star"></i> <i
+										class="on fa fa-star"></i> <i class="on fa fa-star"></i> <i
+										class="on fa fa-star-half-o"></i>
+								</div>
+								<!-- Product Price -->
+								<div class="pro-price fix">
+									<p>
+										<span class="new" th:text="${suggestion.price}"></span><span>VNĐ</span>
+									</p>
+								</div>
+							</div>
+						</div>
+						<!-- Single Product End -->
+						
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!--End Product Details Area-->
+
+	<div class="support-area section fix">
+		<!--Start Support Area-->
+		<div class="container">
+			<div class="row">
+				<div class="support col-sm-3">
+					<i class="fa fa-thumbs-up"></i>
+					<h3>High quality</h3>
+					<p>Lorem ipsum dolor sit amet, conseetur adipiscing elit,
+						consectetur</p>
+				</div>
+				<div class="support col-sm-3">
+					<i class="fa fa-bus"></i>
+					<h3>Fast Delivery</h3>
+					<p>Lorem ipsum dolor sit amet, conseetur adipiscing elit,
+						consectetur</p>
+				</div>
+				<div class="support col-sm-3">
+					<i class="fa fa-phone"></i>
+					<h3>24/7 support</h3>
+					<p>Lorem ipsum dolor sit amet, conseetur adipiscing elit,
+						consectetur</p>
+				</div>
+				<div class="support col-sm-3">
+					<i class="fa fa-random"></i>
+					<h3>14 - Day Returns</h3>
+					<p>Lorem ipsum dolor sit amet, conseetur adipiscing elit,
+						consectetur</p>
+				</div>
 			</div>
 		</div>
 	</div>
-</div>
-<!--Start Footer top area-->
+	<!--Start Support Area-->
+	<div class="footer-top-area fix">
+		<!--Start Footer top area-->
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-6 col-md-3">
+					<div class="footer-about">
+						<div class="image">
+							<img src="/img/header/booklogo.png" alt="" />
+							<h3>online book store</h3>
+						</div>
 
-	
-<!-- jQuery 2.1.4 -->
+					</div>
+					<div class="footer-contact">
+						<div class="single-contact">
+							<div class="icon">
+								<i class="fa fa-map-marker"></i>
+							</div>
+							<div class="details">
+								<p>Main town, Anystreen</p>
+								<p>C/A 1254 New Yourk</p>
+							</div>
+						</div>
+						<div class="single-contact">
+							<div class="icon">
+								<i class="fa fa-phone"></i>
+							</div>
+							<div class="details">
+								<p>+012 456 456 456</p>
+								<p>+012 356 897 222</p>
+							</div>
+						</div>
+						<div class="single-contact">
+							<div class="icon">
+								<i class="fa fa-dribbble"></i>
+							</div>
+							<div class="details">
+								<a href="#">info@olongker.com</a> <a href="#">www.olongker.com</a>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-6 col-md-3">
+					<div class="footer-quick-link footer-links">
+						<h2>QUICK LINK</h2>
+						<ul>
+							<li><a href="index.html">Home</a></li>
+							<li><a href="shop-left-sidebar.html">New Arrivals</a></li>
+							<li><a href="services.html">Services</a></li>
+							<li><a href="portfolio-1.html">Portfolio</a></li>
+							<li><a href="blog.html">Blog</a></li>
+							<li><a href="contact.html">Contact</a></li>
+						</ul>
+					</div>
+				</div>
+				<div class="col-sm-12 col-md-6">
+					<div class="row">
+						<div class="col-sm-8 footer-support footer-links">
+							<h2>OUR SUPPORT</h2>
+							<ul>
+								<li><a href="#">Site Map</a></li>
+								<li><a href="#">privacy Policy</a></li>
+								<li><a href="#">Help & FAQs</a></li>
+								<li><a href="#">Gift Voucher</a></li>
+								<li><a href="contact.html">Contact Us</a></li>
+							</ul>
+						</div>
+						<div class="col-sm-4 footer-account footer-links">
+							<h2>my Account</h2>
+							<ul>
+								<li><a href="#">my Account</a></li>
+								<li><a href="#">order History</a></li>
+
+							</ul>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--Start Footer top area-->
+
+
+	<!-- jQuery 2.1.4 -->
 	<script type="text/javascript" src="/js/jquery-2.1.4.min.js"></script>
 	<!-- Bootstrap JS -->
 	<script type="text/javascript" src="/js/bootstrap.min.js"></script>

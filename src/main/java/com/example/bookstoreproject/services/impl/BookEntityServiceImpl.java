@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 
 
@@ -78,5 +79,9 @@ public class BookEntityServiceImpl implements BookService {
 	public List<BookEntity> findByPublisher(String title) {
 		return bookReponsitory.findByPublisher(title);
 	}
-
+	@Override
+	public List<BookEntity> findByAuthor(String author) {
+		return bookReponsitory.findByAuthor(author);
+	}
+	
 }
