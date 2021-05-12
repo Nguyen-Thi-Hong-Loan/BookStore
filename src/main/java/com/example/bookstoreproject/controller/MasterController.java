@@ -14,7 +14,7 @@ import com.example.bookstoreproject.services.BlogService;
 import com.example.bookstoreproject.services.BookService;
 
 @Controller
-@RequestMapping("/bookStore")
+@RequestMapping("/bookstore")
 public class MasterController {
 //	Double priceFee = 299.0;
 //	String ktx = "Ký túc xá";
