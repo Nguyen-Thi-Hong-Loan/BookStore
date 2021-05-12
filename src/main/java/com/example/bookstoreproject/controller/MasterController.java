@@ -16,8 +16,7 @@ import com.example.bookstoreproject.services.BookService;
 @Controller
 @RequestMapping("/bookstore")
 public class MasterController {
-//	Double priceFee = 299.0;
-//	String ktx = "Ký túc xá";
+
 	String publisher = "NXB Trẻ";
 	
 	@Autowired
