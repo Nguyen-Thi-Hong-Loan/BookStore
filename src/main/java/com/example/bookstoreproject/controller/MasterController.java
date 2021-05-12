@@ -8,19 +8,31 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.example.bookstoreproject.entity.BlogEntity;
+import com.example.bookstoreproject.entity.BookEntity;
+import com.example.bookstoreproject.services.BlogService;
+import com.example.bookstoreproject.services.BookService;
+
 @Controller
 @RequestMapping("/bookstore")
 public class MasterController {
-	Double priceFee = 299.0;
-	String ktx = "Ký túc xá";
-	String hostel = "Nhà trọ";
-//	@Autowired
-//	private PostService postservice;
+//	Double priceFee = 299.0;
+//	String ktx = "Ký túc xá";
+	String publisher = "NXB Trẻ";
+	
+	@Autowired
+	private BookService bookservice;
+	@Autowired
+	private BlogService blogservice;
 
 	@GetMapping("home")
 	public String loadHome(ModelMap model) {
-
+		List<BookEntity> listpublisher= (List<BookEntity>) bookservice.findByPublisher(publisher);
 		
+		List<BlogEntity> listblog= (List<BlogEntity>) blogservice.findAll();
+		
+		model.addAttribute("listpublishers", listpublisher);
+		model.addAttribute("listblogs", listblog);
 		return "home";
 	}
 

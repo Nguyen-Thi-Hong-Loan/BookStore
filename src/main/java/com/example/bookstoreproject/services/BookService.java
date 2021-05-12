@@ -31,6 +31,8 @@ public interface BookService {
 
 	BookEntity save(BookEntity entity);
 
+	List<BookEntity> findByPublisher(String title);
+
 	
 
 }
