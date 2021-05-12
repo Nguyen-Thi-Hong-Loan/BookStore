@@ -74,4 +74,9 @@ public class BookEntityServiceImpl implements BookService {
 		bookReponsitory.deleteAll();
 	}
 
+	@Override
+	public List<BookEntity> findByPublisher(String title) {
+		return bookReponsitory.findByPublisher(title);
+	}
+
 }
