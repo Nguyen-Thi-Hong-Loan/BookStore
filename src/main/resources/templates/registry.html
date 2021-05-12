@@ -1,0 +1,326 @@
+<!DOCTYPE HTML>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head th:replace="head :: head">
+
+</head>
+
+<body>
+<div class="header-top"><!--Start Header Top Area-->
+    <header th:replace="header :: header"> </header>
+</div>
+<div class="page-title fix"><!--Start Title-->
+    <div class="overlay section">
+        <h2>login / Register</h2>
+    </div>
+</div><!--End Title-->
+<div class="login-page page fix"><!--start login Area-->
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6 col-md-5">
+                <div class="login">
+<!--                    <form id="signup-form" action="#">-->
+<!--                        <h2>Create A new Account</h2>-->
+<!--                        <p>Create your own account</p>-->
+<!--                        <label>E-mail Address<span>*</span></label>-->
+<!--                        <input type="email" required/>-->
+<!--                        <label>Password<span>*</span></label>-->
+<!--                        <input type="password" required/>-->
+<!--                        <label>Confirm Password<span>*</span></label>-->
+<!--                        <input type="password" required/>-->
+<!--                        <input type="submit" value="Sign up" />-->
+<!--                    </form>-->
+
+
+                    <form id="contact-form" th:action="@{/hostel/registerNow}" method="post"
+                          th:object="${user}">
+                        <h2>Create A new Account</h2>
+                        <p>Create your own account</p>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <label for="name">Tên *</label>
+                                    <input type="text" id="name" class="form-control"
+                                           th:field="*{name}"
+                                           data-msg-required="Please enter your name.">
+                                    <p id="errorName" style="color:red;"></p>
+                                </div>
+                                <div class="col-sm-6">
+                                    <label>Email*</label>
+                                    <input type="email" name="customer_mail" id="mail"
+                                           class="form-control" th:field="*{email}"
+                                           data-msg-required="Please enter your email address."
+                                           data-msg-email="Please enter a valid email address."
+                                           required>
+
+                                    <p id="errorEmail" style="color:red;"></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <label>Mật khẩu*</label>
+                                    <input type="password" id="password" class="form-control" th:field="*{password}"
+                                           data-msg-required="Please enter the subject." required>
+                                    <p id="errorPW" style="color:#ff0000;"></p>
+                                </div>
+                                <div class="col-sm-6">
+                                    <label>Số điện thoại*</label>
+                                    <input id="phone" class="form-control" th:field="*{phone}"
+                                           data-msg-required="Please enter the subject." required
+                                           autofocus="autofocus">
+                                    <p id="errorPhone" style="color:red;"></p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <label>Xác nhận mật khẩu*</label>
+                                    <input type="password" name="subject" id="rePass" class="form-control"
+                                           data-msg-required="Please enter the subject." required>
+                                    <p id="errorPWagain" style="color:red;"></p>
+                                </div>
+                                <div class="col-sm-6">
+                                    <label>Địa chỉ*</label>
+                                    <input type="text" class="form-control" id="address" th:field="*{address}"
+                                           data-msg-required="Please enter the subject." required
+                                           autofocus="autofocus">
+                                    <p id="errorAddress"></p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <input type="submit" value="Đăng ký" class="btn btn-primary min-wide"
+                                   data-loading-text="Loading...">
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div><!--End login Area-->
+
+<div class="support-area section fix"><!--Start Support Area-->
+    <div class="container">
+        <div class="row">
+            <div class="support col-sm-3">
+                <i class="fa fa-thumbs-up"></i>
+                <h3>High quality</h3>
+                <p>Lorem ipsum dolor sit amet, conseetur adipiscing elit, consectetur</p>
+            </div>
+            <div class="support col-sm-3">
+                <i class="fa fa-bus"></i>
+                <h3>Fast Delivery</h3>
+                <p>Lorem ipsum dolor sit amet, conseetur adipiscing elit, consectetur</p>
+            </div>
+            <div class="support col-sm-3">
+                <i class="fa fa-phone"></i>
+                <h3>24/7 support</h3>
+                <p>Lorem ipsum dolor sit amet, conseetur adipiscing elit, consectetur</p>
+            </div>
+            <div class="support col-sm-3">
+                <i class="fa fa-random"></i>
+                <h3>14 - Day Returns</h3>
+                <p>Lorem ipsum dolor sit amet, conseetur adipiscing elit, consectetur</p>
+            </div>
+        </div>
+    </div>
+</div><!--Start Support Area-->
+<div class="footer-top-area fix">	<!--Start Footer top area-->
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6 col-md-3">
+                <div class="footer-about">
+                    <div class="image">
+                        <img src="/img/header/booklogo.png" alt="" />
+                        <h3>online book store</h3>
+                    </div>
+
+                </div>
+                <div class="footer-contact">
+                    <div class="single-contact">
+                        <div class="icon">
+                            <i class="fa fa-map-marker"></i>
+                        </div>
+                        <div class="details">
+                            <p>Main town, Anystreen</p>
+                            <p>C/A 1254 New Yourk</p>
+                        </div>
+                    </div>
+                    <div class="single-contact">
+                        <div class="icon">
+                            <i class="fa fa-phone"></i>
+                        </div>
+                        <div class="details">
+                            <p>+012 456 456 456</p>
+                            <p>+012 356 897 222</p>
+                        </div>
+                    </div>
+                    <div class="single-contact">
+                        <div class="icon">
+                            <i class="fa fa-dribbble"></i>
+                        </div>
+                        <div class="details">
+                            <a href="#">info@olongker.com</a>
+                            <a href="#">www.olongker.com</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-3">
+                <div class="footer-quick-link footer-links">
+                    <h2>QUICK LINK</h2>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="shop-left-sidebar.html">New Arrivals</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="portfolio-1.html">Portfolio</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-6">
+                <div class="row">
+                    <div class="col-sm-8 footer-support footer-links">
+                        <h2>OUR SUPPORT</h2>
+                        <ul>
+                            <li><a href="#">Site Map</a></li>
+                            <li><a href="#">privacy Policy</a></li>
+                            <li><a href="#">Help & FAQs</a></li>
+                            <li><a href="#">Gift Voucher</a></li>
+                            <li><a href="contact.html">Contact Us</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-sm-4 footer-account footer-links">
+                        <h2>my Account</h2>
+                        <ul>
+                            <li><a href="#">my Account</a></li>
+                            <li><a href="#">order History</a></li>
+
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<!--Start Footer top area-->
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#contact-form').submit(function (event) {
+            var stop = false;
+            var email = $("#mail").val();
+            var password = $("#password").val()
+            var rePass = $("#rePass").val()
+            var name = $("#name").val()
+            var phone = $("#phone").val();
+            var address = $("#address").val();
+            $("#errorPW").text("");
+            $("#errorPWagain").text("");
+            $("#errorName").text("");
+            $("#errorPhone").text("");
+            $("#errorAddress").text("");
+            if (email === "") {
+                $("#errorEmail").text("Bạn không thể để trống dữ liệu này")
+                stop = true;
+            }
+            if (password === "") {
+                $("#errorPW").text("Bạn không thể để trống dữ liệu này")
+                stop = true;
+            } else if (password.length < 8) {
+                $("#errorPW").text("Mật khẩu có ít nhất 8 ký tự. Thử lại.")
+                stop = true;
+            }
+            if (rePass === "") {
+                $("#errorPWagain").text("Bạn không thể để trống dữ liệu này")
+                stop = true;
+            } else if (password !== rePass) {
+                $("#errorPWagain").text("Mật khẩu không tương ứng. Thử lại.")
+                stop = true;
+            }
+            if (phone === "") {
+                $("#errorPhone").text("Bạn không thể để trống dữ liệu này")
+                stop = true;
+            }
+            if (name === "") {
+                $("#errorName").text("Bạn không thể để trống dữ liệu này")
+                stop = true;
+            }
+            if (address === "") {
+                $("#errorAddress").text("Bạn không thể để trống dữ liệu này")
+                stop = true;
+            }
+            if (stop === true) {
+                event.preventDefault();
+            }
+        });
+        $("#mail").change(function () {
+            $.ajax({
+                url: "/bookstore/checkEmail",
+                method: "post",
+                data: {
+                    email: $("#mail").val(),
+                },
+                success: function (value) {
+                    console.log(value)
+                    if (value === "exist") {
+                        $("#errorEmail").text("Email này đã có người đăng ký. Thử lại")
+                        stop = true;
+                    } else {
+                        $("#errorEmail").text("")
+                    }
+                },
+                error: function (err) {
+                    console.log(err)
+                    stop = true;
+                },
+            })
+        });
+
+
+    })
+
+</script>
+
+
+
+<!-- jQuery 2.1.4 -->
+<script type="text/javascript" src="/js/jquery-2.1.4.min.js"></script>
+<!-- Bootstrap JS -->
+<script type="text/javascript" src="/js/bootstrap.min.js"></script>
+<!-- Owl Carousel JS -->
+<script type="text/javascript" src="/js/owl.carousel.min.js"></script>
+<!--countTo JS -->
+<script type="text/javascript" src="/js/jquery.countTo.js"></script>
+<!-- mixitup JS -->
+<script type="text/javascript" src="/js/jquery.mixitup.min.js"></script>
+<!-- magnific popup JS -->
+<script type="text/javascript" src="/js/jquery.magnific-popup.min.js"></script>
+<!-- Appear JS -->
+<script type="text/javascript" src="/js/jquery.appear.js"></script>
+<!-- MeanMenu JS -->
+<script type="text/javascript" src="/js/jquery.meanmenu.min.js"></script>
+<!-- Nivo Slider JS -->
+<script type="text/javascript" src="/js/jquery.nivo.slider.pack.js"></script>
+<!-- Scrollup JS -->
+<script type="text/javascript" src="/js/jquery.scrollup.min.js"></script>
+<!-- simpleLens JS -->
+<script type="text/javascript" src="/js/jquery.simpleLens.min.js"></script>
+<!-- Price Slider JS -->
+<script type="text/javascript" src="/js/jquery-price-slider.js"></script>
+<!-- WOW JS -->
+<script type="text/javascript" src="/js/wow.min.js"></script>
+<script>
+    new WOW().init();
+</script>
+<!-- Main JS -->
+<script type="text/javascript" src="/js/main.js"></script>
+
+</body>
+
+</html>

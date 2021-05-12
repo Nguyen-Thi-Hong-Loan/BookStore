@@ -67,8 +67,8 @@
 						<div class="product-item fix" th:each="listpublisher : ${listpublishers}">
 							<div class="product-img-hover">
 								<!-- Product image -->
-								<a href="product-details.html" class="pro-image fix"><img  th:src="@{'/img/upload/' + ${listpublisher.image[0].link}}"
-										alt="featured" /></a>
+								<a href="productDetails.html" class="pro-image fix"><img th:src="@{'/img/upload/' + ${listpublisher.image[0].link}}"
+																						 alt="featured" /></a>
 								<!-- Product action Btn -->
 								<div class="product-action-btn">
 									<a class="quick-view" href="#"><i class="fa fa-search"></i></a>
@@ -79,7 +79,7 @@
 							<div class="pro-name-price-ratting">
 								<!-- Product Name -->
 								<div class="pro-name">
-									<a href="product-details.html" th:text="${listpublisher.name}"></a>
+									<a href="productDetails.html" th:text="${listpublisher.name}"></a>
 								</div>
 								<!-- Product Ratting -->
 								<div class="pro-ratting">
@@ -116,13 +116,13 @@
 				<div class="blog-slider owl-carousel">
 					<div class="single-blog" th:each="listblog : ${listblogs}">
 						<div class="content fix">
-							<a class="image fix" href="blog-details.html"><img th:src="@{'/img/upload/' + ${listblog.imageBlog[0].link}}" alt="" />
+							<a class="image fix" href="blogDetails.html"><img th:src="@{'/img/upload/' + ${listblog.imageBlog[0].link}}" alt="" />
 								<div class="date">
 									<h4>21</h4>
 									<h5>Aug</h5>
 								</div>
 							</a>
-							<h2><a class="title" href="blog-details.html" th:text="${listblog.title}"></a></h2>
+							<h2><a class="title" href="blogDetails.html" th:text="${listblog.title}"></a></h2>
 							<div class="meta">
 								<a href="#"><i class="fa fa-pencil-square-o" th:text="${listblog.bookAuthor}"></i></a>
 								<a href="#"><i class="fa fa-calendar"></i>3 Days ago</a>
