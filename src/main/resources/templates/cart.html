@@ -22,68 +22,41 @@
 					<table class="table cart-table">
 						<thead class="table-title">
 							<tr>
-								<th class="produ">PRODUCT</th>
+								
 								<th class="namedes">PRODUCT NAME &amp; DESCRIPTION</th>
 								<th class="unit">UNIT PRICE</th>
 								<th class="quantity">QUANTITY</th>
-								<th class="valu">VALUE</th>
 								<th class="acti">ACTION</th>
 							</tr>													
 						</thead>
 						<tbody>
-							<tr class="table-info">
-								<td class="produ">
-									<a href="#"><img alt="" src="/img/cart-1.jpg"></a>
-								</td>
+							<tr class="table-info" th:each="item, iStat : ${cart}">
+								
 								<td class="namedes">
-									<h2><a href="#">PRODUCT NAME DEMO</a></h2>
-									<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+									<h2><a th:text="${item.name}"></a></h2>
+									<p th:text="${item.author}"></p>
 								</td>
 								<td class="unit">
-									<h5>$120</h5>
+									<h5 th:text="${item.price}"><span>VNĐ</span></h5>
 								</td>
 								<td class="quantity">
 									<div class="cart-plus-minus">
-										<input type="text" value="0" name="qtybutton" class="cart-plus-minus-box">
+										<input type="text"  value="1" name="qtybutton" class="cart-plus-minus-box">
 									</div>
 								</td>
-								<td class="valu">
-									<h5>$120</h5>
-								</td>
+								
 								<td class="acti">
-									<a href="#"><i class="fa fa-trash-o"></i></a>
+									<a href="#"  th:href="@{shopList/removecart/{index}(index=${iStat.index})}"><i class="fa fa-trash-o"></i></a>
 								</td>
 							</tr>
-							<tr class="table-info">
-								<td class="produ">
-									<a href="#"><img alt="" src="/img/cart-2.jpg"></a>
-								</td>
-								<td class="namedes">
-									<h2><a href="#">PRODUCT NAME DEMO</a></h2>
-									<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-								</td>
-								<td class="unit">
-									<h5>$120</h5>
-								</td>
-								<td class="quantity">
-									<div class="cart-plus-minus">
-										<input type="text" value="0" name="qtybutton" class="cart-plus-minus-box">
-									</div>
-								</td>
-								<td class="valu">
-									<h5>$120</h5>
-								</td>
-								<td class="acti">
-									<a href="#"><i class="fa fa-trash-o"></i></a>
-								</td>
-							</tr>
+							
 						</tbody>
 					</table>
 				</div>
 			</div>
 			<div class="col-sm-6 col-md-7">
 				<div class="coupon">
-					<a href="#">Continue Shopping</a>
+					<a th:href="@{/bookstore/shopList}">Continue Shopping</a>
 					<h3>DISCOUNT COUPON CODE</h3>
 					<input type="text" placeholder="DISCOUNT COUPON CODE HERE..." />
 					<a href="#">Apply Coupon</a>
@@ -92,11 +65,11 @@
 			</div>
 			<div class="col-sm-6 col-md-5">
 				<div class="proceed fix">
-					<a href="#">CLEAR SHOPPING CART</a>
-					<a href="#">UPDATE SHOPPING CART</a>
+					<a th:href="@{/bookstore/shopList/clearcart}" >CLEAR SHOPPING CART</a>
+					
 					<div class="total">
-						<h5>Sub Total <span>$420</span></h5>
-						<h6>Grand Total <span>$420</span></h6>
+						
+						<h6>Grand Total <span  th:text="${cartTotal}"></span>vnđ</h6>
 					</div>
 					<a id="procedto" href="checkout.html">PROCEED TO CHECK OUT</a>
 				</div>
@@ -245,6 +218,7 @@
 	</script>
 	<!-- Main JS -->
 	<script type="text/javascript" src="/js/main.js"></script>
+	<script type="text/javascript" src="/js/cookiesave.js"></script>
 </body>
 
 </html>

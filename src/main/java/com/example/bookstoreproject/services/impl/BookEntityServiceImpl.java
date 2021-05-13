@@ -32,8 +32,10 @@ public class BookEntityServiceImpl implements BookService {
 
 	@Override
 	public Optional<BookEntity> findById(Long id) {
-		return bookReponsitory.findById(id);
+		return  bookReponsitory.findById(id);
 	}
+	
+	
 
 	@Override
 	public boolean existsById(Long id) {
@@ -82,6 +84,12 @@ public class BookEntityServiceImpl implements BookService {
 	@Override
 	public List<BookEntity> findByAuthor(String author) {
 		return bookReponsitory.findByAuthor(author);
+	}
+
+	@Override
+	public List<BookEntity> findByIdIn(List<Long> ids) {
+		
+		return bookReponsitory.findByIdIn(ids);
 	}
 	
 }

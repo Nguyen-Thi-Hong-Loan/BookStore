@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.bookstoreproject.entity.BlogEntity;
 import com.example.bookstoreproject.entity.BookEntity;
+import com.example.bookstoreproject.globalData.GlobalData;
 import com.example.bookstoreproject.services.BlogService;
 import com.example.bookstoreproject.services.BookService;
 
@@ -29,7 +30,7 @@ public class MasterController {
 		List<BookEntity> listpublisher= (List<BookEntity>) bookservice.findByPublisher(publisher);
 		
 		List<BlogEntity> listblog= (List<BlogEntity>) blogservice.findAll();
-		
+		model.addAttribute("cartCount", GlobalData.cart.size());
 		model.addAttribute("listpublishers", listpublisher);
 		model.addAttribute("listblogs", listblog);
 		return "home";
