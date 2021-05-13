@@ -4,7 +4,10 @@ import com.example.bookstoreproject.entity.RoleEntity;
 import com.example.bookstoreproject.entity.UserEntity;
 import com.example.bookstoreproject.repositories.UserRepository;
 import com.example.bookstoreproject.services.UserService;
+import net.bytebuddy.utility.RandomString;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
@@ -13,6 +16,10 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import javax.mail.MessagingException;
+import javax.mail.internet.MimeMessage;
+import java.io.UnsupportedEncodingException;
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -25,15 +32,53 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private BCryptPasswordEncoder passwordEncoder;
 
+    @Autowired
+    private JavaMailSender javaMailSender;
+
+
     public UserServiceImpl(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
 
 
     @Override
-    public UserEntity save(UserEntity userEntity) {
+    public void save(UserEntity userEntity) {
         userEntity.setPassword(passwordEncoder.encode(userEntity.getPassword()));
-        return userRepository.save(userEntity);
+        userEntity.setCreateDate(new Date());
+        String randomStr = RandomString.make(64);
+        userEntity.setVerificationCode(randomStr);
+
+        userRepository.save(userEntity);
+//        sendVerificationEmail(userEntity);
+
+    }
+
+    public void sendVerificationEmail(UserEntity user, String siteURL) throws MessagingException, UnsupportedEncodingException {
+        String toAddress = user.getEmail();
+        String fromAddress = "it315727@gmail.com";
+        String senderName = "BOOK STORE";
+        String subject = "Please verify your registration";
+        String content = "Dear [[name]],<br>"
+                + "Please click the link below to verify your registration:<br>"
+                + "<h3><a href=\"[[URL]]\" target=\"_self\">VERIFY</a></h3>"
+                + "Thank you,<br>"
+                + "Your company name.";
+
+        MimeMessage message = javaMailSender.createMimeMessage();
+        MimeMessageHelper helper = new MimeMessageHelper(message);
+
+        helper.setFrom(fromAddress, senderName);
+        helper.setTo(toAddress);
+        helper.setSubject(subject);
+
+        content = content.replace("[[name]]", user.getName());
+        String verifyURL = siteURL + "/verify?code=" + user.getVerificationCode();
+
+        content = content.replace("[[URL]]", verifyURL);
+
+        helper.setText(content, true);
+
+        javaMailSender.send(message);
     }
 
     @Override
@@ -61,12 +106,14 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserEntity getByResetPasswordToken(String token) {
 
-        return null;
+        return userRepository.findByResetPasswordToken(token);
     }
 
     @Override
     public void updatePassword(UserEntity userEntity, String newPassword) {
-
+        userEntity.setPassword(passwordEncoder.encode(newPassword));
+        userEntity.setResetPasswordToken(null);
+        userRepository.save(userEntity);
     }
 
     @Override
