@@ -35,13 +35,13 @@ public class RegistryController {
     @PostMapping("registerNow")
     public String registerUserAccount(@ModelAttribute("user") UserEntity entity) {
 
-        RoleEntity roleEntity = (entity.getRoles().size() != 0) ? roleService.findByRoleName("ROLE_USER") :
-                roleService.findByRoleName("ROLE_GUEST");
+        RoleEntity roleEntity = roleService.findByRoleName("ROLE_USER");
 
         entity.setRoles(Arrays.asList(roleEntity));
 
-        userService.save(entity, 1);
-        return "redirect:/hostel/register?success";
+
+        userService.save(entity);
+        return "redirect:/bookstore/register?success";
     }
 
     @PostMapping("/checkEmail")

@@ -1,188 +1,236 @@
 <!DOCTYPE HTML>
 <html lang="vi" xmlns:th="http://www.thymeleaf.org"
-	  xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head th:replace="head :: head">
 
 </head>
 
 <body>
 <div class="header-top"><!--Start Header Top Area-->
-	<header th:replace="header :: header"> </header>
-		</div>
+    <header th:replace="header :: header"></header>
+</div>
 <div class="page-title fix"><!--Start Title-->
-	<div class="overlay section">
-		<h2>login / Register</h2>
-	</div>
+    <div class="overlay section">
+        <h2>login / Register</h2>
+    </div>
 </div><!--End Title-->
 <div class="login-page page fix"><!--start login Area-->
-	<div class="container">
-		<div class="row">
-			<div class="col-sm-6 col-md-5">
-				<div class="login">
-					<form id="login-form" action="#">
-						<h2>Login</h2>
-						<p>Welcome to your account</p>
-						<div class="social-login">
-							<a id="facebook" href="#"><i class="fa fa-facebook"></i>Sign In with Facebook</a>
-							<a id="twitter" href="#"><i class="fa fa-twitter"></i>Sign In with Twitter</a>
-						</div>
-						<label>E-mail Address<span>*</span></label>
-						<input type="email" required/>
-						<label>Password<span>*</span></label>
-						<input type="password" required/>
-						<div class="remember">
-							<input type="checkbox" />
-							<p>Remember me!</p>
-							<a href="forgotPassword.html">Forgot Your Password ?</a>
-						</div>
-						<input type="submit" value="login" />
-					</form>
-				</div>
-			</div>
-		</div>
-	</div>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6 col-md-5">
+                <div class="login">
+
+                    <form id="contact-form" th:action="@{/j_spring_security_check}" method="post"
+                          th:object="${loginUser}">
+                        <h2>Login</h2>
+                        <p>Welcome to your account</p>
+                        <div class="form-group">
+
+                            <!--   error message    -->
+                            <div th:if="${param.error}">
+                                <div class="alert alert-danger">
+                                    Invalid username or password. Please nhap lai
+                                </div>
+
+                            </div>
+
+                            <!--   error message    -->
+                            <div th:if="${param.logout}">
+                                <div class="alert alert-danger">
+                                    You have been logged out
+                                </div>
+                            </div>
+
+                            <div class="social-login">
+                                <a id="facebook" href="#"><i class="fa fa-facebook"></i>Sign In with Facebook</a>
+                                <a id="twitter" href="#"><i class="fa fa-twitter"></i>Sign In with Twitter</a>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <label for="email">Email*</label>
+                                    <input type="email" name="email" id="email" class="form-control"
+                                           data-msg-required="Please enter your email." autofocus="autofocus">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <label for="customer_mail">Password*</label>
+                                    <input type="password" name="pass" id="customer_mail"
+                                           class="form-control" data-msg-required="Please enter your email address."
+                                           data-msg-email="Please enter a valid email address." required>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+
+                            <input type="submit" th:value="Login" onclick="changeLogout()"
+                                   class="btn btn-primary min-wide">
+                            Remember Me?
+                            <input name="rememberMe" type="checkbox">
+
+                        </div>
+                    </form>
+                </div>
+                <label for="email"><a th:href="@{/bookstore/forgotPassword}"></a> Forgot</label> </br>
+                <label for="email"><a th:href="@{/bookstore/registry}"></a>Registry</label> </br>
+
+            </div>
+        </div>
+    </div>
 </div><!--End login Area-->
 
 <div class="support-area section fix"><!--Start Support Area-->
-	<div class="container">
-		<div class="row">
-			<div class="support col-sm-3">
-				<i class="fa fa-thumbs-up"></i>
-				<h3>High quality</h3>
-				<p>Lorem ipsum dolor sit amet, conseetur adipiscing elit, consectetur</p>
-			</div>
-			<div class="support col-sm-3">
-				<i class="fa fa-bus"></i>
-				<h3>Fast Delivery</h3>
-				<p>Lorem ipsum dolor sit amet, conseetur adipiscing elit, consectetur</p>
-			</div>
-			<div class="support col-sm-3">
-				<i class="fa fa-phone"></i>
-				<h3>24/7 support</h3>
-				<p>Lorem ipsum dolor sit amet, conseetur adipiscing elit, consectetur</p>
-			</div>
-			<div class="support col-sm-3">
-				<i class="fa fa-random"></i>
-				<h3>14 - Day Returns</h3>
-				<p>Lorem ipsum dolor sit amet, conseetur adipiscing elit, consectetur</p>
-			</div>
-		</div>
-	</div>
+    <div class="container">
+        <div class="row">
+            <div class="support col-sm-3">
+                <i class="fa fa-thumbs-up"></i>
+                <h3>High quality</h3>
+                <p>Lorem ipsum dolor sit amet, conseetur adipiscing elit, consectetur</p>
+            </div>
+            <div class="support col-sm-3">
+                <i class="fa fa-bus"></i>
+                <h3>Fast Delivery</h3>
+                <p>Lorem ipsum dolor sit amet, conseetur adipiscing elit, consectetur</p>
+            </div>
+            <div class="support col-sm-3">
+                <i class="fa fa-phone"></i>
+                <h3>24/7 support</h3>
+                <p>Lorem ipsum dolor sit amet, conseetur adipiscing elit, consectetur</p>
+            </div>
+            <div class="support col-sm-3">
+                <i class="fa fa-random"></i>
+                <h3>14 - Day Returns</h3>
+                <p>Lorem ipsum dolor sit amet, conseetur adipiscing elit, consectetur</p>
+            </div>
+        </div>
+    </div>
 </div><!--Start Support Area-->
-<div class="footer-top-area fix">	<!--Start Footer top area-->
-	<div class="container">
-		<div class="row">
-			<div class="col-sm-6 col-md-3">
-				<div class="footer-about">
-					<div class="image">
-						<img src="/img/header/booklogo.png" alt="" />
-						<h3>online book store</h3>
-					</div>
-					
-				</div>
-				<div class="footer-contact">
-					<div class="single-contact">
-						<div class="icon">
-							<i class="fa fa-map-marker"></i>
-						</div>
-						<div class="details">
-							<p>Main town, Anystreen</p>
-							<p>C/A 1254 New Yourk</p>
-						</div>
-					</div>
-					<div class="single-contact">
-						<div class="icon">
-							<i class="fa fa-phone"></i>
-						</div>
-						<div class="details">
-							<p>+012 456 456 456</p>
-							<p>+012 356 897 222</p>
-						</div>
-					</div>
-					<div class="single-contact">
-						<div class="icon">
-							<i class="fa fa-dribbble"></i>
-						</div>
-						<div class="details">
-							<a href="#">info@olongker.com</a>
-							<a href="#">www.olongker.com</a>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="col-sm-6 col-md-3">
-				<div class="footer-quick-link footer-links">
-					<h2>QUICK LINK</h2>
-					<ul>
-						<li><a href="index.html">Home</a></li>
-						<li><a href="shop-left-sidebar.html">New Arrivals</a></li>
-						<li><a href="services.html">Services</a></li>
-						<li><a href="portfolio-1.html">Portfolio</a></li>
-						<li><a href="blog.html">Blog</a></li>
-						<li><a href="contact.html">Contact</a></li>
-					</ul>
-				</div>
-			</div>
-			<div class="col-sm-12 col-md-6">
-				<div class="row">
-					<div class="col-sm-8 footer-support footer-links">
-						<h2>OUR SUPPORT</h2>
-						<ul>
-							<li><a href="#">Site Map</a></li>
-							<li><a href="#">privacy Policy</a></li>
-							<li><a href="#">Help & FAQs</a></li>
-							<li><a href="#">Gift Voucher</a></li>
-							<li><a href="contact.html">Contact Us</a></li>
-						</ul>
-					</div>
-					<div class="col-sm-4 footer-account footer-links">
-						<h2>my Account</h2>
-						<ul>
-							<li><a href="#">my Account</a></li>
-							<li><a href="#">order History</a></li>
-					
-						</ul>
-					</div>
-				</div>
-				
-			</div>
-		</div>
-	</div>
+<div class="footer-top-area fix">    <!--Start Footer top area-->
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6 col-md-3">
+                <div class="footer-about">
+                    <div class="image">
+                        <img src="/img/header/booklogo.png" alt=""/>
+                        <h3>online book store</h3>
+                    </div>
+
+                </div>
+                <div class="footer-contact">
+                    <div class="single-contact">
+                        <div class="icon">
+                            <i class="fa fa-map-marker"></i>
+                        </div>
+                        <div class="details">
+                            <p>Main town, Anystreen</p>
+                            <p>C/A 1254 New Yourk</p>
+                        </div>
+                    </div>
+                    <div class="single-contact">
+                        <div class="icon">
+                            <i class="fa fa-phone"></i>
+                        </div>
+                        <div class="details">
+                            <p>+012 456 456 456</p>
+                            <p>+012 356 897 222</p>
+                        </div>
+                    </div>
+                    <div class="single-contact">
+                        <div class="icon">
+                            <i class="fa fa-dribbble"></i>
+                        </div>
+                        <div class="details">
+                            <a href="#">info@olongker.com</a>
+                            <a href="#">www.olongker.com</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-3">
+                <div class="footer-quick-link footer-links">
+                    <h2>QUICK LINK</h2>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="shop-left-sidebar.html">New Arrivals</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="portfolio-1.html">Portfolio</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-6">
+                <div class="row">
+                    <div class="col-sm-8 footer-support footer-links">
+                        <h2>OUR SUPPORT</h2>
+                        <ul>
+                            <li><a href="#">Site Map</a></li>
+                            <li><a href="#">privacy Policy</a></li>
+                            <li><a href="#">Help & FAQs</a></li>
+                            <li><a href="#">Gift Voucher</a></li>
+                            <li><a href="contact.html">Contact Us</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-sm-4 footer-account footer-links">
+                        <h2>my Account</h2>
+                        <ul>
+                            <li><a href="#">my Account</a></li>
+                            <li><a href="#">order History</a></li>
+
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
 </div>
 <!--Start Footer top area-->
 
-	
+
+<script>
+    function changeLogout() {
+        var x = document.createElement("BUTTON");
+        var t = document.createTextNode("LOGOUT");
+        x.appendChild(t);
+        document.body.appendChild(x);
+    }
+</script>
+
+
 <!-- jQuery 2.1.4 -->
-	<script type="text/javascript" src="/js/jquery-2.1.4.min.js"></script>
-	<!-- Bootstrap JS -->
-	<script type="text/javascript" src="/js/bootstrap.min.js"></script>
-	<!-- Owl Carousel JS -->
-	<script type="text/javascript" src="/js/owl.carousel.min.js"></script>
-	<!--countTo JS -->
-	<script type="text/javascript" src="/js/jquery.countTo.js"></script>
-	<!-- mixitup JS -->
-	<script type="text/javascript" src="/js/jquery.mixitup.min.js"></script>
-	<!-- magnific popup JS -->
-	<script type="text/javascript" src="/js/jquery.magnific-popup.min.js"></script>
-	<!-- Appear JS -->
-	<script type="text/javascript" src="/js/jquery.appear.js"></script>
-	<!-- MeanMenu JS -->
-	<script type="text/javascript" src="/js/jquery.meanmenu.min.js"></script>
-	<!-- Nivo Slider JS -->
-	<script type="text/javascript" src="/js/jquery.nivo.slider.pack.js"></script>
-	<!-- Scrollup JS -->
-	<script type="text/javascript" src="/js/jquery.scrollup.min.js"></script>
-	<!-- simpleLens JS -->
-	<script type="text/javascript" src="/js/jquery.simpleLens.min.js"></script>
-	<!-- Price Slider JS -->
-	<script type="text/javascript" src="/js/jquery-price-slider.js"></script>
-	<!-- WOW JS -->
-	<script type="text/javascript" src="/js/wow.min.js"></script>
-	<script>
-		new WOW().init();
-	</script>
-	<!-- Main JS -->
-	<script type="text/javascript" src="/js/main.js"></script>
+<script type="text/javascript" src="/js/jquery-2.1.4.min.js"></script>
+<!-- Bootstrap JS -->
+<script type="text/javascript" src="/js/bootstrap.min.js"></script>
+<!-- Owl Carousel JS -->
+<script type="text/javascript" src="/js/owl.carousel.min.js"></script>
+<!--countTo JS -->
+<script type="text/javascript" src="/js/jquery.countTo.js"></script>
+<!-- mixitup JS -->
+<script type="text/javascript" src="/js/jquery.mixitup.min.js"></script>
+<!-- magnific popup JS -->
+<script type="text/javascript" src="/js/jquery.magnific-popup.min.js"></script>
+<!-- Appear JS -->
+<script type="text/javascript" src="/js/jquery.appear.js"></script>
+<!-- MeanMenu JS -->
+<script type="text/javascript" src="/js/jquery.meanmenu.min.js"></script>
+<!-- Nivo Slider JS -->
+<script type="text/javascript" src="/js/jquery.nivo.slider.pack.js"></script>
+<!-- Scrollup JS -->
+<script type="text/javascript" src="/js/jquery.scrollup.min.js"></script>
+<!-- simpleLens JS -->
+<script type="text/javascript" src="/js/jquery.simpleLens.min.js"></script>
+<!-- Price Slider JS -->
+<script type="text/javascript" src="/js/jquery-price-slider.js"></script>
+<!-- WOW JS -->
+<script type="text/javascript" src="/js/wow.min.js"></script>
+<script>
+    new WOW().init();
+</script>
+<!-- Main JS -->
+<script type="text/javascript" src="/js/main.js"></script>
 
 </body>
 

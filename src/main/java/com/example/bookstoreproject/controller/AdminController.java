@@ -59,7 +59,7 @@ public class AdminController {
     public String addUserNow(@ModelAttribute("user") UserEntity entity) {
         RoleEntity roleEntity = roleService.findByRoleName("ROLE_ADMIN");
         entity.setRoles(Arrays.asList(roleEntity));
-        userService.save(entity, 1);
+        userService.save(entity);
 
         return "redirect:/admin/adminUser/formAddUser?success";
     }

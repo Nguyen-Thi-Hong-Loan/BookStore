@@ -16,30 +16,26 @@
 </div><!--End Title-->
 <div class="login-page page fix"><!--start login Area-->
     <div class="container">
+
+
         <div class="row">
+
+            <div th:if="${param.success}">
+                <div class="alert alert-info">You've successfully registered
+                    to our awesome app!
+                </div>
+            </div>
+
             <div class="col-sm-6 col-md-5">
                 <div class="login">
-<!--                    <form id="signup-form" action="#">-->
-<!--                        <h2>Create A new Account</h2>-->
-<!--                        <p>Create your own account</p>-->
-<!--                        <label>E-mail Address<span>*</span></label>-->
-<!--                        <input type="email" required/>-->
-<!--                        <label>Password<span>*</span></label>-->
-<!--                        <input type="password" required/>-->
-<!--                        <label>Confirm Password<span>*</span></label>-->
-<!--                        <input type="password" required/>-->
-<!--                        <input type="submit" value="Sign up" />-->
-<!--                    </form>-->
-
-
-                    <form id="contact-form" th:action="@{/hostel/registerNow}" method="post"
+                    <form id="contact-form" th:action="@{/bookstore/registerNow}" method="post"
                           th:object="${user}">
                         <h2>Create A new Account</h2>
                         <p>Create your own account</p>
                         <div class="form-group">
                             <div class="row">
                                 <div class="col-sm-6">
-                                    <label for="name">TÃªn *</label>
+                                    <label for="name">Tên *</label>
                                     <input type="text" id="name" class="form-control"
                                            th:field="*{name}"
                                            data-msg-required="Please enter your name.">
@@ -60,13 +56,13 @@
                         <div class="form-group">
                             <div class="row">
                                 <div class="col-sm-6">
-                                    <label>Máº­t kháº©u*</label>
+                                    <label>Mật khẩu*</label>
                                     <input type="password" id="password" class="form-control" th:field="*{password}"
                                            data-msg-required="Please enter the subject." required>
                                     <p id="errorPW" style="color:#ff0000;"></p>
                                 </div>
                                 <div class="col-sm-6">
-                                    <label>Sá»‘ Ä‘iá»‡n thoáº¡i*</label>
+                                    <label>Số điện thoại*</label>
                                     <input id="phone" class="form-control" th:field="*{phone}"
                                            data-msg-required="Please enter the subject." required
                                            autofocus="autofocus">
@@ -75,13 +71,13 @@
                             </div>
                             <div class="row">
                                 <div class="col-sm-6">
-                                    <label>XÃ¡c nháº­n máº­t kháº©u*</label>
+                                    <label>Xác nhận mật khẩu*</label>
                                     <input type="password" name="subject" id="rePass" class="form-control"
                                            data-msg-required="Please enter the subject." required>
                                     <p id="errorPWagain" style="color:red;"></p>
                                 </div>
                                 <div class="col-sm-6">
-                                    <label>Ä�á»‹a chá»‰*</label>
+                                    <label>Địa chỉ*</label>
                                     <input type="text" class="form-control" id="address" th:field="*{address}"
                                            data-msg-required="Please enter the subject." required
                                            autofocus="autofocus">
@@ -91,11 +87,11 @@
                         </div>
 
                         <div class="form-group">
-                            <input type="submit" value="Ä�Äƒng kÃ½" class="btn btn-primary min-wide"
+                            <input type="submit" value="Đăng ký" class="btn btn-primary min-wide"
                                    data-loading-text="Loading...">
                         </div>
                     </form>
-
+                    <label for="name"><a th:href="@{/bookstore/login}">Đã có tài khoản</a></label> </br>
                 </div>
             </div>
         </div>
@@ -210,83 +206,6 @@
 </div>
 <!--Start Footer top area-->
 
-<script type="text/javascript">
-    $(document).ready(function () {
-        $('#contact-form').submit(function (event) {
-            var stop = false;
-            var email = $("#mail").val();
-            var password = $("#password").val()
-            var rePass = $("#rePass").val()
-            var name = $("#name").val()
-            var phone = $("#phone").val();
-            var address = $("#address").val();
-            $("#errorPW").text("");
-            $("#errorPWagain").text("");
-            $("#errorName").text("");
-            $("#errorPhone").text("");
-            $("#errorAddress").text("");
-            if (email === "") {
-                $("#errorEmail").text("Báº¡n khÃ´ng thá»ƒ Ä‘á»ƒ trá»‘ng dá»¯ liá»‡u nÃ y")
-                stop = true;
-            }
-            if (password === "") {
-                $("#errorPW").text("Báº¡n khÃ´ng thá»ƒ Ä‘á»ƒ trá»‘ng dá»¯ liá»‡u nÃ y")
-                stop = true;
-            } else if (password.length < 8) {
-                $("#errorPW").text("Máº­t kháº©u cÃ³ Ã­t nháº¥t 8 kÃ½ tá»±. Thá»­ láº¡i.")
-                stop = true;
-            }
-            if (rePass === "") {
-                $("#errorPWagain").text("Báº¡n khÃ´ng thá»ƒ Ä‘á»ƒ trá»‘ng dá»¯ liá»‡u nÃ y")
-                stop = true;
-            } else if (password !== rePass) {
-                $("#errorPWagain").text("Máº­t kháº©u khÃ´ng tÆ°Æ¡ng á»©ng. Thá»­ láº¡i.")
-                stop = true;
-            }
-            if (phone === "") {
-                $("#errorPhone").text("Báº¡n khÃ´ng thá»ƒ Ä‘á»ƒ trá»‘ng dá»¯ liá»‡u nÃ y")
-                stop = true;
-            }
-            if (name === "") {
-                $("#errorName").text("Báº¡n khÃ´ng thá»ƒ Ä‘á»ƒ trá»‘ng dá»¯ liá»‡u nÃ y")
-                stop = true;
-            }
-            if (address === "") {
-                $("#errorAddress").text("Báº¡n khÃ´ng thá»ƒ Ä‘á»ƒ trá»‘ng dá»¯ liá»‡u nÃ y")
-                stop = true;
-            }
-            if (stop === true) {
-                event.preventDefault();
-            }
-        });
-        $("#mail").change(function () {
-            $.ajax({
-                url: "/bookstore/checkEmail",
-                method: "post",
-                data: {
-                    email: $("#mail").val(),
-                },
-                success: function (value) {
-                    console.log(value)
-                    if (value === "exist") {
-                        $("#errorEmail").text("Email nÃ y Ä‘Ã£ cÃ³ ngÆ°á»�i Ä‘Äƒng kÃ½. Thá»­ láº¡i")
-                        stop = true;
-                    } else {
-                        $("#errorEmail").text("")
-                    }
-                },
-                error: function (err) {
-                    console.log(err)
-                    stop = true;
-                },
-            })
-        });
-
-
-    })
-
-</script>
-
 
 
 <!-- jQuery 2.1.4 -->
@@ -320,7 +239,86 @@
 </script>
 <!-- Main JS -->
 <script type="text/javascript" src="/js/main.js"></script>
-<script type="text/javascript" src="/js/cookiesave.js"></script>
+
+
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#contact-form').submit(function (event) {
+            var stop = false;
+            var email = $("#mail").val();
+            var password = $("#password").val()
+            var rePass = $("#rePass").val()
+            var name = $("#name").val()
+            var phone = $("#phone").val();
+            var address = $("#address").val();
+            $("#errorPW").text("");
+            $("#errorPWagain").text("");
+            $("#errorName").text("");
+            $("#errorPhone").text("");
+            $("#errorAddress").text("");
+            if (email === "") {
+                $("#errorEmail").text("Bạn không thể để trống dữ liệu này")
+                stop = true;
+            }
+            if (password === "") {
+                $("#errorPW").text("Bạn không thể để trống dữ liệu này")
+                stop = true;
+            } else if (password.length < 8) {
+                $("#errorPW").text("Mật khẩu có ít nhất 8 ký tự. Thử lại.")
+                stop = true;
+            }
+            if (rePass === "") {
+                $("#errorPWagain").text("Bạn không thể để trống dữ liệu này")
+                stop = true;
+            } else if (password !== rePass) {
+                $("#errorPWagain").text("Mật khẩu không tương ứng. Thử lại.")
+                stop = true;
+            }
+            if (phone === "") {
+                $("#errorPhone").text("Bạn không thể để trống dữ liệu này")
+                stop = true;
+            }
+            if (name === "") {
+                $("#errorName").text("Bạn không thể để trống dữ liệu này")
+                stop = true;
+            }
+            if (address === "") {
+                $("#errorAddress").text("Bạn không thể để trống dữ liệu này")
+                stop = true;
+            }
+            if (stop === true) {
+                event.preventDefault();
+            }
+        });
+        $("#mail").change(function () {
+            $.ajax({
+                url: "/bookstore/checkEmail",
+                method: "post",
+                data: {
+                    email: $("#mail").val(),
+                },
+                success: function (value) {
+                    console.log(value)
+                    if (value === "exist") {
+                        $("#errorEmail").text("Email này đã có người đăng ký. Thử lại")
+                        stop = true;
+                    } else {
+                        $("#errorEmail").text("")
+                    }
+                },
+                error: function (err) {
+                    console.log(err)
+                    stop = true;
+                },
+            })
+        });
+
+
+    })
+
+</script>
 
 </body>
 
