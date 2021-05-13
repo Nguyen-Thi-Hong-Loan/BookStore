@@ -40,4 +40,16 @@ public class MasterController {
 	public String showError404() {
 		return "page404";
 	}
+	
+	@GetMapping("aboutUs")
+	public String aboutUs(ModelMap model) {
+		model.addAttribute("cartCount", GlobalData.cart.size());
+		return "about";
+	}
+	
+	@GetMapping("contact")
+	public String contact(ModelMap model) {
+		model.addAttribute("cartCount", GlobalData.cart.size());
+		return "contact";
+	}
 }
