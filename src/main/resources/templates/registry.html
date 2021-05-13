@@ -16,23 +16,19 @@
 </div><!--End Title-->
 <div class="login-page page fix"><!--start login Area-->
     <div class="container">
+
+
         <div class="row">
+
+            <div th:if="${param.success}">
+                <div class="alert alert-info">You've successfully registered
+                    to our awesome app!
+                </div>
+            </div>
+
             <div class="col-sm-6 col-md-5">
                 <div class="login">
-<!--                    <form id="signup-form" action="#">-->
-<!--                        <h2>Create A new Account</h2>-->
-<!--                        <p>Create your own account</p>-->
-<!--                        <label>E-mail Address<span>*</span></label>-->
-<!--                        <input type="email" required/>-->
-<!--                        <label>Password<span>*</span></label>-->
-<!--                        <input type="password" required/>-->
-<!--                        <label>Confirm Password<span>*</span></label>-->
-<!--                        <input type="password" required/>-->
-<!--                        <input type="submit" value="Sign up" />-->
-<!--                    </form>-->
-
-
-                    <form id="contact-form" th:action="@{/hostel/registerNow}" method="post"
+                    <form id="contact-form" th:action="@{/bookstore/registerNow}" method="post"
                           th:object="${user}">
                         <h2>Create A new Account</h2>
                         <p>Create your own account</p>
@@ -95,7 +91,7 @@
                                    data-loading-text="Loading...">
                         </div>
                     </form>
-
+                    <label for="name"><a th:href="@{/bookstore/login}">Đã có tài khoản</a></label> </br>
                 </div>
             </div>
         </div>
@@ -210,6 +206,43 @@
 </div>
 <!--Start Footer top area-->
 
+
+
+<!-- jQuery 2.1.4 -->
+<script type="text/javascript" src="/js/jquery-2.1.4.min.js"></script>
+<!-- Bootstrap JS -->
+<script type="text/javascript" src="/js/bootstrap.min.js"></script>
+<!-- Owl Carousel JS -->
+<script type="text/javascript" src="/js/owl.carousel.min.js"></script>
+<!--countTo JS -->
+<script type="text/javascript" src="/js/jquery.countTo.js"></script>
+<!-- mixitup JS -->
+<script type="text/javascript" src="/js/jquery.mixitup.min.js"></script>
+<!-- magnific popup JS -->
+<script type="text/javascript" src="/js/jquery.magnific-popup.min.js"></script>
+<!-- Appear JS -->
+<script type="text/javascript" src="/js/jquery.appear.js"></script>
+<!-- MeanMenu JS -->
+<script type="text/javascript" src="/js/jquery.meanmenu.min.js"></script>
+<!-- Nivo Slider JS -->
+<script type="text/javascript" src="/js/jquery.nivo.slider.pack.js"></script>
+<!-- Scrollup JS -->
+<script type="text/javascript" src="/js/jquery.scrollup.min.js"></script>
+<!-- simpleLens JS -->
+<script type="text/javascript" src="/js/jquery.simpleLens.min.js"></script>
+<!-- Price Slider JS -->
+<script type="text/javascript" src="/js/jquery-price-slider.js"></script>
+<!-- WOW JS -->
+<script type="text/javascript" src="/js/wow.min.js"></script>
+<script>
+    new WOW().init();
+</script>
+<!-- Main JS -->
+<script type="text/javascript" src="/js/main.js"></script>
+
+
+
+
 <script type="text/javascript">
     $(document).ready(function () {
         $('#contact-form').submit(function (event) {
@@ -286,40 +319,6 @@
     })
 
 </script>
-
-
-
-<!-- jQuery 2.1.4 -->
-<script type="text/javascript" src="/js/jquery-2.1.4.min.js"></script>
-<!-- Bootstrap JS -->
-<script type="text/javascript" src="/js/bootstrap.min.js"></script>
-<!-- Owl Carousel JS -->
-<script type="text/javascript" src="/js/owl.carousel.min.js"></script>
-<!--countTo JS -->
-<script type="text/javascript" src="/js/jquery.countTo.js"></script>
-<!-- mixitup JS -->
-<script type="text/javascript" src="/js/jquery.mixitup.min.js"></script>
-<!-- magnific popup JS -->
-<script type="text/javascript" src="/js/jquery.magnific-popup.min.js"></script>
-<!-- Appear JS -->
-<script type="text/javascript" src="/js/jquery.appear.js"></script>
-<!-- MeanMenu JS -->
-<script type="text/javascript" src="/js/jquery.meanmenu.min.js"></script>
-<!-- Nivo Slider JS -->
-<script type="text/javascript" src="/js/jquery.nivo.slider.pack.js"></script>
-<!-- Scrollup JS -->
-<script type="text/javascript" src="/js/jquery.scrollup.min.js"></script>
-<!-- simpleLens JS -->
-<script type="text/javascript" src="/js/jquery.simpleLens.min.js"></script>
-<!-- Price Slider JS -->
-<script type="text/javascript" src="/js/jquery-price-slider.js"></script>
-<!-- WOW JS -->
-<script type="text/javascript" src="/js/wow.min.js"></script>
-<script>
-    new WOW().init();
-</script>
-<!-- Main JS -->
-<script type="text/javascript" src="/js/main.js"></script>
 
 </body>
 
