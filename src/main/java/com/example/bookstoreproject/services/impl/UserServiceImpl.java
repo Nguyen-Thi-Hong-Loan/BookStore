@@ -48,11 +48,19 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void updateResetPasswordToken(String token, String email) throws Exception {
+        UserEntity user = userRepository.findByEmail(email).orElse(null);
+        if (user != null) {
+            user.setResetPasswordToken(token);
+            userRepository.save(user);
+        } else {
+            throw new Exception("Could not find any customer with the email " + email);
+        }
 
     }
 
     @Override
     public UserEntity getByResetPasswordToken(String token) {
+
         return null;
     }
 
