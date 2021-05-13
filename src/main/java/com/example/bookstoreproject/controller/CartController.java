@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.bookstoreproject.entity.BookEntity;
+import com.example.bookstoreproject.globalData.DataCart;
 import com.example.bookstoreproject.globalData.GlobalData;
 import com.example.bookstoreproject.services.BookService;
 import com.example.bookstoreproject.services.CookieService;
@@ -35,13 +36,34 @@ public class CartController {
 		model.addAttribute("cartTotal", GlobalData.cart.stream().mapToDouble(BookEntity::getPrice).sum());
 		model.addAttribute("cart", GlobalData.cart);
 		
+		model.addAttribute("DatacartCount", GlobalData.datacart.stream().mapToInt(DataCart:: getCount).sum());
+		model.addAttribute("DatacartTotal", GlobalData.datacart.stream().mapToDouble(DataCart:: totalPrice).sum());
+		model.addAttribute("Datacart", GlobalData.datacart);
 		return "cart";
 	}
 
 
 	@RequestMapping("shopList/addcart/{id}")
 	public String listBookInCart(ModelMap model, @PathVariable("id") Long id) {
+		
+		
+		DataCart data = new DataCart(bookService.findById(id).get(), 1);
+		if(GlobalData.datacart==null) {
+			GlobalData.datacart.add(data);
+			
+		}else {
+			for(int i=0; i<GlobalData.datacart.size();i++) {
+				if(GlobalData.datacart.get(i).getBook().getId() == id) {
+					GlobalData.datacart.get(i).setCount(GlobalData.datacart.get(i).getCount()+1 );
+				}else {
+					GlobalData.datacart.add(data);
+				}
+			}
+		}
+		
 		GlobalData.cart.add(bookService.findById(id).get());
+		
+		
 		return "redirect:/bookstore/shopList";
 
 	}

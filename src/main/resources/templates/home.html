@@ -67,13 +67,13 @@
 						<div class="product-item fix" th:each="listpublisher : ${listpublishers}">
 							<div class="product-img-hover">
 								<!-- Product image -->
-								<a href="productDetails.html" class="pro-image fix"><img th:src="@{'/img/upload/' + ${listpublisher.image[0].link}}"
+								<a th:href="@{'/bookstore/detailBook/'+${listpublisher.id}}" class="pro-image fix"><img th:src="@{'/img/upload/' + ${listpublisher.image[0].link}}"
 																						 alt="featured" /></a>
 								<!-- Product action Btn -->
 								<div class="product-action-btn">
 									<a class="quick-view" href="#"><i class="fa fa-search"></i></a>
 									<a class="favorite" href="#"><i class="fa fa-heart-o"></i></a>
-									<a class="add-cart" href="#"><i class="fa fa-shopping-cart"></i></a>
+									<a class="add-cart" th:href="@{shopList/addcart/{id}(id = ${listpublisher.id})}"><i class="fa fa-shopping-cart"></i></a>
 								</div>
 							</div>
 							<div class="pro-name-price-ratting">
