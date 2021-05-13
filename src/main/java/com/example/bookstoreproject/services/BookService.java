@@ -3,7 +3,6 @@ package com.example.bookstoreproject.services;
 import java.util.List;
 import java.util.Optional;
 
-
 import com.example.bookstoreproject.entity.BookEntity;
 import com.example.bookstoreproject.repositories.BookReponsitory;
 
@@ -35,6 +34,10 @@ public interface BookService {
 
 	List<BookEntity> findByAuthor(String author);
 
+	List<BookEntity> findByIdIn(List<Long> ids);
+	
+	
 	
 
+	
 }

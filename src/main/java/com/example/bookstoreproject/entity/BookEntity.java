@@ -174,4 +174,6 @@ public class BookEntity extends BaseEntity {
 		this.checked = checked;
 	}
 
+	
+
 }
