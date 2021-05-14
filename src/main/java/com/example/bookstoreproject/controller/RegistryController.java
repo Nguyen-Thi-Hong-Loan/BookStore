@@ -7,6 +7,7 @@ import com.example.bookstoreproject.entity.UserEntity;
 import com.example.bookstoreproject.services.RoleService;
 import com.example.bookstoreproject.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Controller;
@@ -54,24 +55,19 @@ public class RegistryController {
         return "redirect:/bookstore/register?success";
     }
 
-    private void sendMail(String email, String resetPasswordLink) throws UnsupportedEncodingException, MessagingException {
-        MimeMessage message = mailSender.createMimeMessage();
-        MimeMessageHelper helper = new MimeMessageHelper(message);
-        helper.setFrom("contact@gmail.com", "BOOK STORE");
-        helper.setTo(email);
-        String subject = "[BOOK STORE]  Please verify your email address.";
-        String content = "<p> Hello, </p>"
-                + "<p>Almost done, To secure your </p>" +
-                "<p>Click the link below to change your password</p>" +
-                " <p><a href=\"" + resetPasswordLink + "\">Change my password</a> </p>" +
-                "Ignore this mail if you do remember your password, or you have not made the request.";
 
-        helper.setSubject(subject);
-        helper.setText(content, true);
-        mailSender.send(message);
+    @GetMapping("/verify")
+    public String verifyAccount(@Param("code") String code, Model model) {
+        boolean verified = userService.verify(code);
+
+        System.out.println("VERIFY: " + verified);
+        String pageTitle = verified ? "Verified Succeed!" : "Verification code";
+        model.addAttribute("pageTitle", pageTitle);
+
+        return verified ? "verifySuccess" : "verifyFail";
+
 
     }
-
 
     @PostMapping("/checkEmail")
     @ResponseBody

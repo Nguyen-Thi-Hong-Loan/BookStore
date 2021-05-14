@@ -42,14 +42,14 @@ public class UserServiceImpl implements UserService {
 
 
     @Override
-    public void save(UserEntity userEntity) {
+    public UserEntity save(UserEntity userEntity) {
         userEntity.setPassword(passwordEncoder.encode(userEntity.getPassword()));
         userEntity.setCreateDate(new Date());
         String randomStr = RandomString.make(64);
         userEntity.setVerificationCode(randomStr);
+        userEntity.setEnabled(false);
 
-        userRepository.save(userEntity);
-//        sendVerificationEmail(userEntity);
+        return userRepository.save(userEntity);
 
     }
 
@@ -72,7 +72,7 @@ public class UserServiceImpl implements UserService {
         helper.setSubject(subject);
 
         content = content.replace("[[name]]", user.getName());
-        String verifyURL = siteURL + "/verify?code=" + user.getVerificationCode();
+        String verifyURL = siteURL + "/bookstore/verify?code=" + user.getVerificationCode();
 
         content = content.replace("[[URL]]", verifyURL);
 
@@ -89,6 +89,24 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<UserEntity> findAll() {
         return userRepository.findAll();
+    }
+
+    @Override
+    public boolean verify(String verificationCode) {
+        UserEntity userEntity = userRepository.findByVerificationCode(verificationCode);
+
+        if (userEntity == null) {
+            System.out.println("LLLLLMMMMM   "+userEntity.isEnabled());
+            return false;
+        }
+
+        else {
+            userEntity.setEnabled(true);
+            System.out.println("KAAAAA   "+userEntity.isEnabled());
+            userRepository.save(userEntity);
+        }
+
+        return true;
     }
 
     @Override

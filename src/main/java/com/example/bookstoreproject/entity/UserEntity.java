@@ -26,9 +26,10 @@ public class UserEntity extends BaseEntity {
     String checked;
 
     @Column(name = "verification_code", length = 64)
-    private String verificationCode;
+     String verificationCode;
 
-    private boolean enabled;
+    @Column
+     boolean enabled;
 
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.ALL})
