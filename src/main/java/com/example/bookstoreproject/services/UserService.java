@@ -11,11 +11,13 @@ import java.util.List;
 @Service
 public interface UserService extends UserDetailsService {
 
-    void save(UserEntity userEntity);
+    UserEntity save(UserEntity userEntity);
 
     UserEntity findByEmail(String email);
 
     List<UserEntity> findAll();
+
+    boolean verify(String verificationCode);
 
 
     void updateResetPasswordToken(String token, String email) throws Exception;
