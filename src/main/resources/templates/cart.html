@@ -34,25 +34,25 @@
 								</tr>
 							</thead>
 							<tbody>
-								<tr class="table-info" th:each="item, iStat : ${cart}">
+								<tr class="table-info" th:each="item, iStat : ${Datacart}">
 
 									<td class="namedes">
 										<h2>
-											<a th:text="${item.name}"></a>
+											<a th:text="${item.book.name}"></a>
 										</h2>
-										<p th:text="${item.author}"></p>
+										<p th:text="${item.book.author}"></p>
 									</td>
 									<td class="unit">
-										<h5 th:text="${item.price}">
+										<h5 th:text="${item.book.price}">
 											<span>VNĐ</span>
 										</h5>
 									</td>
 									<td class="quantity">
 										<div class="cart-plus-minus">
-											
-											<input type="number" value="1" name="qtybutton"
+											<a class="dec qtybutton" th:href="@{shopList/cart/downUpdatecart/{id}(id = ${item.book.id})}">-</a>
+											<input type="number"  th:value="${item.count}" name="qtybutton"
 												class="cart-plus-minus-box">
-											
+											<a class="inc qtybutton" th:href="@{shopList/cart/updatecart/{id}(id = ${item.book.id})}">+</a>
 										</div>
 									</td>
 
@@ -85,7 +85,7 @@
 						<div class="total">
 
 							<h6>
-								Grand Total <span th:text="${cartTotal}"></span>vnđ
+								Grand Total <span th:text="${DatacartTotal}"></span>vnđ
 							</h6>
 						</div>
 						<a id="procedto" href="checkout.html">PROCEED TO CHECK OUT</a>
