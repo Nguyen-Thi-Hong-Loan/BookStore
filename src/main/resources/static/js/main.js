@@ -137,9 +137,9 @@ $(document).ready(function($){
 	});
 	
 	/*----- Cart Plus Minus Button -----*/	
-	$(".cart-plus-minus").prepend('<div class="dec qtybutton">-</div>');
-	$(".cart-plus-minus").append('<div class="inc qtybutton">+</div>');
-	$(".qtybutton").on("click", function() {
+	/*$(".cart-plus-minus").prepend('<a class="dec qtybutton" th:href="@{shopList/cart/downUpdatecart/{id}(id = ${item.book.id})}">-</a>');
+	$(".cart-plus-minus").append('<a class="inc qtybutton" th:href="@{shopList/cart/updatecart/{id}(id = ${item.book.id})}">+</a>');*/
+	/*$(".qtybutton").on("click", function() {
 		var $button = $(this);
 		var oldValue = $button.parent().find("input").val();
 		if ($button.text() == "+") {
@@ -153,7 +153,7 @@ $(document).ready(function($){
 		  }
 		  }
 		$button.parent().find("input").val(newVal);
-	});	
+	});	*/
 	
 	/*----- Check Out Accordion -----*/
 	$(".panel-heading a").on("click", function(){

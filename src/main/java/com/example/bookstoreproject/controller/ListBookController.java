@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.bookstoreproject.entity.BookEntity;
 import com.example.bookstoreproject.entity.ImageEntity;
+import com.example.bookstoreproject.globalData.DataCart;
 import com.example.bookstoreproject.globalData.GlobalData;
 import com.example.bookstoreproject.services.BookService;
 import com.example.bookstoreproject.services.CookieService;
@@ -35,7 +36,7 @@ public class ListBookController {
 		
 		List<BookEntity> listbook= (List<BookEntity>) bookservice.findAll();
 		
-		model.addAttribute("cartCount", GlobalData.cart.size());
+		model.addAttribute("DatacartCount", GlobalData.datacart.stream().mapToInt(DataCart::getCount).sum());
 		model.addAttribute("listbooks", listbook);
 		return "shopList";
 	}
@@ -56,7 +57,7 @@ public class ListBookController {
 	        } else {
 	            return loadBook(model);
 	        }
-	    	model.addAttribute("cartCount", GlobalData.cart.size());
+	        model.addAttribute("DatacartCount", GlobalData.datacart.stream().mapToInt(DataCart::getCount).sum());
 	        return "productDetails";
 	    }
 	 
