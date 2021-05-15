@@ -2942,7 +2942,12 @@ h4.heading {
   width: 15%;
 }
 .cart-plus-minus {
-    display: inline-block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.cart-plus-minus-box{
+	margin: 5px;
 }
 .cart-plus-minus input {
   border: 0 none;
