@@ -51,26 +51,27 @@
                 <nav class="navbar-sidebar">
                     <ul class="list-unstyled navbar__list">
                         
-                        <li>
-                            <a th:href="@{/admin/home}">
-                                <i class="fas fa-chart-bar"></i>Statistical</a>
-                        </li>
-                        <li >
-                            <a th:href="@{/admin/adminUser}">
-                                <i class="fas  fa-users"></i>User Mangager</a>
-                        </li>
-                        <li >
-                            <a th:href="@{/admin/adminPost}">
-                                <i class="fas fa-table"></i>Post Mangager</a>
-                        </li>
-                        <li >
-                            <a th:href="@{/admin/adminFeedback}">
-                                <i class="fas fa-comments"></i>Feedback Mangager</a>
-                        </li>
-                        <li >
-                            <a th:href="@{/admin/adminFeedback}">
-                                <i class="fas fa-upload"></i>Post waiting for approval</a>
-                        </li>
+                         <li><a th:href="@{/admindemo/home}"> <i
+								class="fas fa-chart-bar"></i>Statistical
+						</a></li>
+						<li><a th:href="@{/admindemo/adminUserStatistics}"> <i
+								class="fas fa-chart-bar"></i>User Statistics
+						</a></li>
+						<li><a th:href="@{/admindemo/adminProfitStatistics}"> <i
+								class="fas fa-chart-bar"></i>Profit Statistics
+						</a></li>
+						<li><a th:href="@{/admindemo/adminUser}"> <i
+								class="fas  fa-users"></i>User Manager
+						</a></li>
+						<li><a th:href="@{/admindemo/adminPost}"> <i
+								class="fas fa-table"></i>Post Manager
+						</a></li>
+						<li><a th:href="@{/admindemo/adminFeedback}"> <i
+								class="fas fa-comments"></i>Feedback Manager
+						</a></li>
+						<li><a th:href="@{/admindemo/adminFeedback}"> <i
+								class="fas fa-upload"></i>Post waiting for approval
+						</a></li>
                         
                         
                     </ul>
@@ -211,7 +212,7 @@
                                                 <th>Email</th>
                                                 <th>Number phone</th>
                                                 <th>Address</th>
-                                                <th>Money</th>
+                                                <th>Phone</th>
                                                 <th>Create Date</th>
                                                 <th>Edit</th>
                                             </tr>
@@ -219,7 +220,7 @@
                                         <tbody>
                                             <tr class="tr-shadow" th:each="user : ${users}">
                                                 <td th:text="${user.id}" ></td>
-                                                <td th:text="${user.userName}"></td>
+                                                <td th:text="${user.name}"></td>
                                                 <td>
                                                     <span class="block-email" th:text="${user.password}"></span>
                                                 </td>
@@ -228,7 +229,7 @@
                                                 <td>
                                                     <span class="status--process" th:text="${user.address}"></span>
                                                 </td>
-                                                <td th:text="${user.money}"></td>
+                                                <td th:text="${user.phone}"></td>
                                                  <td th:text="${user.createDate}"></td>
                                                 <td>
                                                     <div class="table-data-feature">

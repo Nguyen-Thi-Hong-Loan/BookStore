@@ -57,7 +57,7 @@
 		<div class="container">
 			<div class="row">
 				<div class="section-title">
-					<h2>Sach noi bat</h2>
+					<h2>Sách nổi bật</h2>
 					<div class="underline"></div>
 				</div>
 				<div class="col-sm-12">
@@ -70,10 +70,10 @@
 								<a th:href="@{'/bookstore/detailBook/'+${listpublisher.id}}" class="pro-image fix"><img th:src="@{'/img/upload/' + ${listpublisher.image[0].link}}"
 																						 alt="featured" /></a>
 								<!-- Product action Btn -->
-								<div class="product-action-btn">
+								<div class="product-action-btn" th:data-id="${listpublisher.id}">
 									<a class="quick-view" href="#"><i class="fa fa-search"></i></a>
 									<a class="favorite" href="#"><i class="fa fa-heart-o"></i></a>
-									<a class="add-cart" th:href="@{shopList/addcart/{id}(id = ${listpublisher.id})}"><i class="fa fa-shopping-cart"></i></a>
+									<a class="add-cart btn-addcart" ><i class="fa fa-shopping-cart"></i></a>
 								</div>
 							</div>
 							<div class="pro-name-price-ratting">
@@ -91,7 +91,7 @@
 								</div>
 								<!-- Product Price -->
 								<div class="pro-price fix">
-									<span class="new" th:text="${listpublisher.price}"></span></p>
+									<span class="new" th:text="${listpublisher.price}"></span>
 								</div>
 							</div>
 						</div><!-- Single Product End -->
@@ -328,7 +328,7 @@
 	</script>
 	<!-- Main JS -->
 	<script type="text/javascript" src="/js/main.js"></script>
-
+	<script type="text/javascript" src="/js/cookiesave.js"></script>
 </body>
 
 </html>

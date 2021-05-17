@@ -48,11 +48,13 @@
 										</h5>
 									</td>
 									<td class="quantity">
-										<div class="cart-plus-minus">
-											<a class="dec qtybutton" th:href="@{shopList/cart/downUpdatecart/{id}(id = ${item.book.id})}">-</a>
-											<span   th:text="${item.count}" 
+										<div class="cart-plus-minus"  th:data-id="${item.book.id}">
+											<a class="dec qtybutton btn-down" >-</a>
+											
+											<span th:id="@{'item-count-' + ${item.book.id}}" th:text="${item.count}" 
 												class="cart-plus-minus-box"></span>
-											<a class="inc qtybutton" th:href="@{shopList/cart/updatecart/{id}(id = ${item.book.id})}">+</a>
+												
+											<a class="inc qtybutton btn-up" >+</a>
 										</div>
 									</td>
 
@@ -85,10 +87,10 @@
 						<div class="total">
 
 							<h6>
-								Grand Total <span th:text="${DatacartTotal}"></span>vnđ
+								Grand Total <span id="total-price" th:text="${DatacartTotal}"></span>vnđ
 							</h6>
 						</div>
-						<a id="procedto" href="checkout.html">PROCEED TO CHECK OUT</a>
+						<a id="procedto" th:href="@{/bookstore/shopList/cart/checkout}">PROCEED TO CHECK OUT</a>
 					</div>
 				</div>
 			</div>
