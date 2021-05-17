@@ -35,16 +35,11 @@
 					<div id="top-menu" class="float-right">
 						<ul>
 							<li><a th:href="@{/bookstore/login}">Login</a></li>
-							<li><a href="">$USD <i class="fa fa-angle-down"></i></a>
-								<ul>
-									<li><a href="">Pound</a></li>
-									<li><a href="">BDT</a></li>
-								</ul>
-							</li>
+							
 							<li><a href="">English(UK) <i class="fa fa-angle-down"></i></a>
 								<ul>
-									<li><a href="">English(USA)</a></li>
-									<li><a href="">Bangla</a></li>
+									<li><a href="">English(UK)</a></li>
+									<li><a href="">Viet Nam(VI)</a></li>
 								</ul>
 							</li>
 						</ul>
@@ -72,7 +67,7 @@
 				<div class="col-sm-4 col-lg-3">
 					<div class="cart-info float-right">
 						<a th:href="@{/bookstore/cart}">
-							<h5>My cart <span th:text="${DatacartCount}">0</span> items </h5>
+							<h5>My cart <span id="cart-count" th:text="${DatacartCount}" >0</span> items </h5>
 							<i class="fa fa-shopping-cart"></i>
 						</a>
 						

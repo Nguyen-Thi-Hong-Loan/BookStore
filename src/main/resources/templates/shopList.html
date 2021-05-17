@@ -22,13 +22,13 @@
 				<div class="shop-sidebar fix">
 					<!-- single-sidebar start -->
 					<div class="sin-shop-sidebar shop-category">
-						<h2>Thá»ƒ loáº¡i</h2>
+						<h2>Thể Loại</h2>
 						<ul>
-							<li><a href="#">Tiá»ƒu thuyáº¿t</a></li>
-							<li><a href="#">Trinh thÃ¡m</a></li>
-							<li><a href="#">TÃ¬nh cáº£m</a></li>
-							<li><a href="#">PhiÃªu lÆ°u</a></li>
-							<li><a href="#">Kinh táº¿</a></li>
+							<li><a href="#">Tiểu thuyết</a></li>
+							<li><a href="#">Trinh thám</a></li>
+							<li><a href="#">Tình cảm</a></li>
+							<li><a href="#">Phiêu Lưu</a></li>
+							<li><a href="#">Kinh tế</a></li>
 						</ul>
 					</div>
 					<!-- single-sidebar end -->
@@ -39,11 +39,11 @@
 					<!-- single-sidebar end -->
 					<!-- single-sidebar start -->
 					<div class="sin-shop-sidebar shop-brands">
-						<h2>TÃ¡c giáº£</h2>
+						<h2>Tác giả</h2>
 						<ul>
 							<li><a href="#">J.K.Rowling<span>(5)</span></a></li>
 							<li><a href="#">EL James<span>(10)</span></a></li>
-							<li><a href="#">Colleen Mccullough<span>(7)</span></a></li>
+							<li><a href="#">Nguyễn Nhật Ánh<span>(7)</span></a></li>
 							<li><a href="#">Rosalind Miles<span>(5)</span></a></li>
 							<li><a href="#">Catherine Fisher<span>(3)</span></a></li>
 							<li><a href="#">Grameen Jewelrs<span>(13)</span></a></li>
@@ -101,13 +101,13 @@
 									<i class="fa fa-star on"></i>
 									<i class="fa fa-star-half-o on"></i>
 								</div>
-								<h4 class="list-pro-price"><span class="new" th:text="${listbook.price}"></span>VNÄ�</h4>
-								<p ><span class="new">TÃ¡c giáº£: </span><span class="new" th:text="${listbook.author}"></span></p>
-								<p > <span class="new">NhÃ  xuáº¥t báº£n: </span><span class="new" th:text="${listbook.publisher}"></span> </p>
+								<h4 class="list-pro-price"><span class="new" th:text="${listbook.price}"></span>VNĐ</h4>
+								<p ><span class="new">Tác giả: </span><span class="new" th:text="${listbook.author}"></span></p>
+								<p > <span class="new">Nhà xuất bản: </span><span class="new" th:text="${listbook.publisher}"></span> </p>
 								<div class="list-actions-btn" th:data-id="${listbook.id}">
 									<a class="quick-view" href="#"><i class="fa fa-search"></i></a>
 									<a class="favorite btn-like" href="#"><i class="fa fa-heart-o"></i></a>
-									<a class="cart  " href="#"  th:href="@{shopList/addcart/{id}(id = ${listbook.id})}"><i class="fa fa-shopping-cart"></i></a>
+									<a class="cart btn-addcart "  ><i class="fa fa-shopping-cart"></i></a>
 								</div>
 							</div>
 						</div>
