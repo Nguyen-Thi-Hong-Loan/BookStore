@@ -29,8 +29,9 @@ public class LoginController {
     private JavaMailSender mailSender;
 
     @GetMapping("login")
-    public ModelAndView login() {
-        return new ModelAndView("login");
+    public String login() {
+
+        return "login";
     }
 
     @ModelAttribute("loginUser")
@@ -60,8 +61,8 @@ public class LoginController {
 
         try {
             userService.updateResetPasswordToken(token, email);
-            String resetPasswordLink = Utility.getSiteURL(request) + "/hostel/resetPassword?token=" + token;
-            sendMail(email, resetPasswordLink);
+            String resetPasswordLink = Utility.getSiteURL(request) + "/bookstore/resetPassword?token=" + token;
+            userService.sendMail(email, resetPasswordLink);
             model.addAttribute("mess",
                     "We have sent a reset password link to your email. Please check");
 
@@ -71,22 +72,5 @@ public class LoginController {
         return "forgotPassword";
     }
 
-    private void sendMail(String email, String resetPasswordLink) throws UnsupportedEncodingException, MessagingException {
-        MimeMessage message = mailSender.createMimeMessage();
-        MimeMessageHelper helper = new MimeMessageHelper(message);
-        helper.setFrom("contact@gmail.com", "NHA SUPPORT");
-        helper.setTo(email);
-        String subject = "Here's the link to reset your password";
-        String content = "<p> Hello, </p>"
-                + "<p>You have requested to reset your password. </p>" +
-                "<p>Click the link below to change your password</p>" +
-                " <p><a href=\"" + resetPasswordLink + "\">Change my password</a> </p>" +
-                "Ignore this mail if you do remember your password, or you havenot made the request.";
-
-        helper.setSubject(subject);
-        helper.setText(content, true);
-        mailSender.send(message);
-
-    }
 
 }
