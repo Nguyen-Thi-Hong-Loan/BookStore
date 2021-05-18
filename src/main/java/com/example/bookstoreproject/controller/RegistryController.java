@@ -47,12 +47,16 @@ public class RegistryController {
         RoleEntity roleEntity = roleService.findByRoleName("ROLE_USER");
 
         entity.setRoles(Arrays.asList(roleEntity));
-        userService.save(entity);
+        userService.save(entity,  getSiteURL(request));
 
-        String siteURL = Utility.getSiteURL(request);
-        userService.sendVerificationEmail(entity, siteURL);
+
+//        userService.sendVerificationEmail(entity, siteURL);
 
         return "redirect:/bookstore/register?success";
+    }
+    private String getSiteURL(HttpServletRequest request) {
+        String siteURL = request.getRequestURL().toString();
+        return siteURL.replace(request.getServletPath(), "");
     }
 
 
