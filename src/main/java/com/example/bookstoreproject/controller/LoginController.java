@@ -5,6 +5,7 @@ import com.example.bookstoreproject.entity.UserEntity;
 import com.example.bookstoreproject.services.UserService;
 import net.bytebuddy.utility.RandomString;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Controller;
@@ -72,5 +73,38 @@ public class LoginController {
         return "forgotPassword";
     }
 
+
+    @GetMapping("/resetPassword")
+    public String showResetPassword(@Param(value = "token") String token, Model model) {
+
+        UserEntity userEntity = userService.getByResetPasswordToken(token);
+        if (userEntity == null) {
+            model.addAttribute("title", "Reset your password");
+            model.addAttribute("mess", "Invalid Token");
+            return "mess";
+        }
+        model.addAttribute("token", token);
+
+        return "resetPasswordForm";
+    }
+
+    @PostMapping("/resetPassword")
+    public String processResetPassword(HttpServletRequest request, Model model) {
+        String token = request.getParameter("token");
+        String password = request.getParameter("password");
+        UserEntity userEntity = userService.getByResetPasswordToken(token);
+
+        if (userEntity == null) {
+            model.addAttribute("title", "Reset your password");
+            model.addAttribute("mess", "Invalid Token");
+        } else {
+            userService.updatePassword(userEntity, password);
+            model.addAttribute("mess", "You have success changed your password");
+            return "login";
+        }
+
+        return "resetPasswordForm";
+
+    }
 
 }

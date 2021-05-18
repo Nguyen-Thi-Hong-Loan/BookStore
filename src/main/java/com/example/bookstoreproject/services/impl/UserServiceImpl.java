@@ -42,17 +42,14 @@ public class UserServiceImpl implements UserService {
 
 
     @Override
-    public void save(UserEntity userEntity, String siteURL) throws MessagingException, UnsupportedEncodingException {
+    public UserEntity save(UserEntity userEntity) {
         userEntity.setPassword(passwordEncoder.encode(userEntity.getPassword()));
         userEntity.setCreateDate(new Date());
         String randomStr = RandomString.make(64);
         userEntity.setVerificationCode(randomStr);
         userEntity.setEnabled(false);
 
-        userRepository.save(userEntity);
-
-        sendVerificationEmail(userEntity, siteURL);
-
+        return userRepository.save(userEntity);
 
     }
 
@@ -84,25 +81,6 @@ public class UserServiceImpl implements UserService {
         javaMailSender.send(message);
     }
 
-
-    @Override
-    public boolean verify(String verificationCode) {
-        UserEntity userEntity = userRepository.findByVerificationCode(verificationCode);
-
-        if (userEntity == null || userEntity.isEnabled()) {
-            System.out.println("LLLLLMMMMM   " + userEntity.isEnabled());
-            return false;
-        } else {
-            userEntity.setVerificationCode(null);
-            userEntity.setEnabled(true);
-            System.out.println("KAAAAA   " + userEntity.isEnabled());
-            userRepository.save(userEntity);
-            return true;
-        }
-
-
-    }
-
     @Override
     public UserEntity findByEmail(String email) {
         return userRepository.findByEmail(email).orElse(null);
@@ -113,6 +91,20 @@ public class UserServiceImpl implements UserService {
         return userRepository.findAll();
     }
 
+    @Override
+    public boolean verify(String verificationCode) {
+        UserEntity userEntity = userRepository.findByVerificationCode(verificationCode).orElse(null);
+
+        if (userEntity == null) {
+            return false;
+        } else {
+            userEntity.setEnabled(true);
+            System.out.println("KAAAAA   " + userEntity.isEnabled());
+            userRepository.save(userEntity);
+        }
+
+        return true;
+    }
 
     @Override
     public void updateResetPasswordToken(String token, String email) throws Exception {
@@ -129,7 +121,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserEntity getByResetPasswordToken(String token) {
 
-        return userRepository.findByResetPasswordToken(token);
+        return userRepository.findByResetPasswordToken(token).orElse(null);
     }
 
     @Override
@@ -162,19 +154,20 @@ public class UserServiceImpl implements UserService {
     public void sendMail(String email, String resetPasswordLink) throws UnsupportedEncodingException, MessagingException {
         MimeMessage message = javaMailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(message);
-        helper.setFrom("contact@gmail.com", "Book Store");
+        helper.setFrom("contact@gmail.com", "BOOK STORE SUPPORT");
         helper.setTo(email);
         String subject = "Here's the link to reset your password";
         String content = "<p> Hello, </p>"
                 + "<p>You have requested to reset your password. </p>" +
                 "<p>Click the link below to change your password</p>" +
                 " <p><a href=\"" + resetPasswordLink + "\">Change my password</a> </p>" +
-                "Ignore this mail if you do remember your password, or you havenot made the request.";
+                "Ignore this mail if you do remember your password, or you have not made the request.";
 
         helper.setSubject(subject);
         helper.setText(content, true);
         javaMailSender.send(message);
 
     }
+
 
 }

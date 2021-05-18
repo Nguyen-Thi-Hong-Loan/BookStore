@@ -47,16 +47,12 @@ public class RegistryController {
         RoleEntity roleEntity = roleService.findByRoleName("ROLE_USER");
 
         entity.setRoles(Arrays.asList(roleEntity));
-        userService.save(entity,  getSiteURL(request));
+        userService.save(entity);
 
-
-//        userService.sendVerificationEmail(entity, siteURL);
+        String siteURL = Utility.getSiteURL(request);
+        userService.sendVerificationEmail(entity, siteURL);
 
         return "redirect:/bookstore/register?success";
-    }
-    private String getSiteURL(HttpServletRequest request) {
-        String siteURL = request.getRequestURL().toString();
-        return siteURL.replace(request.getServletPath(), "");
     }
 
 
@@ -64,7 +60,6 @@ public class RegistryController {
     public String verifyAccount(@Param("code") String code, Model model) {
         boolean verified = userService.verify(code);
 
-        System.out.println("VERIFY: " + verified);
         String pageTitle = verified ? "Verified Succeed!" : "Verification code";
         model.addAttribute("pageTitle", pageTitle);
 
