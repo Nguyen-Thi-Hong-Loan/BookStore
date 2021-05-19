@@ -307,7 +307,7 @@
       var myChart = new Chart(ctx, {
         type: 'bar',
         data: {
-          labels: ["Sun", "Mon", "Tu", "Wed", "Th", "Fri", "Sat"],
+          labels: [ "Thứ 2", "Thứ 3", "Thứ 4", "Thứ 5", "Thứ 6", "Thứ 7","Chủ nhật"],
           datasets: [
             {
               label: "User",
@@ -350,8 +350,15 @@
 
     </script>
     
-    <script  >
+    <script type="text/javascript" th:inline="javascript" >
         
+	var itemsMonth = [];
+	
+	/*[# th:each="n : ${lsMonth}"]*/
+	
+	itemsMonth.push("[(${n})]");
+
+	/*[/]*/
     try {
     
     // single bar chart
@@ -361,11 +368,11 @@
       var myChart = new Chart(ctx, {
         type: 'bar',
         data: {
-          labels: ["Tháng 1", "Tháng 2", "Tháng 3", "Tháng 4", "Tháng 5", "Tháng 6", "Tháng 7"],
+          labels: ["Tháng 1", "Tháng 2", "Tháng 3", "Tháng 4", "Tháng 5", "Tháng 6", "Tháng 7","Tháng 8","Tháng 9","Tháng 10","Tháng 11","Tháng 12"],
           datasets: [
             {
               label: "User",
-              data: [40, 75, 175, 111, 156, 355, 290],
+              data: itemsMonth,
               borderColor: "rgba(0, 123, 255, 0.9)",
               borderWidth: "0",
               backgroundColor: "rgba(0, 123, 255, 0.5)"
