@@ -1,198 +1,223 @@
 <!DOCTYPE HTML>
 <html lang="vi" xmlns:th="http://www.thymeleaf.org"
-	  xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head th:replace="head :: head">
 
 </head>
 
 <body>
-<div class="header-top"><!--Start Header Top Area-->
-<header th:replace="header :: header"> </header>
+	<div class="header-top">
+		<!--Start Header Top Area-->
+		<header th:replace="header :: header"> </header>
 	</div>
-<div class="page-title fix"><!--Start Title-->
-	<div class="overlay section">
-		<h2>Checkout</h2>
+	<div class="page-title fix">
+		<!--Start Title-->
+		<div class="overlay section">
+			<h2>Checkout</h2>
+		</div>
 	</div>
-</div><!--End Title-->
-<section class="checkout-page page fix"><!--Start Checkout Area-->
-	<div class="container">
-		<div class="row">
-			<div class="col-md-12">
-				<div class="panel-group" id="checkout-progress">
-					<div class="panel panel-default">
-						<div class="panel-heading" >
-							<a class="active" data-toggle="collapse" data-parent="#checkout-progress" href="#checkout-method"><span></span>Thanh toán</a>
+	<!--End Title-->
+	<section class="checkout-page page fix">
+		<!--Start Checkout Area-->
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="panel-group" id="checkout-progress">
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<a class="active" data-toggle="collapse"
+									data-parent="#checkout-progress" href="#checkout-method"><span></span>Thanh
+									toán</a>
+							</div>
+							<div id="checkout-method" class="panel-collapse collapse in">
+								<div class="panel-body">
+									<form id="contact-form" name="form" method="post" action="#">
+										<div class="col-sm-6">
+											<div class="checkout-method  checkout-login">
+												<h2>Người đặt hàng:</h2>
+												<input type="text" value="Nguyen Van Long" disabled />
+												<h2>Số điện thoại:</h2>
+												<input type="number" value="0963205053" disabled />
+												<h3>địa chỉ:</h3>
+												<input type="text" value="aaa" /> <br />
+
+											</div>
+										</div>
+										<div class="col-sm-6">
+											<div class="payment-met">
+												<p>Hình thức thanh toán :</p>
+												<ul>
+													<li><a href="#"><img src="/img/footer/paypal.jpg"
+															alt="" /></a></li>
+													<li><a href="#"><img src="/img/footer/visa.jpg"
+															alt="" /></a></li>
+													<li><a href="#"><img src="/img/footer/master.jpg"
+															alt="" /></a></li>
+													<li><a href="#"><img src="/img/footer/cards.jpg"
+															alt="" /></a></li>
+													<li><a href="#"><img
+															src="/img/footer/discover.jpg" alt="" /></a></li>
+												</ul>
+												<div class="pay">
+													<h2>YOUR PAYPAL ACCOUNT</h2>
+													<p>Pay via credit or debit card, Paypal transfer or
+														even via Bank account in just a few clicks.</p>
+													<p>This method is super easy and well protected.</p>
+												</div>
+											</div>
+										</div>
+										<div class="col-sm-12">
+											<div class="place-order">
+												
+												<div class="order-list">
+													<h4>Mã sản Phẩm</h4>
+													<h4>Tên sản Phẩm</h4>
+													<h4>Số lượng</h4>
+													<h4>Đơn giá</h4>
+												</div>
+												<div class="items-list" th:each="item : ${Datacart}">
+													<h5 th:text="${item.book.id}">Mã</h5>
+													<h5 th:text="${item.book.name}">tên san pham</h5>
+													<div>
+														số lượng : <span  th:text="${item.count}"> 2</span>
+													</div>
+													<div>
+														<span th:text="${item.book.price}" >250000</span> <span>VNĐ</span>
+													</div>
+
+												</div>
+												<div class="final-total">
+
+													<h5>
+														Total <span th:text="${DatacartTotal}">420000</span>VNĐ
+													</h5>
+													<button type="submit" value="xac nhan"
+														class="btn btn-primary min-wide">Thanh toán</button>
+													
+												</div>
+											</div>
+										</div>
+									</form>
+								</div>
+							</div>
 						</div>
-						<div id="checkout-method" class="panel-collapse collapse in">
-							<div class="panel-body">
-								<form id="contact-form" name="form" method="post" action="#">
-									<div class="col-sm-6">
-										<div class="checkout-method  checkout-login">
-											<h2>Người đặt hàng:</h2>
-											<input type="text"  value="Nguyen Van Long" disabled/>
-											<h2>Số điện thoại:</h2>
-											<input type="number" value="0963205053" disabled />
-											<h3>địa chỉ:</h3>
-											<input type="text" value="aaa" />
-											<br />
-											
-										</div>
-									</div>
-									<div class="col-sm-6">
-										<div class="payment-met">
-											<p>Hình thức thanh toán :</p>
-											<ul>
-												<li><a href="#"><img src="/img/footer/paypal.jpg" alt="" /></a></li>
-												<li><a href="#"><img src="/img/footer/visa.jpg" alt="" /></a></li>
-												<li><a href="#"><img src="/img/footer/master.jpg" alt="" /></a></li>
-												<li><a href="#"><img src="/img/footer/cards.jpg" alt="" /></a></li>
-												<li><a href="#"><img src="/img/footer/discover.jpg" alt="" /></a></li>
-											</ul>
-											<div class="pay">
-												<h2>YOUR PAYPAL ACCOUNT</h2>
-												<p>Pay via credit or debit card, Paypal transfer or even via Bank account in just a few clicks.</p>
-												<p>This method is super easy and well protected.</p>
-											</div>
-										</div>
-									</div>
-									<div class="col-sm-12">
-										<div class="place-order">
-											<div class="order-list">
-												<h1>Sản Phẩm</h1>
-												<h2>Đơn giá</h2>
-												<h3>PRODUCT NAME DEMO  <span>VNĐ</span> <span>50000</span><span style="margin-right: 100px;">2</span><span style="margin-right: 5px;">Số lượng: </span></h3>
-												<h3>PRODUCT NAME DEMO  <span>VNĐ</span> <span>50000</span><span style="margin-right: 100px;">2</span><span style="margin-right: 5px;">Số lượng: </span></h3>
-											</div>
-											<div class="final-total">
-											
-												<h5> Total <span>420000</span>VNĐ</h5>
-												<button type="submit" value="xac nhan" class="btn btn-primary min-wide" >Thanh toán</button>
-												<!-- <a href="#">Thanh toán</a> -->
-											</div>
-										</div>
-									</div>
-								</form>
+
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</section>
+	<!--End Checkout Area-->
+
+	<div class="support-area section fix">
+		<!--Start Support Area-->
+		<div class="container">
+			<div class="row">
+				<div class="support col-sm-3">
+					<i class="fa fa-thumbs-up"></i>
+					<h3>High quality</h3>
+					<p>Lorem ipsum dolor sit amet, conseetur adipiscing elit,
+						consectetur</p>
+				</div>
+				<div class="support col-sm-3">
+					<i class="fa fa-bus"></i>
+					<h3>Fast Delivery</h3>
+					<p>Lorem ipsum dolor sit amet, conseetur adipiscing elit,
+						consectetur</p>
+				</div>
+				<div class="support col-sm-3">
+					<i class="fa fa-phone"></i>
+					<h3>24/7 support</h3>
+					<p>Lorem ipsum dolor sit amet, conseetur adipiscing elit,
+						consectetur</p>
+				</div>
+				<div class="support col-sm-3">
+					<i class="fa fa-random"></i>
+					<h3>14 - Day Returns</h3>
+					<p>Lorem ipsum dolor sit amet, conseetur adipiscing elit,
+						consectetur</p>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--Start Support Area-->
+	<div class="footer-top-area fix">
+		<!--Start Footer top area-->
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-6 col-md-3">
+					<div class="footer-about">
+						<div class="image">
+							<img src="/img/header/booklogo.png" alt="" />
+							<h3>online book store</h3>
+						</div>
+						
+					</div>
+					<div class="footer-contact">
+						<div class="single-contact">
+							<div class="icon">
+								<i class="fa fa-map-marker"></i>
+							</div>
+							<div class="details">
+								<p>Nong Lam University</p>
+								
+							</div>
+						</div>
+						<div class="single-contact">
+							<div class="icon">
+								<i class="fa fa-phone"></i>
+							</div>
+							<div class="details">
+								<p>+012 456 456 456</p>
+								<p>+012 356 897 222</p>
+							</div>
+						</div>
+						<div class="single-contact">
+							<div class="icon">
+								<i class="fa fa-dribbble"></i>
+							</div>
+							<div class="details">
+								<a href="#">info@bookstore.com</a>
+								<a href="#">www.bookstore.com</a>
 							</div>
 						</div>
 					</div>
-
 				</div>
-			</div>
-			
-		</div>
-	</div>
-</section><!--End Checkout Area-->
-
-<div class="support-area section fix"><!--Start Support Area-->
-	<div class="container">
-		<div class="row">
-			<div class="support col-sm-3">
-				<i class="fa fa-thumbs-up"></i>
-				<h3>High quality</h3>
-				<p>Lorem ipsum dolor sit amet, conseetur adipiscing elit, consectetur</p>
-			</div>
-			<div class="support col-sm-3">
-				<i class="fa fa-bus"></i>
-				<h3>Fast Delivery</h3>
-				<p>Lorem ipsum dolor sit amet, conseetur adipiscing elit, consectetur</p>
-			</div>
-			<div class="support col-sm-3">
-				<i class="fa fa-phone"></i>
-				<h3>24/7 support</h3>
-				<p>Lorem ipsum dolor sit amet, conseetur adipiscing elit, consectetur</p>
-			</div>
-			<div class="support col-sm-3">
-				<i class="fa fa-random"></i>
-				<h3>14 - Day Returns</h3>
-				<p>Lorem ipsum dolor sit amet, conseetur adipiscing elit, consectetur</p>
-			</div>
-		</div>
-	</div>
-</div><!--Start Support Area-->
-<div class="footer-top-area fix">	<!--Start Footer top area-->
-	<div class="container">
-		<div class="row">
-			<div class="col-sm-6 col-md-3">
-				<div class="footer-about">
-					<div class="image">
-						<img src="/img/header/booklogo.png" alt="" />
-						<h3>online book store</h3>
-					</div>
-					
-				</div>
-				<div class="footer-contact">
-					<div class="single-contact">
-						<div class="icon">
-							<i class="fa fa-map-marker"></i>
-						</div>
-						<div class="details">
-							<p>Main town, Anystreen</p>
-							<p>C/A 1254 New Yourk</p>
-						</div>
-					</div>
-					<div class="single-contact">
-						<div class="icon">
-							<i class="fa fa-phone"></i>
-						</div>
-						<div class="details">
-							<p>+012 456 456 456</p>
-							<p>+012 356 897 222</p>
-						</div>
-					</div>
-					<div class="single-contact">
-						<div class="icon">
-							<i class="fa fa-dribbble"></i>
-						</div>
-						<div class="details">
-							<a href="#">info@olongker.com</a>
-							<a href="#">www.olongker.com</a>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="col-sm-6 col-md-3">
-				<div class="footer-quick-link footer-links">
-					<h2>QUICK LINK</h2>
-					<ul>
-						<li><a href="index.html">Home</a></li>
-						<li><a href="shop-left-sidebar.html">New Arrivals</a></li>
-						<li><a href="services.html">Services</a></li>
-						<li><a href="portfolio-1.html">Portfolio</a></li>
-						<li><a href="blog.html">Blog</a></li>
-						<li><a href="contact.html">Contact</a></li>
-					</ul>
-				</div>
-			</div>
-			<div class="col-sm-12 col-md-6">
-				<div class="row">
-					<div class="col-sm-8 footer-support footer-links">
-						<h2>OUR SUPPORT</h2>
+				<div class="col-sm-6 col-md-3">
+					<div class="footer-quick-link footer-links">
+						<h2>QUICK LINK</h2>
 						<ul>
-							<li><a href="#">Site Map</a></li>
-							<li><a href="#">privacy Policy</a></li>
-							<li><a href="#">Help & FAQs</a></li>
-							<li><a href="#">Gift Voucher</a></li>
-							<li><a href="contact.html">Contact Us</a></li>
-						</ul>
-					</div>
-					<div class="col-sm-4 footer-account footer-links">
-						<h2>my Account</h2>
-						<ul>
-							<li><a href="#">my Account</a></li>
-							<li><a href="#">order History</a></li>
-					
+							<li><a th:href="@{/bookstore/home}">Home</a></li>
+							<li><a th:href="@{/bookstore/shopList}">Shop</a></li>
+							<li><a th:href="@{/bookstore/blog}">Blog</a></li>
+							<li><a th:href="@{/bookstore/contact}">Contact</a></li>
+							<li><a th:href="@{/bookstore/aboutUs}">About Us</a></li>
 						</ul>
 					</div>
 				</div>
-				
+				<div class="col-sm-12 col-md-6">
+					<div class="row">
+						<div class="col-sm-8 footer-support footer-links">
+							<h2>OUR SUPPORT</h2>
+							<ul>
+								<li><a href="#">Site Map</a></li>
+								<li><a href="#">privacy Policy</a></li>
+								<li><a href="#">Help & FAQs</a></li>
+								<li><a th:href="@{/bookstore/contact}">Contact Us</a></li>
+							</ul>
+						</div>
+						
+					</div>
+					
+				</div>
 			</div>
 		</div>
 	</div>
-</div>
-<!--Start Footer top area-->
+	<!--Start Footer top area-->
 
-	
-<!-- jQuery 2.1.4 -->
+
+	<!-- jQuery 2.1.4 -->
 	<script type="text/javascript" src="/js/jquery-2.1.4.min.js"></script>
 	<!-- Bootstrap JS -->
 	<script type="text/javascript" src="/js/bootstrap.min.js"></script>
