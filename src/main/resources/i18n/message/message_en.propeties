@@ -1,0 +1,33 @@
+label.home = HOME
+label.hostels = HOUSE LIST
+label.blog = BLOG
+label.contact = CONTACT
+label.account = ACCOUNT
+label.login = SIGN IN
+label.city = Province
+label.acreage = Acreage
+label.price = Price
+label.area = Area
+button.search = Search
+label.list = LIST
+label.all = ALL
+label.dormitory = Dormitory
+label.hostel = Hostel
+button.save = SAVE
+label.ContactInfo = CONTACT INFOMATION
+label.tutorial = TUTORIAL
+label.page = PAGE
+label.infoAdd = Information
+highLights = HIGHLIGHTS
+label.money = $
+password = Password
+label.register = Register
+forgotPass= Forgot password
+sort = Sort
+Comment = COMMENT
+logout = LOGOUT
+notification_register_success = You've successfully registered to our awesome app!
+notification_new_post_success = You've successfully post on our awesome app!
+notification_logout = You have successfully logout our great app!
+
+

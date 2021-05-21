@@ -19,4 +19,6 @@ public interface UserRepository extends JpaRepository<UserEntity, Long> {
 
     Optional<UserEntity> findByVerificationCode(String code);
 
+    Optional<UserEntity> findById(Long id);
+
 }

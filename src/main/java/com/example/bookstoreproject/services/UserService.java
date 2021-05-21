@@ -15,6 +15,8 @@ public interface UserService extends UserDetailsService {
 
     UserEntity findByEmail(String email);
 
+    UserEntity findById(Long id);
+
     List<UserEntity> findAll();
 
     boolean verify(String verificationCode);
