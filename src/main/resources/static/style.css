@@ -3355,27 +3355,21 @@ h4.heading {
 .place-order {
   margin-top: 30px;
 }
-.order-list h2, .order-list h1 {
-  float: left;
+.order-list {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   font-size: 14px;
   font-weight: 700;
   text-transform: uppercase;
-  width: 50%;
+  width: 100%;
   margin-bottom:30px;
 }
-.order-list h2 {
-  text-align: right;
-}
-.order-list h3 {
-  font-size: 12px;
-  font-weight: 600;
-  margin-bottom: 10px;
-  text-transform: uppercase;
-  width: 100%;
-}
-.order-list span {
-  float: right;
-  text-align: right;
+
+.items-list{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 .final-total {
   border-top: 2px solid #ccc;

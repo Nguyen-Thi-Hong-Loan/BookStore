@@ -131,7 +131,7 @@
 	</div>
 	<!--Start Support Area-->
 	<div class="footer-top-area fix">
-		<!--Start Footer top area-->
+				<!--Start Footer top area-->
 		<div class="container">
 			<div class="row">
 				<div class="col-sm-6 col-md-3">
@@ -140,7 +140,7 @@
 							<img src="/img/header/booklogo.png" alt="" />
 							<h3>online book store</h3>
 						</div>
-
+						
 					</div>
 					<div class="footer-contact">
 						<div class="single-contact">
@@ -148,8 +148,8 @@
 								<i class="fa fa-map-marker"></i>
 							</div>
 							<div class="details">
-								<p>Main town, Anystreen</p>
-								<p>C/A 1254 New Yourk</p>
+								<p>Nong Lam University</p>
+								
 							</div>
 						</div>
 						<div class="single-contact">
@@ -166,7 +166,8 @@
 								<i class="fa fa-dribbble"></i>
 							</div>
 							<div class="details">
-								<a href="#">info@olongker.com</a> <a href="#">www.olongker.com</a>
+								<a href="#">info@bookstore.com</a>
+								<a href="#">www.bookstore.com</a>
 							</div>
 						</div>
 					</div>
@@ -175,12 +176,11 @@
 					<div class="footer-quick-link footer-links">
 						<h2>QUICK LINK</h2>
 						<ul>
-							<li><a href="index.html">Home</a></li>
-							<li><a href="shop-left-sidebar.html">New Arrivals</a></li>
-							<li><a href="services.html">Services</a></li>
-							<li><a href="portfolio-1.html">Portfolio</a></li>
-							<li><a href="blog.html">Blog</a></li>
-							<li><a href="contact.html">Contact</a></li>
+							<li><a th:href="@{/bookstore/home}">Home</a></li>
+							<li><a th:href="@{/bookstore/shopList}">Shop</a></li>
+							<li><a th:href="@{/bookstore/blog}">Blog</a></li>
+							<li><a th:href="@{/bookstore/contact}">Contact</a></li>
+							<li><a th:href="@{/bookstore/aboutUs}">About Us</a></li>
 						</ul>
 					</div>
 				</div>
@@ -192,20 +192,12 @@
 								<li><a href="#">Site Map</a></li>
 								<li><a href="#">privacy Policy</a></li>
 								<li><a href="#">Help & FAQs</a></li>
-								<li><a href="#">Gift Voucher</a></li>
-								<li><a href="contact.html">Contact Us</a></li>
+								<li><a th:href="@{/bookstore/contact}">Contact Us</a></li>
 							</ul>
 						</div>
-						<div class="col-sm-4 footer-account footer-links">
-							<h2>my Account</h2>
-							<ul>
-								<li><a href="#">my Account</a></li>
-								<li><a href="#">order History</a></li>
-
-							</ul>
-						</div>
+						
 					</div>
-
+					
 				</div>
 			</div>
 		</div>
