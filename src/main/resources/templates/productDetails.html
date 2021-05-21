@@ -58,18 +58,18 @@
 								class="on fa fa-star-half-o"></i>
 						</div>
 						<h2>
-							<span th:text="${book.price}" ></span>VNÄ�
+							<span th:text="${book.price}" ></span>VNĐ
 						</h2>
-						<h2>TÃ¡c giáº£:</h2>
+						<h2>Tác giả:</h2>
 						<h3 th:text="${book.author}" ></h3>
-						<h5>CÃ²n hÃ ng</h5>
-						<h6>Tá»•ng quÃ¡t:</h6>
+						
+						<h6>Mô tả:</h6>
 						<p th:text="${book.description}"></p>
 						<div class="select-menu fix">
 							<div class="sort fix">
-								<h4>Sá»‘ lÆ°á»£ng</h4>
+								<h4>Số lượng</h4>
 								<div class="cart-plus-minus">
-									<input type="text" value="0" name="qtybutton"
+									<input type="text" value="1" name="qtybutton"
 										class="cart-plus-minus-box">
 								</div>
 							</div>
@@ -78,8 +78,8 @@
 						<div class="review">
 							<textarea rows="4" placeholder="Write Your Review..."></textarea>
 						</div>
-						<div class="action-btn">
-							<a href="#"><i class="fa fa-shopping-cart"></i></a> <a href="#"><i
+						<div class="action-btn" th:data-id="${book.id}">
+							<a  class="btn-addcart"><i class="fa fa-shopping-cart"></i></a> <a href="#"><i
 								class="fa fa-heart-o"></i></a> <a href="#"><i
 								class="fa fa-refresh"></i></a>
 						</div>
@@ -89,8 +89,8 @@
 					<div class="description">
 						<!-- Nav tabs -->
 						<ul class="nav product-nav">
-							<li class="active"><a data-toggle="tab" href="#description">DESCRIPTION</a></li>
-							<li class=""><a data-toggle="tab" href="#review">REVIEWS</a></li>
+							<li class="active"><a data-toggle="tab" href="#description">Mô Tả</a></li>
+							<li class=""><a data-toggle="tab" href="#review">Nhận xét</a></li>
 
 						</ul>
 						<!-- Tab panes -->
@@ -101,10 +101,7 @@
 							</div>
 							<div id="review" class="tab-pane fade" role="tabpanel">
 								
-								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-									sed do eiusmod tempor incididunt ut labore et dolore magna
-									aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-									ullamc.</p>
+								<p>Chưa có nhận xét.</p>
 							</div>
 
 						</div>
@@ -112,7 +109,7 @@
 				</div>
 				<div class="col-md-12 fix">
 					<div class="section-title">
-						<h2>SÃ¡ch gá»£i Ã½</h2>
+						<h2>Sách gợi ý</h2>
 						<div class="underline"></div>
 					</div>
 					<div class="related-pro-slider owl-carousel">
@@ -143,7 +140,7 @@
 								<!-- Product Price -->
 								<div class="pro-price fix">
 									<p>
-										<span class="new" th:text="${suggestion.price}"></span><span>VNÄ�</span>
+										<span class="new" th:text="${suggestion.price}"></span><span>VNĐ</span>
 									</p>
 								</div>
 							</div>
