@@ -1,5 +1,7 @@
 package com.example.bookstoreproject.services.impl;
 
+import com.example.bookstoreproject.config.PaypalPaymentIntent;
+import com.example.bookstoreproject.config.PaypalPaymentMethod;
 import com.example.bookstoreproject.services.PaypalService;
 import com.paypal.api.payments.*;
 import com.paypal.base.rest.APIContext;
@@ -22,14 +24,13 @@ public class PaypalServiceImpl implements PaypalService {
     public Payment createPayment(
             Double total,
             String currency,
-            String method,
-            String intent,
+            PaypalPaymentMethod method,
+            PaypalPaymentIntent intent,
             String description,
             String cancelUrl,
             String successUrl) throws PayPalRESTException {
         Amount amount = new Amount();
         amount.setCurrency(currency);
-        total = new BigDecimal(total).setScale(2, RoundingMode.HALF_UP).doubleValue();
         amount.setTotal(String.format("%.2f", total));
 
         Transaction transaction = new Transaction();
@@ -50,7 +51,7 @@ public class PaypalServiceImpl implements PaypalService {
         redirectUrls.setCancelUrl(cancelUrl);
         redirectUrls.setReturnUrl(successUrl);
         payment.setRedirectUrls(redirectUrls);
-
+        apiContext.setMaskRequestId(true);
         return payment.create(apiContext);
     }
 
