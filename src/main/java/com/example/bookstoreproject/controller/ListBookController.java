@@ -36,7 +36,7 @@ public class ListBookController {
 		
 		List<BookEntity> listbook= (List<BookEntity>) bookservice.findAll();
 		
-		model.addAttribute("DatacartCount", GlobalDataCart.datacart.stream().mapToInt(DataCart::getCount).sum());
+		model.addAttribute("DatacartCount", GlobalDataCart.dataCarts.stream().mapToInt(DataCart::getCount).sum());
 		model.addAttribute("listbooks", listbook);
 		return "shopList";
 	}
@@ -57,7 +57,7 @@ public class ListBookController {
 	        } else {
 	            return loadBook(model);
 	        }
-	        model.addAttribute("DatacartCount", GlobalDataCart.datacart.stream().mapToInt(DataCart::getCount).sum());
+	        model.addAttribute("DatacartCount", GlobalDataCart.dataCarts.stream().mapToInt(DataCart::getCount).sum());
 	        return "productDetails";
 	    }
 	 

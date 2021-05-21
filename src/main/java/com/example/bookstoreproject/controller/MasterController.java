@@ -31,7 +31,7 @@ public class MasterController {
 		List<BookEntity> listpublisher= (List<BookEntity>) bookservice.findByPublisher(publisher);
 		
 		List<BlogEntity> listblog= (List<BlogEntity>) blogservice.findAll();
-		model.addAttribute("DatacartCount", GlobalDataCart.datacart.stream().mapToInt(DataCart::getCount).sum());
+		model.addAttribute("DatacartCount", GlobalDataCart.dataCarts.stream().mapToInt(DataCart::getCount).sum());
 		model.addAttribute("listpublishers", listpublisher);
 		model.addAttribute("listblogs", listblog);
 		return "home";
@@ -44,13 +44,13 @@ public class MasterController {
 	
 	@GetMapping("aboutUs")
 	public String aboutUs(ModelMap model) {
-		model.addAttribute("DatacartCount", GlobalDataCart.datacart.stream().mapToInt(DataCart::getCount).sum());
+		model.addAttribute("DatacartCount", GlobalDataCart.dataCarts.stream().mapToInt(DataCart::getCount).sum());
 		return "about";
 	}
 	
 	@GetMapping("contact")
 	public String contact(ModelMap model) {
-		model.addAttribute("DatacartCount", GlobalDataCart.datacart.stream().mapToInt(DataCart::getCount).sum());
+		model.addAttribute("DatacartCount", GlobalDataCart.dataCarts.stream().mapToInt(DataCart::getCount).sum());
 		return "contact";
 	}
 }

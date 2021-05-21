@@ -1,15 +1,21 @@
 package com.example.bookstoreproject.controller;
 
+import com.example.bookstoreproject.config.PaypalPaymentIntent;
+import com.example.bookstoreproject.config.PaypalPaymentMethod;
 import com.example.bookstoreproject.dto.OrderPayPal;
 import com.example.bookstoreproject.dto.Utility;
 import com.example.bookstoreproject.entity.BillEntity;
 import com.example.bookstoreproject.entity.UserEntity;
+import com.example.bookstoreproject.globalData.DataCart;
+import com.example.bookstoreproject.globalData.GlobalDataCart;
 import com.example.bookstoreproject.services.BillService;
 import com.example.bookstoreproject.services.PaypalService;
 import com.example.bookstoreproject.services.UserService;
 import com.paypal.api.payments.Links;
 import com.paypal.api.payments.Payment;
 import com.paypal.base.rest.PayPalRESTException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.core.Authentication;
@@ -27,46 +33,60 @@ import java.security.Principal;
 @Controller
 public class PaypalController {
 
-    @Autowired(required = true)
-    private PaypalService service;
+    @Autowired
+    private PaypalService paypalService;
     @Autowired
     private UserService userService;
 
     @Autowired
     private BillService billService;
 
-    public static final String SUCCESS_URL = "/pay/success";
-    public static final String CANCEL_URL = "/pay/cancel";
-    private double price = 0;
+    public static final String SUCCESS_URL = "pay/success";
+    public static final String CANCEL_URL = "pay/cancel";
+    private Logger log = LoggerFactory.getLogger(getClass());
+    private double price = GlobalDataCart.dataCarts.stream().mapToDouble(DataCart::totalPrice).sum();
 
     @GetMapping("/paypal")
-    public String homePayPal() {
-        return "paypalHome";
+    public String homePayPal(Principal principal) {
+//        User user = (User) ((Authentication) principal).getPrincipal();
+//        if (user == null) {
+//            return "home";
+//        }
+//        UserEntity entity = userService.findByEmail(user.getUsername());
+
+        return "home";
 
     }
 
-
     @PostMapping("/pay")
-    public String payment(@ModelAttribute("order") OrderPayPal order, HttpServletRequest request) {
+    public String payment(HttpServletRequest request) {
+        String cancelUrl = Utility.getSiteURL(request) + "/" + CANCEL_URL;
+        String successUrl = Utility.getSiteURL(request) + "/" + SUCCESS_URL;
+        System.out.println("PRICE: " + price);
         try {
-            System.out.println("JAAAAAAAAAAAAAAAAAAAAAA  " + Utility.getSiteURL(request));
+            Payment payment = paypalService.createPayment(
+                    500.0,
+                    "USD",
+                    PaypalPaymentMethod.paypal,
+                    PaypalPaymentIntent.sale,
+                    "payment description",
+                    cancelUrl,
+                    successUrl);
 
-            Payment payment = service.createPayment(order.getPrice(), order.getCurrency(), order.getMethod(),
-                    order.getIntent(), order.getDescription(), Utility.getSiteURL(request) + CANCEL_URL,
-                    Utility.getSiteURL(request) + SUCCESS_URL);
-            price = order.getPrice();
-            System.out.println("PRICE: PRICE PRICE PRICE PRICE \n" + order.getPrice());
 
-            for (Links link : payment.getLinks()) {
-                if (link.getRel().equals("approval_url")) {
-                    return "redirect:" + link.getHref();
+            for (Links links : payment.getLinks()) {
+                if (links.getRel().equals("approval_url")) {
+                    System.out.println("HMMMMMMMMMMM");
+                    return "redirect:" + links.getHref();
                 }
             }
-
+            System.out.println("OKKKKKKKKKKKKKK");
         } catch (PayPalRESTException e) {
+            System.out.println("EROOOOOOOOOOOO ");
+            log.error(e.getMessage());
 
-            e.printStackTrace();
         }
+
         return "redirect:/paypal";
     }
 
@@ -81,7 +101,7 @@ public class PaypalController {
     @GetMapping(value = SUCCESS_URL)
     public String successPay(@RequestParam("paymentId") String paymentId,
                              @RequestParam("PayerID") String payerId,
-                             Principal principal, @ModelAttribute("user") UserEntity userEntity,
+                             Principal principal,
                              RedirectAttributes redirAttrs) {
 
         try {
@@ -91,9 +111,9 @@ public class PaypalController {
 
             redirAttrs.addFlashAttribute("success", "Everything went just fine.");
 
-            Payment payment = service.executePayment(paymentId, payerId);
+            Payment payment = paypalService.executePayment(paymentId, payerId);
             if (payment.getState().equals("approved")) {
-                billEntity.setTotalMoney(price);
+                billEntity.setChecked(true);
                 userService.save(entity);
                 return "successPayPal";
             }
