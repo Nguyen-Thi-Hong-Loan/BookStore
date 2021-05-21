@@ -77,13 +77,10 @@ public class PaypalController {
 
             for (Links links : payment.getLinks()) {
                 if (links.getRel().equals("approval_url")) {
-                    System.out.println("HMMMMMMMMMMM");
                     return "redirect:" + links.getHref();
                 }
             }
-            System.out.println("OKKKKKKKKKKKKKK");
         } catch (PayPalRESTException e) {
-            System.out.println("EROOOOOOOOOOOO ");
             log.error(e.getMessage());
 
         }
