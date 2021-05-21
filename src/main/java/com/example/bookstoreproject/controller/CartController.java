@@ -165,12 +165,12 @@ public class CartController {
 
 
     @RequestMapping("shopList/cart/checkout")
-    public String checkOutBookInCart() {
+    public String checkOutBookInCart(ModelMap model) {
 
 
-//        model.addAttribute("DatacartCount", GlobalDataCart.dataCarts.stream().mapToInt(DataCart::getCount).sum());
-//        model.addAttribute("DatacartTotal", GlobalDataCart.dataCarts.stream().mapToDouble(DataCart::totalPrice).sum());
-//        model.addAttribute("Datacart", GlobalDataCart.dataCarts);
+        model.addAttribute("DatacartCount", GlobalDataCart.dataCarts.stream().mapToInt(DataCart::getCount).sum());
+        model.addAttribute("DatacartTotal", GlobalDataCart.dataCarts.stream().mapToDouble(DataCart::totalPrice).sum());
+        model.addAttribute("Datacart", GlobalDataCart.dataCarts);
         return "checkout";
 
     }

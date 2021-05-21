@@ -44,7 +44,7 @@ public class PaypalController {
     public static final String SUCCESS_URL = "pay/success";
     public static final String CANCEL_URL = "pay/cancel";
     private Logger log = LoggerFactory.getLogger(getClass());
-    private double price = GlobalDataCart.dataCarts.stream().mapToDouble(DataCart::totalPrice).sum();
+//    private double price = GlobalDataCart.dataCarts.stream().mapToDouble(DataCart::totalPrice).sum();
 
     @GetMapping("/paypal")
     public String homePayPal(Principal principal) {
@@ -62,7 +62,7 @@ public class PaypalController {
     public String payment(HttpServletRequest request) {
         String cancelUrl = Utility.getSiteURL(request) + "/" + CANCEL_URL;
         String successUrl = Utility.getSiteURL(request) + "/" + SUCCESS_URL;
-        System.out.println("PRICE: " + price);
+        System.out.println("PRICE: " + GlobalDataCart.dataCarts.stream().mapToDouble(DataCart::totalPrice).sum());
         try {
             Payment payment = paypalService.createPayment(
                     500.0,
