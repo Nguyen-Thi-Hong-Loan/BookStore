@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.bookstoreproject.entity.BookEntity;
 import com.example.bookstoreproject.globalData.DataCart;
-import com.example.bookstoreproject.globalData.GlobalData;
+import com.example.bookstoreproject.globalData.GlobalDataCart;
 import com.example.bookstoreproject.services.BookService;
 import com.example.bookstoreproject.services.CookieService;
 
@@ -34,9 +34,9 @@ public class CartController {
 	public String listPost(ModelMap model, Principal principal) {
 
 
-		model.addAttribute("DatacartCount", GlobalData.datacart.stream().mapToInt(DataCart::getCount).sum());
-		model.addAttribute("DatacartTotal", GlobalData.datacart.stream().mapToDouble(DataCart::totalPrice).sum());
-		model.addAttribute("Datacart", GlobalData.datacart);
+		model.addAttribute("DatacartCount", GlobalDataCart.datacart.stream().mapToInt(DataCart::getCount).sum());
+		model.addAttribute("DatacartTotal", GlobalDataCart.datacart.stream().mapToDouble(DataCart::totalPrice).sum());
+		model.addAttribute("Datacart", GlobalDataCart.datacart);
 		return "cart";
 	}
 	@ResponseBody
@@ -45,29 +45,29 @@ public class CartController {
 
 		DataCart data = new DataCart(bookService.findById(id).get(), 1);
 		int step = 0;
-		if (GlobalData.datacart.size() == 0) {
-			GlobalData.datacart.add(data);
+		if (GlobalDataCart.datacart.size() == 0) {
+			GlobalDataCart.datacart.add(data);
 
 		} else {
 
-			for (int i = 0; i < GlobalData.datacart.size(); i++) {
-				if (GlobalData.datacart.get(i).getBook().getId() == id) {
-					GlobalData.datacart.get(i).setCount(GlobalData.datacart.get(i).getCount() + 1);
+			for (int i = 0; i < GlobalDataCart.datacart.size(); i++) {
+				if (GlobalDataCart.datacart.get(i).getBook().getId() == id) {
+					GlobalDataCart.datacart.get(i).setCount(GlobalDataCart.datacart.get(i).getCount() + 1);
 				}
 			}
 
-			for (int i = 0; i < GlobalData.datacart.size(); i++) {
-				if (GlobalData.datacart.get(i).getBook().getId() != id) {
+			for (int i = 0; i < GlobalDataCart.datacart.size(); i++) {
+				if (GlobalDataCart.datacart.get(i).getBook().getId() != id) {
 					step += 1;
 				}
 			}
-			if (step == GlobalData.datacart.size()) {
-				GlobalData.datacart.add(data);
+			if (step == GlobalDataCart.datacart.size()) {
+				GlobalDataCart.datacart.add(data);
 
 			}
 		}
 		
-		Object[] object= {GlobalData.datacart.stream().mapToInt(DataCart::getCount).sum(),GlobalData.datacart.stream().mapToDouble(DataCart::totalPrice).sum()};
+		Object[] object= {GlobalDataCart.datacart.stream().mapToInt(DataCart::getCount).sum(),GlobalDataCart.datacart.stream().mapToDouble(DataCart::totalPrice).sum()};
 				
 
 		return object;
@@ -82,30 +82,30 @@ public class CartController {
 		DataCart data = new DataCart(bookService.findById(id).get(), 1);
 		int step = 0;
 		int count=0;
-		if (GlobalData.datacart.size() == 0) {
-			GlobalData.datacart.add(data);
+		if (GlobalDataCart.datacart.size() == 0) {
+			GlobalDataCart.datacart.add(data);
 
 		} else {
 
-			for (int i = 0; i < GlobalData.datacart.size(); i++) {
-				if (GlobalData.datacart.get(i).getBook().getId() == id) {
-					GlobalData.datacart.get(i).setCount(GlobalData.datacart.get(i).getCount() + 1);
-					count= GlobalData.datacart.get(i).getCount();
+			for (int i = 0; i < GlobalDataCart.datacart.size(); i++) {
+				if (GlobalDataCart.datacart.get(i).getBook().getId() == id) {
+					GlobalDataCart.datacart.get(i).setCount(GlobalDataCart.datacart.get(i).getCount() + 1);
+					count= GlobalDataCart.datacart.get(i).getCount();
 				}
 			}
 
-			for (int i = 0; i < GlobalData.datacart.size(); i++) {
-				if (GlobalData.datacart.get(i).getBook().getId() != id) {
+			for (int i = 0; i < GlobalDataCart.datacart.size(); i++) {
+				if (GlobalDataCart.datacart.get(i).getBook().getId() != id) {
 					step += 1;
 				}
 			}
-			if (step == GlobalData.datacart.size()) {
-				GlobalData.datacart.add(data);
+			if (step == GlobalDataCart.datacart.size()) {
+				GlobalDataCart.datacart.add(data);
 
 			}
 		}
 
-		Object[] object= {GlobalData.datacart.stream().mapToInt(DataCart::getCount).sum(),GlobalData.datacart.stream().mapToDouble(DataCart::totalPrice).sum(),count};
+		Object[] object= {GlobalDataCart.datacart.stream().mapToInt(DataCart::getCount).sum(),GlobalDataCart.datacart.stream().mapToDouble(DataCart::totalPrice).sum(),count};
 
 		return object;
 
@@ -115,17 +115,17 @@ public class CartController {
 		@RequestMapping("shopList/cart/downUpdatecart/{id}")
 		public Object[] downUpdateBookInCart(ModelMap model, @PathVariable("id") Long id) {
 				int count =0;
-				for (int i = 0; i < GlobalData.datacart.size(); i++) {
-					if (GlobalData.datacart.get(i).getBook().getId() == id && GlobalData.datacart.get(i).getCount()>1 ) {
-						GlobalData.datacart.get(i).setCount(GlobalData.datacart.get(i).getCount() - 1);
-						count= GlobalData.datacart.get(i).getCount();
+				for (int i = 0; i < GlobalDataCart.datacart.size(); i++) {
+					if (GlobalDataCart.datacart.get(i).getBook().getId() == id && GlobalDataCart.datacart.get(i).getCount()>1 ) {
+						GlobalDataCart.datacart.get(i).setCount(GlobalDataCart.datacart.get(i).getCount() - 1);
+						count= GlobalDataCart.datacart.get(i).getCount();
 					}
 				}
 
 				
 			
 
-				Object[] object= {GlobalData.datacart.stream().mapToInt(DataCart::getCount).sum(),GlobalData.datacart.stream().mapToDouble(DataCart::totalPrice).sum(),count};
+				Object[] object= {GlobalDataCart.datacart.stream().mapToInt(DataCart::getCount).sum(),GlobalDataCart.datacart.stream().mapToDouble(DataCart::totalPrice).sum(),count};
 
 			return object;
 
@@ -133,7 +133,7 @@ public class CartController {
 	@RequestMapping("shopList/removecart/{index}")
 	public String removelistBookInCart(ModelMap model, @PathVariable("index") int index) {
 
-		GlobalData.datacart.remove(index);
+		GlobalDataCart.datacart.remove(index);
 
 		return "redirect:/bookstore/cart";
 
@@ -142,7 +142,7 @@ public class CartController {
 	@RequestMapping("shopList/clearcart")
 	public String clearlistBookInCart(ModelMap model) {
 
-		GlobalData.datacart.clear();
+		GlobalDataCart.datacart.clear();
 
 		return "redirect:/bookstore/cart";
 
@@ -151,9 +151,9 @@ public class CartController {
 	public String checoutkBookInCart(ModelMap model) {
 
 		
-		model.addAttribute("DatacartCount", GlobalData.datacart.stream().mapToInt(DataCart::getCount).sum());
-		model.addAttribute("DatacartTotal", GlobalData.datacart.stream().mapToDouble(DataCart::totalPrice).sum());
-		model.addAttribute("Datacart", GlobalData.datacart);
+		model.addAttribute("DatacartCount", GlobalDataCart.datacart.stream().mapToInt(DataCart::getCount).sum());
+		model.addAttribute("DatacartTotal", GlobalDataCart.datacart.stream().mapToDouble(DataCart::totalPrice).sum());
+		model.addAttribute("Datacart", GlobalDataCart.datacart);
 		return "checkout";
 
 	}
