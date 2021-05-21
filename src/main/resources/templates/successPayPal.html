@@ -5,9 +5,8 @@
     <head th:replace="head :: head">
     </head>
 <body>
-<h1>Payment Failure</h1>
-
-<div class="alert alert-danger" role="alert" th:text="${error}" th:if="${error}"></div>
+<h1>Payment Success</h1>
+<div class="alert alert-primary" role="alert" th:text="${success}" th:if="${success}"></div>
 <a th:href="@{/bookstore/home}">HOME</a>
 </body>
 </html>
