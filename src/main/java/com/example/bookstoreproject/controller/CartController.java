@@ -165,7 +165,7 @@ public class CartController {
 
 
     @RequestMapping("shopList/cart/checkout")
-    public String checkOutBookInCart() {
+    public String checoutkBookInCart(ModelMap model) {
 
 
 //        model.addAttribute("DatacartCount", GlobalDataCart.dataCarts.stream().mapToInt(DataCart::getCount).sum());
