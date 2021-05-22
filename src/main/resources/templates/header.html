@@ -3,6 +3,7 @@
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
 >
 
+
 <head>
 
 </head>
@@ -34,8 +35,6 @@
             <div class="col-sm-12 col-md-4">
                 <div id="top-menu" class="float-right">
                     <ul>
-                        <!--							<li><a th:href="@{/bookstore/login}">Login</a></li>-->
-
                         <div class="nav navbar-nav pull-right"
                              sec:authorize="isAuthenticated()">
                             <li>
@@ -46,6 +45,14 @@
 
                                 <a th:href="@{/bookstore/logout}">LOGOUT</a></li>
                         </div>
+
+                        <div class="nav navbar-nav pull-right"
+                             sec:authorize="hasRole('ROLE_ADMIN')">
+                            <li>
+                                <a th:href="@{/admin/home}">ADMIN</a></li>
+                        </div>
+
+
                         <div class="nav navbar-nav pull-right"
                              sec:authorize="isAnonymous()">
                             <li>

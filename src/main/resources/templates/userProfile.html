@@ -1,0 +1,213 @@
+<!DOCTYPE HTML>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head th:replace="head :: head">
+
+</head>
+
+<body>
+<div class="header-top"><!--Start Header Top Area-->
+    <header th:replace="header :: header"></header>
+</div>
+<div class="page-title fix"><!--Start Title-->
+    <div class="overlay section">
+        <h2>login / Register</h2>
+    </div>
+</div><!--End Title-->
+
+<!-- Begin Featured Agents -->
+
+<div role="main" class="main pgl-bg-grey">
+    <!-- Begin page top -->
+    <section class="page-top">
+        <div class="container">
+            <div class="page-top-in"></div>
+        </div>
+
+        <section class="pgl-agents">
+            <div class="container">
+                <div th:if="${param.success}">
+                    <div class="alert alert-info">You've successfully registered
+                        to our awesome app!
+                    </div>
+                </div>
+                <h2>Thông tin khách hàng</h2>
+                <div class="agent-profile">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="pgl-agent-item pgl-bg-light">
+                                <div class="row pgl-midnarrow-row">
+                                    <div class="col-xs-3">
+                                        <div class="img-thumbnail-medium">
+                                            <a href="userProfile.html"><img
+                                                    src="/images/pikachu.png" class="img-responsive"
+                                                    alt="PROFILE"></a>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-9">
+                                        <div class="pgl-agent-info" th:if="${profile != null}">
+                                            <h4>
+                                                <a href="userProfile.html"
+                                                   th:text="${profile.getName()}">akass </a>
+                                            </h4>
+                                            <address>
+                                                <h5 th:text="${profile.getAddress()}"></h5>
+                                                <i class="fa fa-phone" th:text="${profile.getPhone()}">
+                                                </i><br> <i class="fa fa-envelope-o"></i> Mail: <a
+                                                    th:href="${profile.getEmail()}"></a>
+                                            </address>
+
+                                            <div class="col-md-12">
+                                                <a class="btn btn-default btn-sm"
+                                                   th:href="@{/admin/updateUser}"> Cập nhật</a>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- End Featured Agents -->
+            </div>
+            <!-- End history post-->
+        </section>
+    </section>
+</div>
+
+<div class="support-area section fix"><!--Start Support Area-->
+    <div class="container">
+        <div class="row">
+            <div class="support col-sm-3">
+                <i class="fa fa-thumbs-up"></i>
+                <h3>High quality</h3>
+                <p>Lorem ipsum dolor sit amet, conseetur adipiscing elit, consectetur</p>
+            </div>
+            <div class="support col-sm-3">
+                <i class="fa fa-bus"></i>
+                <h3>Fast Delivery</h3>
+                <p>Lorem ipsum dolor sit amet, conseetur adipiscing elit, consectetur</p>
+            </div>
+            <div class="support col-sm-3">
+                <i class="fa fa-phone"></i>
+                <h3>24/7 support</h3>
+                <p>Lorem ipsum dolor sit amet, conseetur adipiscing elit, consectetur</p>
+            </div>
+            <div class="support col-sm-3">
+                <i class="fa fa-random"></i>
+                <h3>14 - Day Returns</h3>
+                <p>Lorem ipsum dolor sit amet, conseetur adipiscing elit, consectetur</p>
+            </div>
+        </div>
+    </div>
+</div><!--Start Support Area-->
+<div class="footer-top-area fix">        <!--Start Footer top area-->
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6 col-md-3">
+                <div class="footer-about">
+                    <div class="image">
+                        <img src="/img/header/booklogo.png" alt=""/>
+                        <h3>online book store</h3>
+                    </div>
+
+                </div>
+                <div class="footer-contact">
+                    <div class="single-contact">
+                        <div class="icon">
+                            <i class="fa fa-map-marker"></i>
+                        </div>
+                        <div class="details">
+                            <p>Nong Lam University</p>
+
+                        </div>
+                    </div>
+                    <div class="single-contact">
+                        <div class="icon">
+                            <i class="fa fa-phone"></i>
+                        </div>
+                        <div class="details">
+                            <p>+012 456 456 456</p>
+                            <p>+012 356 897 222</p>
+                        </div>
+                    </div>
+                    <div class="single-contact">
+                        <div class="icon">
+                            <i class="fa fa-dribbble"></i>
+                        </div>
+                        <div class="details">
+                            <a href="#">info@bookstore.com</a>
+                            <a href="#">www.bookstore.com</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-3">
+                <div class="footer-quick-link footer-links">
+                    <h2>QUICK LINK</h2>
+                    <ul>
+                        <li><a th:href="@{/bookstore/home}">Home</a></li>
+                        <li><a th:href="@{/bookstore/shopList}">Shop</a></li>
+                        <li><a th:href="@{/bookstore/blog}">Blog</a></li>
+                        <li><a th:href="@{/bookstore/contact}">Contact</a></li>
+                        <li><a th:href="@{/bookstore/aboutUs}">About Us</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-6">
+                <div class="row">
+                    <div class="col-sm-8 footer-support footer-links">
+                        <h2>OUR SUPPORT</h2>
+                        <ul>
+                            <li><a href="#">Site Map</a></li>
+                            <li><a href="#">privacy Policy</a></li>
+                            <li><a href="#">Help & FAQs</a></li>
+                            <li><a th:href="@{/bookstore/contact}">Contact Us</a></li>
+                        </ul>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<!--Start Footer top area-->
+
+
+<!-- jQuery 2.1.4 -->
+<script type="text/javascript" src="/js/jquery-2.1.4.min.js"></script>
+<!-- Bootstrap JS -->
+<script type="text/javascript" src="/js/bootstrap.min.js"></script>
+<!-- Owl Carousel JS -->
+<script type="text/javascript" src="/js/owl.carousel.min.js"></script>
+<!--countTo JS -->
+<script type="text/javascript" src="/js/jquery.countTo.js"></script>
+<!-- mixitup JS -->
+<script type="text/javascript" src="/js/jquery.mixitup.min.js"></script>
+<!-- magnific popup JS -->
+<script type="text/javascript" src="/js/jquery.magnific-popup.min.js"></script>
+<!-- Appear JS -->
+<script type="text/javascript" src="/js/jquery.appear.js"></script>
+<!-- MeanMenu JS -->
+<script type="text/javascript" src="/js/jquery.meanmenu.min.js"></script>
+<!-- Nivo Slider JS -->
+<script type="text/javascript" src="/js/jquery.nivo.slider.pack.js"></script>
+<!-- Scrollup JS -->
+<script type="text/javascript" src="/js/jquery.scrollup.min.js"></script>
+<!-- simpleLens JS -->
+<script type="text/javascript" src="/js/jquery.simpleLens.min.js"></script>
+<!-- Price Slider JS -->
+<script type="text/javascript" src="/js/jquery-price-slider.js"></script>
+<!-- WOW JS -->
+<script type="text/javascript" src="/js/wow.min.js"></script>
+<script>
+    new WOW().init();
+</script>
+<!-- Main JS -->
+<script type="text/javascript" src="/js/main.js"></script>
+
+</body>
+
+</html>
