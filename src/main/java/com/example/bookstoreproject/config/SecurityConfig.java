@@ -70,18 +70,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
         // Cấu hình cho Login Form.
         http.authorizeRequests().and().formLogin()
-                .loginProcessingUrl("/j_spring_security_check") // Submit URL
+                .loginProcessingUrl("/j_spring_security_check")
                 .loginPage("/bookstore/login")
                 .defaultSuccessUrl("/bookstore/home")
                 .failureUrl("/bookstore/login?error=true")
                 .usernameParameter("email")
-                .passwordParameter("pass").successHandler(new AuthenticationSuccessHandler() {
-            @Override
-            public void onAuthenticationSuccess(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Authentication authentication) throws IOException, ServletException {
-                httpServletResponse.sendRedirect("bookstore/home");
-            }
-        })
-                .and().logout().logoutUrl("/bookstore/logout").logoutSuccessUrl("/bookstore/login?logout");
+                .passwordParameter("pass")
+                .and().logout().logoutUrl("/bookstore/logout")
+                .logoutSuccessUrl("/bookstore/login?logout");
 
     }
 

@@ -39,7 +39,7 @@
                              sec:authorize="isAuthenticated()">
                             <li>
                                 <a th:href="@{/admin/profile}"><i
-                                        class="fa fa-user"></i>Tài Khoản</a></li>
+                                        class="fa fa-user" sec:authentication="name"></i></a></li>
 
                             <li>
 

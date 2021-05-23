@@ -15,6 +15,8 @@ public interface UserService extends UserDetailsService {
 
     UserEntity findByEmail(String email);
 
+    UserEntity findByEmailVerify(String email);
+
     UserEntity findById(Long id);
 
     List<UserEntity> findAll();
@@ -27,7 +29,6 @@ public interface UserService extends UserDetailsService {
     UserEntity getByResetPasswordToken(String token);
 
     void sendMail(String email, String resetPasswordLink) throws UnsupportedEncodingException, MessagingException;
-
 
     void updatePassword(UserEntity userEntity, String newPassword);
 
