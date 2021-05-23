@@ -214,6 +214,7 @@
 <script type="text/javascript">
     $(document).ready(function () {
         $("#email").change(function () {
+            $("#loginBtn").attr("disabled", true);
             $.ajax({
                 url: "/bookstore/checkEmailWithVerify",
                 method: "post",
@@ -227,6 +228,7 @@
                         stop = true;
                     } else {
                         $("#errorEmail").text("")
+                        $("#loginBtn").attr("disabled", false);
                     }
                 },
                 error: function (err) {
