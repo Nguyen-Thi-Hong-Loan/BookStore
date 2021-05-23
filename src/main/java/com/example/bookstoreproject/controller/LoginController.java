@@ -10,10 +10,7 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.mail.MessagingException;
@@ -105,6 +102,13 @@ public class LoginController {
 
         return "resetPasswordForm";
 
+    }
+
+
+    @PostMapping("/checkEmailWithVerify")
+    @ResponseBody
+    public String check(@RequestParam String email) {
+        return (userService.findByEmailVerify(email) != null ? "exist" : "no");
     }
 
 }

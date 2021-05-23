@@ -46,6 +46,7 @@
                                     <label for="email">Email*</label>
                                     <input type="email" name="email" id="email" class="form-control"
                                            data-msg-required="Please enter your email." autofocus="autofocus">
+                                    <p id="errorEmail" style="color:red;"></p>
                                 </div>
                             </div>
                             <div class="row">
@@ -60,7 +61,7 @@
 
                         <div class="form-group">
 
-                            <input type="submit" th:value="Login" onclick="changeLogout()"
+                            <input id="loginBtn" type="submit" th:value="Login" onclick="changeLogout()"
                                    class="btn btn-primary min-wide">
                             Remember Me?
                             <input name="rememberMe" type="checkbox">
@@ -103,79 +104,78 @@
         </div>
     </div>
 </div><!--Start Support Area-->
-<div class="footer-top-area fix">   		<!--Start Footer top area-->
-		<div class="container">
-			<div class="row">
-				<div class="col-sm-6 col-md-3">
-					<div class="footer-about">
-						<div class="image">
-							<img src="/img/header/booklogo.png" alt="" />
-							<h3>online book store</h3>
-						</div>
-						
-					</div>
-					<div class="footer-contact">
-						<div class="single-contact">
-							<div class="icon">
-								<i class="fa fa-map-marker"></i>
-							</div>
-							<div class="details">
-								<p>Nong Lam University</p>
-								
-							</div>
-						</div>
-						<div class="single-contact">
-							<div class="icon">
-								<i class="fa fa-phone"></i>
-							</div>
-							<div class="details">
-								<p>+012 456 456 456</p>
-								<p>+012 356 897 222</p>
-							</div>
-						</div>
-						<div class="single-contact">
-							<div class="icon">
-								<i class="fa fa-dribbble"></i>
-							</div>
-							<div class="details">
-								<a href="#">info@bookstore.com</a>
-								<a href="#">www.bookstore.com</a>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-sm-6 col-md-3">
-					<div class="footer-quick-link footer-links">
-						<h2>QUICK LINK</h2>
-						<ul>
-							<li><a th:href="@{/bookstore/home}">Home</a></li>
-							<li><a th:href="@{/bookstore/shopList}">Shop</a></li>
-							<li><a th:href="@{/bookstore/blog}">Blog</a></li>
-							<li><a th:href="@{/bookstore/contact}">Contact</a></li>
-							<li><a th:href="@{/bookstore/aboutUs}">About Us</a></li>
-						</ul>
-					</div>
-				</div>
-				<div class="col-sm-12 col-md-6">
-					<div class="row">
-						<div class="col-sm-8 footer-support footer-links">
-							<h2>OUR SUPPORT</h2>
-							<ul>
-								<li><a href="#">Site Map</a></li>
-								<li><a href="#">privacy Policy</a></li>
-								<li><a href="#">Help & FAQs</a></li>
-								<li><a th:href="@{/bookstore/contact}">Contact Us</a></li>
-							</ul>
-						</div>
-						
-					</div>
-					
-				</div>
-			</div>
-		</div>
-	</div>
-	<!--Start Footer top area-->
+<div class="footer-top-area fix">        <!--Start Footer top area-->
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6 col-md-3">
+                <div class="footer-about">
+                    <div class="image">
+                        <img src="/img/header/booklogo.png" alt=""/>
+                        <h3>online book store</h3>
+                    </div>
 
+                </div>
+                <div class="footer-contact">
+                    <div class="single-contact">
+                        <div class="icon">
+                            <i class="fa fa-map-marker"></i>
+                        </div>
+                        <div class="details">
+                            <p>Nong Lam University</p>
+
+                        </div>
+                    </div>
+                    <div class="single-contact">
+                        <div class="icon">
+                            <i class="fa fa-phone"></i>
+                        </div>
+                        <div class="details">
+                            <p>+012 456 456 456</p>
+                            <p>+012 356 897 222</p>
+                        </div>
+                    </div>
+                    <div class="single-contact">
+                        <div class="icon">
+                            <i class="fa fa-dribbble"></i>
+                        </div>
+                        <div class="details">
+                            <a href="#">info@bookstore.com</a>
+                            <a href="#">www.bookstore.com</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-3">
+                <div class="footer-quick-link footer-links">
+                    <h2>QUICK LINK</h2>
+                    <ul>
+                        <li><a th:href="@{/bookstore/home}">Home</a></li>
+                        <li><a th:href="@{/bookstore/shopList}">Shop</a></li>
+                        <li><a th:href="@{/bookstore/blog}">Blog</a></li>
+                        <li><a th:href="@{/bookstore/contact}">Contact</a></li>
+                        <li><a th:href="@{/bookstore/aboutUs}">About Us</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-6">
+                <div class="row">
+                    <div class="col-sm-8 footer-support footer-links">
+                        <h2>OUR SUPPORT</h2>
+                        <ul>
+                            <li><a href="#">Site Map</a></li>
+                            <li><a href="#">privacy Policy</a></li>
+                            <li><a href="#">Help & FAQs</a></li>
+                            <li><a th:href="@{/bookstore/contact}">Contact Us</a></li>
+                        </ul>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<!--Start Footer top area-->
 
 
 <!-- jQuery 2.1.4 -->
@@ -211,6 +211,35 @@
 <script type="text/javascript" src="/js/main.js"></script>
 
 
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#email").change(function () {
+            $.ajax({
+                url: "/bookstore/checkEmailWithVerify",
+                method: "post",
+                data: {
+                    email: $("#email").val(),
+                },
+                success: function (value) {
+                    console.log(value)
+                    if (value === "no") {
+                        $("#errorEmail").text("Email này chưa được xác minh. Hãy xác minh hoặc sử dụng tài khoản khác")
+                        stop = true;
+                    } else {
+                        $("#errorEmail").text("")
+                    }
+                },
+                error: function (err) {
+                    console.log(err)
+                    stop = true;
+                },
+            })
+        });
+
+
+    })
+
+</script>
 
 
 <script>

@@ -87,6 +87,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public UserEntity findByEmailVerify(String email) {
+        return userRepository.findByEmailAndEnabledIsTrue(email).orElse(null);
+    }
+
+    @Override
     public UserEntity findById(Long id) {
         return userRepository.findById(id).orElse(null);
     }
