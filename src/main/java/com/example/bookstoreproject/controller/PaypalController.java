@@ -18,6 +18,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
@@ -46,24 +47,17 @@ public class PaypalController {
     private Logger log = LoggerFactory.getLogger(getClass());
 
     @GetMapping("/paypal")
-    public String homePayPal(Principal principal) {
-//        User user = (User) ((Authentication) principal).getPrincipal();
-//        if (user == null) {
-//            return "home";
-//        }
-//        UserEntity entity = userService.findByEmail(user.getUsername());
-
+    public String homePayPal() {
         return "home";
 
     }
-
     @PostMapping("/pay")
+//    @PreAuthorize("hasAnyRole('ROLE_USER')")
+
     public String payment(HttpServletRequest request) {
         String cancelUrl = Utility.getSiteURL(request) + "/" + CANCEL_URL;
         String successUrl = Utility.getSiteURL(request) + "/" + SUCCESS_URL;
         double price = GlobalDataCart.dataCarts.stream().mapToDouble(DataCart::totalPrice).sum();
-
-        System.out.println("PRICE: " + price);
         try {
             Payment payment = paypalService.createPayment(
                     price,
@@ -73,8 +67,6 @@ public class PaypalController {
                     "payment description",
                     cancelUrl,
                     successUrl);
-
-
             for (Links links : payment.getLinks()) {
                 if (links.getRel().equals("approval_url")) {
                     return "redirect:" + links.getHref();
@@ -82,9 +74,7 @@ public class PaypalController {
             }
         } catch (PayPalRESTException e) {
             log.error(e.getMessage());
-
         }
-
         return "redirect:/paypal";
     }
 
