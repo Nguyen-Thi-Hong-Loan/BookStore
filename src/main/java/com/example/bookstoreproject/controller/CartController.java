@@ -3,8 +3,12 @@ package com.example.bookstoreproject.controller;
 import java.security.Principal;
 import java.util.List;
 
+import com.example.bookstoreproject.entity.UserEntity;
+import com.example.bookstoreproject.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -23,6 +27,9 @@ public class CartController {
 
     @Autowired
     private BookService bookService;
+
+    @Autowired
+    private UserService userService;
 
     @Autowired
     private CookieService cookieService;
@@ -165,12 +172,15 @@ public class CartController {
 
 
     @RequestMapping("shopList/cart/checkout")
-    public String checoutkBookInCart(ModelMap model) {
+    public String checoutkBookInCart(ModelMap model,Principal principal) {
+        User user = (User) ((Authentication) principal).getPrincipal();
+        UserEntity userEntity = userService.findByEmail(user.getUsername());
 
+        model.addAttribute("DatacartCount", GlobalDataCart.dataCarts.stream().mapToInt(DataCart::getCount).sum());
+        model.addAttribute("DatacartTotal", GlobalDataCart.dataCarts.stream().mapToDouble(DataCart::totalPrice).sum());
+        model.addAttribute("Datacart", GlobalDataCart.dataCarts);
+        model.addAttribute("User", userEntity);
 
-//        model.addAttribute("DatacartCount", GlobalDataCart.dataCarts.stream().mapToInt(DataCart::getCount).sum());
-//        model.addAttribute("DatacartTotal", GlobalDataCart.dataCarts.stream().mapToDouble(DataCart::totalPrice).sum());
-//        model.addAttribute("Datacart", GlobalDataCart.dataCarts);
         return "checkout";
 
     }

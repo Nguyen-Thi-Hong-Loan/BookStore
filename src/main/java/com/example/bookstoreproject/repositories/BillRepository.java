@@ -11,4 +11,7 @@ import java.util.Optional;
 public interface BillRepository extends JpaRepository<BillEntity, Long> {
 
     Optional<BillEntity> findByUserEntity(UserEntity userEntity);
+
+
+
 }

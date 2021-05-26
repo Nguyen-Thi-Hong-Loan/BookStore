@@ -4,7 +4,9 @@ import com.example.bookstoreproject.config.PaypalPaymentIntent;
 import com.example.bookstoreproject.config.PaypalPaymentMethod;
 import com.example.bookstoreproject.dto.OrderPayPal;
 import com.example.bookstoreproject.dto.Utility;
+import com.example.bookstoreproject.entity.BillDetailEntity;
 import com.example.bookstoreproject.entity.BillEntity;
+import com.example.bookstoreproject.entity.BookEntity;
 import com.example.bookstoreproject.entity.UserEntity;
 import com.example.bookstoreproject.globalData.DataCart;
 import com.example.bookstoreproject.globalData.GlobalDataCart;
@@ -30,6 +32,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import java.security.Principal;
+import java.util.Date;
+import java.util.List;
 
 @Controller
 public class PaypalController {
@@ -51,16 +55,48 @@ public class PaypalController {
         return "home";
 
     }
-    @PostMapping("/pay")
-//    @PreAuthorize("hasAnyRole('ROLE_USER')")
 
-    public String payment(HttpServletRequest request) {
+    @PostMapping("/pay")
+    public String payment(HttpServletRequest request, Principal principal) {
+        List<DataCart> carts = GlobalDataCart.dataCarts;
+        double totalPrice = GlobalDataCart.dataCarts.stream().mapToDouble(DataCart::totalPrice).sum();
+
+        User user = (User) ((Authentication) principal).getPrincipal();
+        UserEntity entity = userService.findByEmail(user.getUsername());
+
+        System.out.println("EMAILLLLLL   "+entity.getEmail());
+
+        BillEntity billEntity;
+        for (int i = 0; i < carts.size(); i++) {
+            BookEntity bookEntity = carts.get(i).getBook();
+            System.out.println("IDDDDDDDDDDDD   "+bookEntity.getId());
+
+            BillDetailEntity billDetailEntity = new BillDetailEntity();
+            billDetailEntity.setPrice(bookEntity.getPrice());
+            billDetailEntity.setQuality(carts.get(i).getCount());
+            billDetailEntity.setBook_id(bookEntity);
+            billDetailEntity.setCreateDate(new Date());
+
+
+            System.out.println("BILLLLL DETAILLL   "+billDetailEntity.getBook_id());
+
+            billEntity = new BillEntity();
+            billEntity.setTotalMoney(totalPrice);
+            billEntity.setBillDetail(billDetailEntity);
+            billEntity.setUserEntity(entity);
+            billEntity.setCreateDate(new Date());
+
+            System.out.println("BILLLLL   "+billEntity.getTotalMoney());
+
+            billService.save(billEntity);
+        }
+
+
         String cancelUrl = Utility.getSiteURL(request) + "/" + CANCEL_URL;
         String successUrl = Utility.getSiteURL(request) + "/" + SUCCESS_URL;
-        double price = GlobalDataCart.dataCarts.stream().mapToDouble(DataCart::totalPrice).sum();
         try {
             Payment payment = paypalService.createPayment(
-                    price,
+                    totalPrice,
                     "USD",
                     PaypalPaymentMethod.paypal,
                     PaypalPaymentIntent.sale,
