@@ -22,6 +22,7 @@ public class BillEntityServiceImpl implements BillService {
 
     @Override
     public BillEntity save(BillEntity entity) {
+        System.out.println("ENTITYYYYYY  "+ entity.getUserEntity().getName());
         return billRepository.save(entity);
     }
 
