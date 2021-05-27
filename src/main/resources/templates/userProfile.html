@@ -31,45 +31,57 @@
                         to our awesome app!
                     </div>
                 </div>
-                <h2>Thông tin khách hàng</h2>
-                <div class="agent-profile">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="pgl-agent-item pgl-bg-light">
-                                <div class="row pgl-midnarrow-row">
-                                    <div class="col-xs-3">
-                                        <div class="img-thumbnail-medium">
-                                            <a href="userProfile.html"><img
-                                                    src="/images/pikachu.png" class="img-responsive"
-                                                    alt="PROFILE"></a>
-                                        </div>
-                                    </div>
-                                    <div class="col-xs-9">
-                                        <div class="pgl-agent-info" th:if="${profile != null}">
-                                            <h4>
-                                                <a href="userProfile.html"
-                                                   th:text="${profile.getName()}">akass </a>
-                                            </h4>
-                                            <address>
-                                                <h5 th:text="${profile.getAddress()}"></h5>
-                                                <i class="fa fa-phone" th:text="${profile.getPhone()}">
-                                                </i><br> <i class="fa fa-envelope-o"></i> Mail: <a
-                                                    th:href="${profile.getEmail()}"></a>
-                                            </address>
 
-                                            <div class="col-md-12">
-                                                <a class="btn btn-default btn-sm"
-                                                   th:href="@{/admin/updateUser}"> Cập nhật</a>
+                <div class="col-xs-3">
+                    <div class="img-thumbnail-medium">
+                        <a href="userProfile.html"><img
+                                src="/upload/pikachu.png" class="img-responsive"
+                                alt="PROFILE"></a>
+                    </div>
+                </div>
 
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                <form id="contact-form" th:if="${profile != null}">
+                    <h2>ACCOUNT INFORMATION</h2>
+                    <p>Create your own account</p>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <label for="name">Tên *</label>
+                                <input type="text" id="name" class="form-control"
+                                       th:field="*{profile.name}">
+                            </div>
+                            <div class="col-sm-6">
+                                <label>Email*</label>
+                                <input type="email" name="customer_mail" id="mail"
+                                       class="form-control" th:field="*{profile.email}"
+                                       >
+
                             </div>
                         </div>
                     </div>
-                </div>
-                <!-- End Featured Agents -->
+                    <div class="form-group">
+                        <div class="row">
+
+                            <div class="col-sm-6">
+                                <label>Số điện thoại*</label>
+                                <input id="phone" class="form-control" th:field="*{profile.phone}">
+                            </div>
+                            <div class="col-sm-6">
+                                <label>Địa chỉ*</label>
+                                <input type="text" class="form-control" id="address" th:field="*{profile.address}">
+                                <p id="errorAddress"></p>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="form-group">
+                        <input type="button"  th:href="@{/admin/updateUser}" value="UPDATE" class="btn btn-primary min-wide"
+                               data-loading-text="Loading...">
+                    </div>
+                </form>
+
+
             </div>
             <!-- End history post-->
         </section>

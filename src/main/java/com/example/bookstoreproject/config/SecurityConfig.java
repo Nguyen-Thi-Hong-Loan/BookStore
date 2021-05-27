@@ -54,10 +54,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable();
-        http.authorizeRequests().antMatchers("/bookstore/**").permitAll();
+        http.authorizeRequests().antMatchers("/bookstore/home","/bookstore/shopList",
+                "/bookstore/blog/**","/bookstore/aboutUs/**","/bookstore/contact/**",
+                "/bookstore/detailBook/**").permitAll();
 
-        http.authorizeRequests().antMatchers("/bookstore/logout", "/bookstore/shopList/**",
-                "/bookstore/cart/**","/bookstore/shopList/cart/checkout/**")
+        http.authorizeRequests().antMatchers("/bookstore/logout",
+                "/bookstore/shopList/cart/checkout","/admin/profile", "/pay/**", "/paypal")
                 .access("hasRole('ROLE_USER')  or hasRole('ROLE_ADMIN')");
 
         http.authorizeRequests().antMatchers("/admindemo/**")

@@ -113,8 +113,8 @@ public class UserServiceImpl implements UserService {
         if (userEntity == null) {
             return false;
         } else {
+            userEntity.setVerificationCode(null);
             userEntity.setEnabled(true);
-            System.out.println("KAAAAA   " + userEntity.isEnabled());
             userRepository.save(userEntity);
         }
 
