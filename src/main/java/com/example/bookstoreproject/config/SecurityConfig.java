@@ -60,9 +60,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 "/bookstore/cart/**","/bookstore/shopList/cart/checkout/**")
                 .access("hasRole('ROLE_USER')  or hasRole('ROLE_ADMIN')");
 
-        http.authorizeRequests().antMatchers("/admin/home/**", "/admin/adminUser/**",
-                "/admin/adminPost/**", "/admin/adminFeedback/**", "/admin/adminUser/formAddUser/**",
-                "/admin/adminUser/formEditUser/**", "/admin/adminPost/formEditPost/**")
+        http.authorizeRequests().antMatchers("/admindemo/**")
                 .access("hasRole('ROLE_ADMIN')");
 
 //        http.authorizeRequests().antMatchers("/pay/**", "/paypal")
