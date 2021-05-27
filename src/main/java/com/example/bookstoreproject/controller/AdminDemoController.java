@@ -1,9 +1,13 @@
 package com.example.bookstoreproject.controller;
 
 import com.example.bookstoreproject.entity.BillEntity;
+import com.example.bookstoreproject.entity.BookEntity;
 import com.example.bookstoreproject.entity.RoleEntity;
 import com.example.bookstoreproject.entity.UserEntity;
+import com.example.bookstoreproject.globalData.DataCart;
+import com.example.bookstoreproject.globalData.GlobalDataCart;
 import com.example.bookstoreproject.services.BillService;
+import com.example.bookstoreproject.services.BookService;
 import com.example.bookstoreproject.services.RoleService;
 import com.example.bookstoreproject.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,9 +30,23 @@ public class AdminDemoController {
 	private RoleService roleService;
 	@Autowired
 	private BillService billService;
+	@Autowired
+	private BookService bookservice;
 
 	@GetMapping("home")
-	public String loginAdmin() {
+	public String loginAdmin(ModelMap model) {
+		List<UserEntity> listUser = (List<UserEntity>) userService.findAll();
+		List<BookEntity> listbook = (List<BookEntity>) bookservice.findAll();
+		List<BillEntity> listbill = (List<BillEntity>) billService.findAll();
+		
+		double totalmoney = 0;
+		for (BillEntity billEntity : listbill) {
+			totalmoney+= billEntity.getTotalMoney();
+		}
+
+		 model.addAttribute("DatacartTotal", totalmoney);
+		model.addAttribute("listbooks", listbook.size());
+		model.addAttribute("users", listUser.size());
 		return "admin/adminIndex";
 	}
 
@@ -257,7 +275,8 @@ public class AdminDemoController {
 
 		// thống kê tháng
 
-		int th1 = 0, th2 = 0, th3 = 0, th4 = 0, th5 = 0, th6 = 0, th7 = 0, th8 = 0, th9 = 0, th10 = 0, th11 = 0, th12 = 0;
+		int th1 = 0, th2 = 0, th3 = 0, th4 = 0, th5 = 0, th6 = 0, th7 = 0, th8 = 0, th9 = 0, th10 = 0, th11 = 0,
+				th12 = 0;
 		switch (daynow.get(Calendar.MONTH)) {
 		case 0:
 			for (int i = 0; i < listCal.size(); i++) {
@@ -270,7 +289,7 @@ public class AdminDemoController {
 			break;
 		case 1:
 			for (int i = 0; i < listCal.size(); i++) {
-				if ( listCal.get(i).get(Calendar.MONTH) == daynow.get(Calendar.MONTH)
+				if (listCal.get(i).get(Calendar.MONTH) == daynow.get(Calendar.MONTH)
 						&& listCal.get(i).get(Calendar.YEAR) == daynow.get(Calendar.YEAR)) {
 					th2 += 1;
 				}
@@ -283,7 +302,7 @@ public class AdminDemoController {
 			break;
 		case 2:
 			for (int i = 0; i < listCal.size(); i++) {
-				if ( listCal.get(i).get(Calendar.MONTH) == daynow.get(Calendar.MONTH)
+				if (listCal.get(i).get(Calendar.MONTH) == daynow.get(Calendar.MONTH)
 						&& listCal.get(i).get(Calendar.YEAR) == daynow.get(Calendar.YEAR)) {
 					th3 += 1;
 				}
@@ -300,7 +319,7 @@ public class AdminDemoController {
 			break;
 		case 3:
 			for (int i = 0; i < listCal.size(); i++) {
-				if ( listCal.get(i).get(Calendar.MONTH) == daynow.get(Calendar.MONTH)
+				if (listCal.get(i).get(Calendar.MONTH) == daynow.get(Calendar.MONTH)
 						&& listCal.get(i).get(Calendar.YEAR) == daynow.get(Calendar.YEAR)) {
 					th4 += 1;
 				}
@@ -321,7 +340,7 @@ public class AdminDemoController {
 			break;
 		case 4:
 			for (int i = 0; i < listCal.size(); i++) {
-				if ( listCal.get(i).get(Calendar.MONTH) == daynow.get(Calendar.MONTH)
+				if (listCal.get(i).get(Calendar.MONTH) == daynow.get(Calendar.MONTH)
 						&& listCal.get(i).get(Calendar.YEAR) == daynow.get(Calendar.YEAR)) {
 					th5 += 1;
 				}
@@ -345,7 +364,7 @@ public class AdminDemoController {
 			break;
 		case 5:
 			for (int i = 0; i < listCal.size(); i++) {
-				if ( listCal.get(i).get(Calendar.MONTH) == daynow.get(Calendar.MONTH)
+				if (listCal.get(i).get(Calendar.MONTH) == daynow.get(Calendar.MONTH)
 						&& listCal.get(i).get(Calendar.YEAR) == daynow.get(Calendar.YEAR)) {
 					th6 += 1;
 				}
@@ -373,7 +392,7 @@ public class AdminDemoController {
 			break;
 		case 6:
 			for (int i = 0; i < listCal.size(); i++) {
-				if ( listCal.get(i).get(Calendar.MONTH) == daynow.get(Calendar.MONTH)
+				if (listCal.get(i).get(Calendar.MONTH) == daynow.get(Calendar.MONTH)
 						&& listCal.get(i).get(Calendar.YEAR) == daynow.get(Calendar.YEAR)) {
 					th7 += 1;
 				}
@@ -405,7 +424,7 @@ public class AdminDemoController {
 			break;
 		case 7:
 			for (int i = 0; i < listCal.size(); i++) {
-				if ( listCal.get(i).get(Calendar.MONTH) == daynow.get(Calendar.MONTH)
+				if (listCal.get(i).get(Calendar.MONTH) == daynow.get(Calendar.MONTH)
 						&& listCal.get(i).get(Calendar.YEAR) == daynow.get(Calendar.YEAR)) {
 					th8 += 1;
 				}
@@ -441,7 +460,7 @@ public class AdminDemoController {
 			break;
 		case 8:
 			for (int i = 0; i < listCal.size(); i++) {
-				if ( listCal.get(i).get(Calendar.MONTH) == daynow.get(Calendar.MONTH)
+				if (listCal.get(i).get(Calendar.MONTH) == daynow.get(Calendar.MONTH)
 						&& listCal.get(i).get(Calendar.YEAR) == daynow.get(Calendar.YEAR)) {
 					th9 += 1;
 				}
@@ -481,7 +500,7 @@ public class AdminDemoController {
 			break;
 		case 9:
 			for (int i = 0; i < listCal.size(); i++) {
-				if ( listCal.get(i).get(Calendar.MONTH) == daynow.get(Calendar.MONTH)
+				if (listCal.get(i).get(Calendar.MONTH) == daynow.get(Calendar.MONTH)
 						&& listCal.get(i).get(Calendar.YEAR) == daynow.get(Calendar.YEAR)) {
 					th10 += 1;
 				}
@@ -525,7 +544,7 @@ public class AdminDemoController {
 			break;
 		case 10:
 			for (int i = 0; i < listCal.size(); i++) {
-				if ( listCal.get(i).get(Calendar.MONTH) == daynow.get(Calendar.MONTH)
+				if (listCal.get(i).get(Calendar.MONTH) == daynow.get(Calendar.MONTH)
 						&& listCal.get(i).get(Calendar.YEAR) == daynow.get(Calendar.YEAR)) {
 					th11 += 1;
 				}
@@ -573,7 +592,7 @@ public class AdminDemoController {
 			break;
 		case 11:
 			for (int i = 0; i < listCal.size(); i++) {
-				if ( listCal.get(i).get(Calendar.MONTH) == daynow.get(Calendar.MONTH)
+				if (listCal.get(i).get(Calendar.MONTH) == daynow.get(Calendar.MONTH)
 						&& listCal.get(i).get(Calendar.YEAR) == daynow.get(Calendar.YEAR)) {
 					th12 += 1;
 				}
@@ -639,7 +658,6 @@ public class AdminDemoController {
 //		System.out.println("ngày trước hiện tại là :" + (daynow.get(Calendar.DAY_OF_MONTH) - 1));
 //		System.out.println("list là :" + ls);
 //		
-		
 
 		return "admin/adminUserStatistics";
 	}
@@ -862,7 +880,8 @@ public class AdminDemoController {
 
 		// thống kê tháng
 
-		int th1 = 0, th2 = 0, th3 = 0, th4 = 0, th5 = 0, th6 = 0, th7 = 0, th8 = 0, th9 = 0, th10 = 0, th11 = 0, th12 = 0;
+		int th1 = 0, th2 = 0, th3 = 0, th4 = 0, th5 = 0, th6 = 0, th7 = 0, th8 = 0, th9 = 0, th10 = 0, th11 = 0,
+				th12 = 0;
 		switch (daynow.get(Calendar.MONTH)) {
 		case 0:
 			for (int i = 0; i < listCal.size(); i++) {
@@ -875,7 +894,7 @@ public class AdminDemoController {
 			break;
 		case 1:
 			for (int i = 0; i < listCal.size(); i++) {
-				if ( listCal.get(i).get(Calendar.MONTH) == daynow.get(Calendar.MONTH)
+				if (listCal.get(i).get(Calendar.MONTH) == daynow.get(Calendar.MONTH)
 						&& listCal.get(i).get(Calendar.YEAR) == daynow.get(Calendar.YEAR)) {
 					th2 += listBill.get(i).getTotalMoney();
 				}
@@ -888,7 +907,7 @@ public class AdminDemoController {
 			break;
 		case 2:
 			for (int i = 0; i < listCal.size(); i++) {
-				if ( listCal.get(i).get(Calendar.MONTH) == daynow.get(Calendar.MONTH)
+				if (listCal.get(i).get(Calendar.MONTH) == daynow.get(Calendar.MONTH)
 						&& listCal.get(i).get(Calendar.YEAR) == daynow.get(Calendar.YEAR)) {
 					th3 += listBill.get(i).getTotalMoney();
 				}
@@ -905,7 +924,7 @@ public class AdminDemoController {
 			break;
 		case 3:
 			for (int i = 0; i < listCal.size(); i++) {
-				if ( listCal.get(i).get(Calendar.MONTH) == daynow.get(Calendar.MONTH)
+				if (listCal.get(i).get(Calendar.MONTH) == daynow.get(Calendar.MONTH)
 						&& listCal.get(i).get(Calendar.YEAR) == daynow.get(Calendar.YEAR)) {
 					th4 += listBill.get(i).getTotalMoney();
 				}
@@ -926,7 +945,7 @@ public class AdminDemoController {
 			break;
 		case 4:
 			for (int i = 0; i < listCal.size(); i++) {
-				if ( listCal.get(i).get(Calendar.MONTH) == daynow.get(Calendar.MONTH)
+				if (listCal.get(i).get(Calendar.MONTH) == daynow.get(Calendar.MONTH)
 						&& listCal.get(i).get(Calendar.YEAR) == daynow.get(Calendar.YEAR)) {
 					th5 += listBill.get(i).getTotalMoney();
 				}
@@ -950,7 +969,7 @@ public class AdminDemoController {
 			break;
 		case 5:
 			for (int i = 0; i < listCal.size(); i++) {
-				if ( listCal.get(i).get(Calendar.MONTH) == daynow.get(Calendar.MONTH)
+				if (listCal.get(i).get(Calendar.MONTH) == daynow.get(Calendar.MONTH)
 						&& listCal.get(i).get(Calendar.YEAR) == daynow.get(Calendar.YEAR)) {
 					th6 += listBill.get(i).getTotalMoney();
 				}
@@ -978,7 +997,7 @@ public class AdminDemoController {
 			break;
 		case 6:
 			for (int i = 0; i < listCal.size(); i++) {
-				if ( listCal.get(i).get(Calendar.MONTH) == daynow.get(Calendar.MONTH)
+				if (listCal.get(i).get(Calendar.MONTH) == daynow.get(Calendar.MONTH)
 						&& listCal.get(i).get(Calendar.YEAR) == daynow.get(Calendar.YEAR)) {
 					th7 += listBill.get(i).getTotalMoney();
 				}
@@ -1010,7 +1029,7 @@ public class AdminDemoController {
 			break;
 		case 7:
 			for (int i = 0; i < listCal.size(); i++) {
-				if ( listCal.get(i).get(Calendar.MONTH) == daynow.get(Calendar.MONTH)
+				if (listCal.get(i).get(Calendar.MONTH) == daynow.get(Calendar.MONTH)
 						&& listCal.get(i).get(Calendar.YEAR) == daynow.get(Calendar.YEAR)) {
 					th8 += listBill.get(i).getTotalMoney();
 				}
@@ -1046,7 +1065,7 @@ public class AdminDemoController {
 			break;
 		case 8:
 			for (int i = 0; i < listCal.size(); i++) {
-				if ( listCal.get(i).get(Calendar.MONTH) == daynow.get(Calendar.MONTH)
+				if (listCal.get(i).get(Calendar.MONTH) == daynow.get(Calendar.MONTH)
 						&& listCal.get(i).get(Calendar.YEAR) == daynow.get(Calendar.YEAR)) {
 					th9 += listBill.get(i).getTotalMoney();
 				}
@@ -1086,7 +1105,7 @@ public class AdminDemoController {
 			break;
 		case 9:
 			for (int i = 0; i < listCal.size(); i++) {
-				if ( listCal.get(i).get(Calendar.MONTH) == daynow.get(Calendar.MONTH)
+				if (listCal.get(i).get(Calendar.MONTH) == daynow.get(Calendar.MONTH)
 						&& listCal.get(i).get(Calendar.YEAR) == daynow.get(Calendar.YEAR)) {
 					th10 += listBill.get(i).getTotalMoney();
 				}
@@ -1130,7 +1149,7 @@ public class AdminDemoController {
 			break;
 		case 10:
 			for (int i = 0; i < listCal.size(); i++) {
-				if ( listCal.get(i).get(Calendar.MONTH) == daynow.get(Calendar.MONTH)
+				if (listCal.get(i).get(Calendar.MONTH) == daynow.get(Calendar.MONTH)
 						&& listCal.get(i).get(Calendar.YEAR) == daynow.get(Calendar.YEAR)) {
 					th11 += listBill.get(i).getTotalMoney();
 				}
@@ -1178,7 +1197,7 @@ public class AdminDemoController {
 			break;
 		case 11:
 			for (int i = 0; i < listCal.size(); i++) {
-				if ( listCal.get(i).get(Calendar.MONTH) == daynow.get(Calendar.MONTH)
+				if (listCal.get(i).get(Calendar.MONTH) == daynow.get(Calendar.MONTH)
 						&& listCal.get(i).get(Calendar.YEAR) == daynow.get(Calendar.YEAR)) {
 					th12 += listBill.get(i).getTotalMoney();
 				}
@@ -1233,18 +1252,17 @@ public class AdminDemoController {
 			break;
 		}
 
-
 		int[] lsMonth = { th1, th2, th3, th4, th5, th6, th7, th8, th9, th10, th11, th12 };
 
 		model.addAttribute("listbill", listBill);
 		model.addAttribute("lsDay", lsDay);
 		model.addAttribute("lsMonth", lsMonth);
-		
+
 		for (int j : lsDay) {
-			System.out.println("danh sách ngày : " +j);
+			System.out.println("danh sách ngày : " + j);
 		}
 		for (int j : lsMonth) {
-			System.out.println("danh sách tháng : " +j);
+			System.out.println("danh sách tháng : " + j);
 		}
 		return "admin/adminProfitStatistics";
 	}
