@@ -11,7 +11,7 @@ import java.util.Optional;
 @Service
 public interface BillService {
 
-    BillEntity findByUserEntity(UserEntity userEntity);
+    BillEntity findByUserEntityAndPrice(UserEntity userEntity, double totalPrice);
 
     void deleteAll();
 
@@ -35,6 +35,5 @@ public interface BillService {
 
     BillEntity save(BillEntity entity);
 
-    BillEntity saveBill(UserEntity userEntity, List<DataCart> carts);
 
 }

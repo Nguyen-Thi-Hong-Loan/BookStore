@@ -9,13 +9,11 @@ import com.example.bookstoreproject.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.mail.javamail.JavaMailSender;
-import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.mail.MessagingException;
-import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
 import java.io.UnsupportedEncodingException;
 import java.util.Arrays;
@@ -47,7 +45,7 @@ public class RegistryController {
         RoleEntity roleEntity = roleService.findByRoleName("ROLE_USER");
 
         entity.setRoles(Arrays.asList(roleEntity));
-        userService.save(entity);
+        userService.saveReg(entity);
 
         String siteURL = Utility.getSiteURL(request);
         userService.sendVerificationEmail(entity, siteURL);

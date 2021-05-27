@@ -11,6 +11,7 @@ import java.util.List;
 @Service
 public interface UserService extends UserDetailsService {
 
+    UserEntity saveReg(UserEntity userEntity);
     UserEntity save(UserEntity userEntity);
 
     UserEntity findByEmail(String email);

@@ -2,7 +2,6 @@ package com.example.bookstoreproject.controller;
 
 import com.example.bookstoreproject.config.PaypalPaymentIntent;
 import com.example.bookstoreproject.config.PaypalPaymentMethod;
-import com.example.bookstoreproject.dto.OrderPayPal;
 import com.example.bookstoreproject.dto.Utility;
 import com.example.bookstoreproject.entity.BillDetailEntity;
 import com.example.bookstoreproject.entity.BillEntity;
@@ -10,23 +9,17 @@ import com.example.bookstoreproject.entity.BookEntity;
 import com.example.bookstoreproject.entity.UserEntity;
 import com.example.bookstoreproject.globalData.DataCart;
 import com.example.bookstoreproject.globalData.GlobalDataCart;
-import com.example.bookstoreproject.services.BillDetailService;
-import com.example.bookstoreproject.services.BillService;
-import com.example.bookstoreproject.services.PaypalService;
-import com.example.bookstoreproject.services.UserService;
+import com.example.bookstoreproject.services.*;
 import com.paypal.api.payments.Links;
 import com.paypal.api.payments.Payment;
 import com.paypal.base.rest.PayPalRESTException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -49,6 +42,10 @@ public class PaypalController {
     @Autowired
     private BillDetailService billDetailService;
 
+    @Autowired
+    private BookService bookService;
+
+
     public static final String SUCCESS_URL = "pay/success";
     public static final String CANCEL_URL = "pay/cancel";
     private Logger log = LoggerFactory.getLogger(getClass());
@@ -60,41 +57,40 @@ public class PaypalController {
     }
 
     @PostMapping("/pay")
-    public String payment(HttpServletRequest request, Principal principal ) {
+    public String payment(HttpServletRequest request, Principal principal) {
         List<DataCart> carts = GlobalDataCart.dataCarts;
         double totalPrice = GlobalDataCart.dataCarts.stream().mapToDouble(DataCart::totalPrice).sum();
 
-//        User user = (User) ((Authentication) principal).getPrincipal();
-//        UserEntity entity = userService.findByEmail(user.getUsername());
-//
-//        System.out.println("EMAILLLLLL   "+entity.getEmail());
-//
-//        BillEntity billEntity = new BillEntity();
-//        
-//        BillDetailEntity billDetailEntity = new BillDetailEntity();
-//        for (int i = 0; i < carts.size(); i++) {
-//            BookEntity bookEntity = carts.get(i).getBook();
-//            System.out.println("IDDDDDDDDDDDD   "+bookEntity.getId());
-//
-//            billDetailEntity.setPrice(bookEntity.getPrice());
-//            billDetailEntity.setQuality(carts.get(i).getCount());
-//            billDetailEntity.setBook_id(bookEntity);
-//            billDetailEntity.setCreateDate(new Date());
-//            
-//            billDetailService.save(billDetailEntity);
-//
-//            System.out.println("BILLLLL DETAILLL   "+billDetailEntity.getBook_id());
-//
-//           
-//
-//        }
-//        billEntity.setTotalMoney(totalPrice);
-//        billEntity.setBillDetail(billDetailEntity);
-//        billEntity.setUserEntity(entity);
-//        billEntity.setCreateDate(new Date());
-//        
-//        System.out.println("BILLLLL   "+billEntity.getTotalMoney());
-//        billService.save(billEntity);
+        User user = (User) ((Authentication) principal).getPrincipal();
+        UserEntity entity = userService.findByEmail(user.getUsername());
+
+        System.out.println("EMAILLLLLL   " + entity.getEmail());
+
+        BillEntity billEntity = new BillEntity();
+
+        billEntity.setTotalMoney(totalPrice);
+        billEntity.setUserEntity(entity);
+        billService.save(billEntity);
+
+        for (int i = 0; i < carts.size(); i++) {
+            BillDetailEntity billDetailEntity = new BillDetailEntity();
+
+            BookEntity bookEntity = bookService.findById(carts.get(i).getBook().getId()).orElse(null);
+            billDetailEntity.setPrice(bookEntity.getPrice());
+            billDetailEntity.setQuality(carts.get(i).getCount());
+            billDetailEntity.setBook_id(bookEntity);
+            billDetailEntity.setCreateDate(new Date());
+            billDetailEntity.setBill_id(billEntity);
+
+            billDetailService.save(billDetailEntity);
+
+        }
+        billEntity.setTotalMoney(totalPrice);
+        billEntity.setUserEntity(entity);
+        billEntity.setCreateDate(new Date());
+
+        System.out.println("BILLLLL   " + billEntity.getTotalMoney());
+        billService.save(billEntity);
 
 
         String cancelUrl = Utility.getSiteURL(request) + "/" + CANCEL_URL;
@@ -134,9 +130,11 @@ public class PaypalController {
                              RedirectAttributes redirAttrs) {
 
         try {
+            double totalPrice = GlobalDataCart.dataCarts.stream().mapToDouble(DataCart::totalPrice).sum();
+
             User user = (User) ((Authentication) principal).getPrincipal();
             UserEntity entity = userService.findByEmail(user.getUsername());
-            BillEntity billEntity = billService.findByUserEntity(entity);
+            BillEntity billEntity = billService.findByUserEntityAndPrice(entity, totalPrice);
 
             redirAttrs.addFlashAttribute("success", "Everything went just fine.");
 
@@ -144,6 +142,10 @@ public class PaypalController {
             if (payment.getState().equals("approved")) {
                 billEntity.setChecked(true);
                 userService.save(entity);
+
+                GlobalDataCart.dataCarts.clear();
+
+
                 return "successPayPal";
             }
 
