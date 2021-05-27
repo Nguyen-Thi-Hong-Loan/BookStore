@@ -1,6 +1,7 @@
 package com.example.bookstoreproject.entity;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -8,6 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -30,24 +32,36 @@ public class BillEntity extends BaseEntity {
     @ManyToOne(cascade = CascadeType.ALL)
     private UserEntity userEntity;
 
-    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
-    @JoinColumn(name = "billDetail_id")
-    private BillDetailEntity billDetail;
+    @OneToMany(mappedBy = "bill_id", cascade = CascadeType.ALL)
+    private List<BillDetailEntity> billdetail;
 
     public BillEntity() {
         super();
     }
 
-    public BillEntity(Long id, Date createDate, String createBy, Date modifyDate, String modifyBy, String content, double totalMoney, boolean checked, UserEntity userEntity, BillDetailEntity billDetail) {
-        super(id, createDate, createBy, modifyDate, modifyBy);
-        this.content = content;
-        this.totalMoney = totalMoney;
-        this.checked = checked;
-        this.userEntity = userEntity;
-        this.billDetail = billDetail;
-    }
+   
+    public BillEntity(Long id, Date createDate, String createBy, Date modifyDate, String modifyBy, String content,
+			double totalMoney, boolean checked, UserEntity userEntity, List<BillDetailEntity> billdetail) {
+		super(id, createDate, createBy, modifyDate, modifyBy);
+		this.content = content;
+		this.totalMoney = totalMoney;
+		this.checked = checked;
+		this.userEntity = userEntity;
+		this.billdetail = billdetail;
+	}
 
-    public boolean isChecked() {
+
+	public List<BillDetailEntity> getBilldetail() {
+		return billdetail;
+	}
+
+
+	public void setBilldetail(List<BillDetailEntity> billdetail) {
+		this.billdetail = billdetail;
+	}
+
+
+	public boolean isChecked() {
         return checked;
     }
 
@@ -79,12 +93,8 @@ public class BillEntity extends BaseEntity {
         this.userEntity = userEntity;
     }
 
-    public BillDetailEntity getBillDetail() {
-        return billDetail;
-    }
 
-    public void setBillDetail(BillDetailEntity billDetail) {
-        this.billDetail = billDetail;
-    }
+	
+   
 
 }

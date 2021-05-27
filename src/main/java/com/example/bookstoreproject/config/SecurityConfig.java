@@ -65,8 +65,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 "/admin/adminUser/formEditUser/**", "/admin/adminPost/formEditPost/**")
                 .access("hasRole('ROLE_ADMIN')");
 
-        http.authorizeRequests().antMatchers("/pay/**", "/paypal/**")
-                .access("hasRole('ROLE_USER')");
+//        http.authorizeRequests().antMatchers("/pay/**", "/paypal")
+//                .access("hasRole('ROLE_USER')");
 
 
         http.authorizeRequests().and().exceptionHandling().accessDeniedPage("/bookstore/error404");
