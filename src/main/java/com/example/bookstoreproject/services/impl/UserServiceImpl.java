@@ -42,7 +42,7 @@ public class UserServiceImpl implements UserService {
 
 
     @Override
-    public UserEntity save(UserEntity userEntity) {
+    public UserEntity saveReg(UserEntity userEntity) {
         userEntity.setPassword(passwordEncoder.encode(userEntity.getPassword()));
         userEntity.setCreateDate(new Date());
         String randomStr = RandomString.make(64);
@@ -51,6 +51,11 @@ public class UserServiceImpl implements UserService {
 
         return userRepository.save(userEntity);
 
+    }
+
+    @Override
+    public UserEntity save(UserEntity userEntity) {
+        return userRepository.save(userEntity);
     }
 
     public void sendVerificationEmail(UserEntity user, String siteURL) throws MessagingException, UnsupportedEncodingException {

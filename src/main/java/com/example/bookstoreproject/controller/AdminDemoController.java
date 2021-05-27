@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -1274,7 +1273,7 @@ public class AdminDemoController {
 	public String addUserNow(@ModelAttribute("user") UserEntity entity) {
 		RoleEntity roleEntity = roleService.findByRoleName("ROLE_ADMIN");
 		entity.setRoles(Arrays.asList(roleEntity));
-		userService.save(entity);
+		userService.saveReg(entity);
 
 		return "redirect:/admin/adminUser/formAddUser?success";
 	}

@@ -2,6 +2,7 @@ package com.example.bookstoreproject.controller;
 
 import com.example.bookstoreproject.dto.Utility;
 import com.example.bookstoreproject.entity.UserEntity;
+import com.example.bookstoreproject.globalData.GlobalDataCart;
 import com.example.bookstoreproject.services.UserService;
 import net.bytebuddy.utility.RandomString;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,11 +45,13 @@ public class LoginController {
 
     @GetMapping("logout")
     public String logout() {
+        GlobalDataCart.dataCarts.clear();
         return "home";
     }
 
     @GetMapping("logoutSuccess")
     public String logoutSuccess() {
+        GlobalDataCart.dataCarts.clear();
         return "home";
     }
 

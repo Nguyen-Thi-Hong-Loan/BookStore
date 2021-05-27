@@ -19,10 +19,7 @@ public class BillEntityServiceImpl implements BillService {
     @Autowired
     BillRepository billRepository;
 
-    @Override
-    public BillEntity findByUserEntity(UserEntity userEntity) {
-        return billRepository.findByUserEntity(userEntity).orElse(null);
-    }
+
 
     @Override
     public BillEntity save(BillEntity billEntity) {
@@ -31,39 +28,39 @@ public class BillEntityServiceImpl implements BillService {
 
         return billRepository.save(billEntity);
     }
+//
+//    @Override
+//    public BillEntity saveBill(UserEntity userEntity, List<DataCart> carts) {
+//
 
-    @Override
-    public BillEntity saveBill(UserEntity userEntity, List<DataCart> carts) {
-
-
-        BillEntity billEntity;
-        for (int i = 0; i < carts.size(); i++) {
-            BookEntity bookEntity = carts.get(i).getBook();
-            System.out.println("IDDDDDDDDDDDD   " + bookEntity.getId());
-
-            BillDetailEntity billDetailEntity = new BillDetailEntity();
-            billDetailEntity.setPrice(bookEntity.getPrice());
-            billDetailEntity.setQuality(carts.get(i).getCount());
-            billDetailEntity.setBook_id(bookEntity);
-            billDetailEntity.setCreateDate(new Date());
-
-
-            System.out.println("BILLLLL DETAILLL   " + billDetailEntity.getBook_id());
-
-            billEntity = new BillEntity();
-//            billEntity.setTotalMoney(totalPrice);
-//            billEntity.setBillDetail(billDetailEntity);
-            billEntity.setUserEntity(userEntity);
-            billEntity.setCreateDate(new Date());
-
-            System.out.println("BILLLLL   " + billEntity.getTotalMoney());
-
-            billRepository.save(billEntity);
-        }
-
-
-        return null;
-    }
+//        BillEntity billEntity;
+//        for (int i = 0; i < carts.size(); i++) {
+//            BookEntity bookEntity = carts.get(i).getBook();
+//            System.out.println("IDDDDDDDDDDDD   " + bookEntity.getId());
+//
+//            BillDetailEntity billDetailEntity = new BillDetailEntity();
+//            billDetailEntity.setPrice(bookEntity.getPrice());
+//            billDetailEntity.setQuality(carts.get(i).getCount());
+//            billDetailEntity.setBook_id(bookEntity);
+//            billDetailEntity.setCreateDate(new Date());
+//
+//
+//            System.out.println("BILLLLL DETAILLL   " + billDetailEntity.getBook_id());
+//
+//            billEntity = new BillEntity();
+////            billEntity.setTotalMoney(totalPrice);
+////            billEntity.setBillDetail(billDetailEntity);
+//            billEntity.setUserEntity(userEntity);
+//            billEntity.setCreateDate(new Date());
+//
+//            System.out.println("BILLLLL   " + billEntity.getTotalMoney());
+//
+//            billRepository.save(billEntity);
+//        }
+//
+//
+//        return null;
+//    }
 
     @Override
     public List<BillEntity> saveAll(List<BillEntity> entities) {
@@ -108,6 +105,11 @@ public class BillEntityServiceImpl implements BillService {
     @Override
     public void deleteAll(List<BillEntity> entities) {
         billRepository.deleteAll(entities);
+    }
+
+    @Override
+    public BillEntity findByUserEntityAndPrice(UserEntity userEntity, double totalPrice) {
+        return billRepository.findByUserEntityAndTotalMoney(userEntity, totalPrice).orElse(null);
     }
 
     @Override
