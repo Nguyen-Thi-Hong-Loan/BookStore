@@ -65,13 +65,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests().antMatchers("/admindemo/**")
                 .access("hasRole('ROLE_ADMIN')");
 
-//        http.authorizeRequests().antMatchers("/pay/**", "/paypal")
-//                .access("hasRole('ROLE_USER')");
-
-
         http.authorizeRequests().and().exceptionHandling().accessDeniedPage("/bookstore/error404");
 
-        // Cấu hình cho Login Form.
         http.authorizeRequests().and().formLogin()
                 .loginProcessingUrl("/j_spring_security_check")
                 .loginPage("/bookstore/login")
