@@ -57,16 +57,20 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests().antMatchers("/bookstore/**").permitAll();
 
         http.authorizeRequests().antMatchers("/bookstore/logout", "/bookstore/shopList/**",
-                "/bookstore/cart/**","/bookstore/shopList/cart/checkout/**")
+                "/bookstore/cart/**","/bookstore/shopList/cart/checkout/**", "/pay/**", "/paypal/**")
                 .access("hasRole('ROLE_USER')  or hasRole('ROLE_ADMIN')");
+//
+//        http.authorizeRequests().antMatchers("/admin/home/**", "/admin/adminUser/**",
+//                "/admin/adminPost/**", "/admin/adminFeedback/**", "/admin/adminUser/formAddUser/**",
+//                "/admin/adminUser/formEditUser/**", "/admin/adminPost/formEditPost/**")
+//                .access("hasRole('ROLE_ADMIN')");
 
-        http.authorizeRequests().antMatchers("/admin/home/**", "/admin/adminUser/**",
-                "/admin/adminPost/**", "/admin/adminFeedback/**", "/admin/adminUser/formAddUser/**",
-                "/admin/adminUser/formEditUser/**", "/admin/adminPost/formEditPost/**")
+
+        http.authorizeRequests().antMatchers("/admin/**")
                 .access("hasRole('ROLE_ADMIN')");
-
-        http.authorizeRequests().antMatchers("/pay/**", "/paypal/**")
-                .access("hasRole('ROLE_USER')");
+//
+//        http.authorizeRequests().antMatchers("/pay/**", "/paypal/**")
+//                .access("hasRole('ROLE_USER')");
 
 
         http.authorizeRequests().and().exceptionHandling().accessDeniedPage("/bookstore/error404");

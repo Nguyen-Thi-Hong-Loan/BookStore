@@ -1,12 +1,16 @@
 package com.example.bookstoreproject.services.impl;
 
+import com.example.bookstoreproject.entity.BillDetailEntity;
 import com.example.bookstoreproject.entity.BillEntity;
+import com.example.bookstoreproject.entity.BookEntity;
 import com.example.bookstoreproject.entity.UserEntity;
+import com.example.bookstoreproject.globalData.DataCart;
 import com.example.bookstoreproject.repositories.BillRepository;
 import com.example.bookstoreproject.services.BillService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -21,9 +25,44 @@ public class BillEntityServiceImpl implements BillService {
     }
 
     @Override
-    public BillEntity save(BillEntity entity) {
-        System.out.println("ENTITYYYYYY  "+ entity.getUserEntity().getName());
-        return billRepository.save(entity);
+    public BillEntity save(BillEntity billEntity) {
+        System.out.println("ENTITYYYYYY  " + billEntity.getUserEntity().getName());
+
+
+        return billRepository.save(billEntity);
+    }
+
+    @Override
+    public BillEntity saveBill(UserEntity userEntity, List<DataCart> carts) {
+
+
+        BillEntity billEntity;
+        for (int i = 0; i < carts.size(); i++) {
+            BookEntity bookEntity = carts.get(i).getBook();
+            System.out.println("IDDDDDDDDDDDD   " + bookEntity.getId());
+
+            BillDetailEntity billDetailEntity = new BillDetailEntity();
+            billDetailEntity.setPrice(bookEntity.getPrice());
+            billDetailEntity.setQuality(carts.get(i).getCount());
+            billDetailEntity.setBook_id(bookEntity);
+            billDetailEntity.setCreateDate(new Date());
+
+
+            System.out.println("BILLLLL DETAILLL   " + billDetailEntity.getBook_id());
+
+            billEntity = new BillEntity();
+            billEntity.setTotalMoney(totalPrice);
+            billEntity.setBillDetail(billDetailEntity);
+            billEntity.setUserEntity(userEntity);
+            billEntity.setCreateDate(new Date());
+
+            System.out.println("BILLLLL   " + billEntity.getTotalMoney());
+
+            billRepository.save(billEntity);
+        }
+
+
+        return null;
     }
 
     @Override
