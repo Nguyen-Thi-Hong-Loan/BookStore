@@ -10,6 +10,7 @@ import com.example.bookstoreproject.entity.BookEntity;
 import com.example.bookstoreproject.entity.UserEntity;
 import com.example.bookstoreproject.globalData.DataCart;
 import com.example.bookstoreproject.globalData.GlobalDataCart;
+import com.example.bookstoreproject.services.BillDetailService;
 import com.example.bookstoreproject.services.BillService;
 import com.example.bookstoreproject.services.PaypalService;
 import com.example.bookstoreproject.services.UserService;
@@ -45,6 +46,8 @@ public class PaypalController {
 
     @Autowired
     private BillService billService;
+    @Autowired
+    private BillDetailService billDetailService;
 
     public static final String SUCCESS_URL = "pay/success";
     public static final String CANCEL_URL = "pay/cancel";
@@ -57,16 +60,42 @@ public class PaypalController {
     }
 
     @PostMapping("/pay")
-    public String payment(HttpServletRequest request, Principal principal) {
+    public String payment(HttpServletRequest request, Principal principal ) {
+        List<DataCart> carts = GlobalDataCart.dataCarts;
         double totalPrice = GlobalDataCart.dataCarts.stream().mapToDouble(DataCart::totalPrice).sum();
 
-        List<DataCart> carts = GlobalDataCart.dataCarts;
+//        User user = (User) ((Authentication) principal).getPrincipal();
+//        UserEntity entity = userService.findByEmail(user.getUsername());
+//
+//        System.out.println("EMAILLLLLL   "+entity.getEmail());
+//
+//        BillEntity billEntity = new BillEntity();
+//        
+//        BillDetailEntity billDetailEntity = new BillDetailEntity();
+//        for (int i = 0; i < carts.size(); i++) {
+//            BookEntity bookEntity = carts.get(i).getBook();
+//            System.out.println("IDDDDDDDDDDDD   "+bookEntity.getId());
+//
+//            billDetailEntity.setPrice(bookEntity.getPrice());
+//            billDetailEntity.setQuality(carts.get(i).getCount());
+//            billDetailEntity.setBook_id(bookEntity);
+//            billDetailEntity.setCreateDate(new Date());
+//            
+//            billDetailService.save(billDetailEntity);
+//
+//            System.out.println("BILLLLL DETAILLL   "+billDetailEntity.getBook_id());
+//
+//           
+//
+//        }
+//        billEntity.setTotalMoney(totalPrice);
+//        billEntity.setBillDetail(billDetailEntity);
+//        billEntity.setUserEntity(entity);
+//        billEntity.setCreateDate(new Date());
+//        
+//        System.out.println("BILLLLL   "+billEntity.getTotalMoney());
+//        billService.save(billEntity);
 
-        User user = (User) ((Authentication) principal).getPrincipal();
-        UserEntity entity = userService.findByEmail(user.getUsername());
-
-        System.out.println("EMAILLLLLL   " + entity.getEmail());
-        billService.saveBill(entity, carts);
 
         String cancelUrl = Utility.getSiteURL(request) + "/" + CANCEL_URL;
         String successUrl = Utility.getSiteURL(request) + "/" + SUCCESS_URL;

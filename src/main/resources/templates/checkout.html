@@ -35,11 +35,11 @@
                                     <div class="col-sm-6">
                                         <div class="checkout-method  checkout-login">
                                             <h2>Người đặt hàng:</h2>
-                                            <input type="text" value="Nguyen Van Long" disabled/>
+                                            <input type="text" th:value="${User.name}" disabled/>
                                             <h2>Số điện thoại:</h2>
-                                            <input type="number" value="0963205053" disabled/>
+                                            <input type="number" th:value="${User.phone}" disabled/>
                                             <h3>địa chỉ:</h3>
-                                            <input type="text" value="aaa"/> <br/>
+                                            <input type="text" th:value="${User.address}"/> <br/>
 
                                         </div>
                                     </div>

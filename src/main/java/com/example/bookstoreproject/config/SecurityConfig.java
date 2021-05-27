@@ -57,19 +57,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests().antMatchers("/bookstore/**").permitAll();
 
         http.authorizeRequests().antMatchers("/bookstore/logout", "/bookstore/shopList/**",
-                "/bookstore/cart/**","/bookstore/shopList/cart/checkout/**", "/pay/**", "/paypal/**")
+                "/bookstore/cart/**","/bookstore/shopList/cart/checkout/**")
                 .access("hasRole('ROLE_USER')  or hasRole('ROLE_ADMIN')");
-//
-//        http.authorizeRequests().antMatchers("/admin/home/**", "/admin/adminUser/**",
-//                "/admin/adminPost/**", "/admin/adminFeedback/**", "/admin/adminUser/formAddUser/**",
-//                "/admin/adminUser/formEditUser/**", "/admin/adminPost/formEditPost/**")
-//                .access("hasRole('ROLE_ADMIN')");
 
-
-        http.authorizeRequests().antMatchers("/admin/**")
+        http.authorizeRequests().antMatchers("/admin/home/**", "/admin/adminUser/**",
+                "/admin/adminPost/**", "/admin/adminFeedback/**", "/admin/adminUser/formAddUser/**",
+                "/admin/adminUser/formEditUser/**", "/admin/adminPost/formEditPost/**")
                 .access("hasRole('ROLE_ADMIN')");
-//
-//        http.authorizeRequests().antMatchers("/pay/**", "/paypal/**")
+
+//        http.authorizeRequests().antMatchers("/pay/**", "/paypal")
 //                .access("hasRole('ROLE_USER')");
 
 

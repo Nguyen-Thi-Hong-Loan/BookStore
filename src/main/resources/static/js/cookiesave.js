@@ -37,7 +37,6 @@ $(document).ready(function() {
 				$("#cart-count").html(response[0]);
 				$("#total-price").html(response[1]);
 				$(merger).html(response[2]);
-			alert("Đã giảm thành công: " +  "số lượng sách là " +response[0] + " tổng tiền: "+ response[1] +" VNĐ")
 			}
 		})
 	})
@@ -53,7 +52,7 @@ $(document).ready(function() {
 				$("#cart-count").html(response[0]);
 				$("#total-price").html(response[1]);
 				$(merger).html(response[2]);
-			alert("Đã tăng thành công: " + "số lượng sách là: " +response[0] + " tổng tiền: "+ response[1]+" VNĐ")
+			
 			}
 		})
 	})

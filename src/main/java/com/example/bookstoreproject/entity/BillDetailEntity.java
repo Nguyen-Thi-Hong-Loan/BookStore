@@ -20,8 +20,8 @@ public class BillDetailEntity extends BaseEntity {
 	@ManyToOne(cascade = CascadeType.ALL)
 	private BookEntity book_id;
 	
-	@OneToOne(mappedBy = "billDetail", cascade = CascadeType.ALL, orphanRemoval = true)
-	private BillEntity bill;
+	  @ManyToOne(cascade = CascadeType.ALL)
+	    private BillEntity bill_id;
 
 	@Column
 	private Integer quality;
@@ -34,14 +34,18 @@ public class BillDetailEntity extends BaseEntity {
 		super();
 	}
 
+	
+
 	public BillDetailEntity(Long id, Date createDate, String createBy, Date modifyDate, String modifyBy,
-			BookEntity book_id, BillEntity bill, Integer quality, Double price) {
+			BookEntity book_id, BillEntity bill_id, Integer quality, Double price) {
 		super(id, createDate, createBy, modifyDate, modifyBy);
 		this.book_id = book_id;
-		this.bill = bill;
+		this.bill_id = bill_id;
 		this.quality = quality;
 		this.price = price;
 	}
+
+
 
 	public BookEntity getBook_id() {
 		return book_id;
@@ -51,13 +55,18 @@ public class BillDetailEntity extends BaseEntity {
 		this.book_id = book_id;
 	}
 
-	public BillEntity getBill() {
-		return bill;
+	
+	public BillEntity getBill_id() {
+		return bill_id;
 	}
 
-	public void setBill(BillEntity bill) {
-		this.bill = bill;
+
+
+	public void setBill_id(BillEntity bill_id) {
+		this.bill_id = bill_id;
 	}
+
+
 
 	public Integer getQuality() {
 		return quality;
