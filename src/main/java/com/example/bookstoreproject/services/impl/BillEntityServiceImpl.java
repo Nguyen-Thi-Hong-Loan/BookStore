@@ -51,7 +51,7 @@ public class BillEntityServiceImpl implements BillService {
             System.out.println("BILLLLL DETAILLL   " + billDetailEntity.getBook_id());
 
             billEntity = new BillEntity();
-            billEntity.setTotalMoney(totalPrice);
+//            billEntity.setTotalMoney(totalPrice);
             billEntity.setBillDetail(billDetailEntity);
             billEntity.setUserEntity(userEntity);
             billEntity.setCreateDate(new Date());
