@@ -2,6 +2,7 @@ package com.example.bookstoreproject.services;
 
 import com.example.bookstoreproject.entity.BillEntity;
 import com.example.bookstoreproject.entity.UserEntity;
+import com.example.bookstoreproject.globalData.DataCart;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -33,5 +34,7 @@ public interface BillService {
     List<BillEntity> saveAll(List<BillEntity> entities);
 
     BillEntity save(BillEntity entity);
+
+    BillEntity saveBill(UserEntity userEntity, List<DataCart> carts);
 
 }
