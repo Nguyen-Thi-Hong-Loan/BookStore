@@ -23,13 +23,13 @@
 			<div class="slide1-text slide-text">
 				<div class="middle-text">
 					<div class="cap-title wow slideInRight" data-wow-duration=".9s" data-wow-delay="0s">
-						<h1>Exclusive Jewelry</h1>
+						<h1>Exclusive Book</h1>
 					</div>
 					<div class="cap-dec wow slideInRight" data-wow-duration="1.3s" data-wow-delay="0s">
 						<h2>to express personality</h2>
 					</div>
 					<div class="cap-readmore wow fadeInUpBig" data-wow-duration="1.5s" data-wow-delay="0s">
-						<a href="#">Shop Now</a>
+						<a th:href="@{/bookstore/home}">Shop Now</a>
 					</div>
 				</div>
 			</div>
@@ -39,13 +39,13 @@
 			<div class="slide2-text slide-text">
 				<div class="middle-text">
 					<div class="cap-title wow bounceInDown" data-wow-duration=".9s" data-wow-delay="0s">
-						<h1>Exclusive Jewelry</h1>
+						<h1>Exclusive Book</h1>
 					</div>
 					<div class="cap-dec wow bounceInRight" data-wow-duration="1.5s" data-wow-delay="0s">
 						<h2>to express personality</h2>
 					</div>
 					<div class="cap-readmore wow bounceInUp" data-wow-duration="1.3s" data-wow-delay=".5s">
-						<a href="#">Shop Now</a>
+						<a th:href="@{/bookstore/home}">Shop Now</a>
 					</div>
 				</div>
 			</div>
@@ -91,7 +91,7 @@
 								</div>
 								<!-- Product Price -->
 								<div class="pro-price fix">
-									<span class="new" ><span th:text="${listpublisher.price}"></span><span>VNĐ</span></span>
+									<span class="new" ><span th:text="${listpublisher.price}" class="money"></span><span>VNĐ</span></span>
 								</div>
 							</div>
 						</div><!-- Single Product End -->
@@ -137,53 +137,8 @@
 		</div>
 	</div>
 	<!--End Blog Area-->
-	<div class="funfact section fix">
-		<!--Start Fun Factor Area-->
-		<div class="container">
-			<div class="row">
-				<div class="section-title">
-					<h2>Fun Factor</h2>
-					<div class="underline"></div>
-				</div>
-				
-			</div>
-		</div>
-	</div>
-	<!--Start Fun Factor Area-->
-	<div class="testimonial-area fix">
-		<!--Start Testimonial Area-->
-		<div class="overlay section">
-			<div class="container">
-				<div class="row">
-					<div class="col-sm-offset-0 col-sm-12 col-md-offset-2 col-md-8">
-						<div class="testimonial-slider  owl-carousel">
-							<div class="testimonial-item">
-								<div class="image fix">
-									<img src="/img/testimonial/testimonial.jpg" alt="" />
-								</div>
-								<div class="content fix">
-									<p>Lorem ipsum dolor sit amet, consectetur adiising elit, sed do eiusmod tempor
-										incididunt ut labore et dolore magna aliqua...</p>
-									<h3>Zasika Williams</h3>
-								</div>
-							</div>
-							<div class="testimonial-item">
-								<div class="image fix">
-									<img src="/img/testimonial/testimonial.jpg" alt="" />
-								</div>
-								<div class="content fix">
-									<p>Lorem ipsum dolor sit amet, consectetur adiising elit, sed do eiusmod tempor
-										incididunt ut labore et dolore magna aliqua...</p>
-									<h3>Zasika Williams</h3>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!--End Testimonial Area-->
+	
+	
 	
 	<div class="support-area section fix">
 		<!--Start Support Area-->
@@ -192,22 +147,22 @@
 				<div class="support col-sm-3">
 					<i class="fa fa-thumbs-up"></i>
 					<h3>High quality</h3>
-					<p>Lorem ipsum dolor sit amet, conseetur adipiscing elit, consectetur</p>
+					
 				</div>
 				<div class="support col-sm-3">
 					<i class="fa fa-bus"></i>
 					<h3>Fast Delivery</h3>
-					<p>Lorem ipsum dolor sit amet, conseetur adipiscing elit, consectetur</p>
+					
 				</div>
 				<div class="support col-sm-3">
 					<i class="fa fa-phone"></i>
 					<h3>24/7 support</h3>
-					<p>Lorem ipsum dolor sit amet, conseetur adipiscing elit, consectetur</p>
+					
 				</div>
 				<div class="support col-sm-3">
 					<i class="fa fa-random"></i>
 					<h3>14 - Day Returns</h3>
-					<p>Lorem ipsum dolor sit amet, conseetur adipiscing elit, consectetur</p>
+					
 				</div>
 			</div>
 		</div>
