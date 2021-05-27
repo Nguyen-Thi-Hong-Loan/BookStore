@@ -12,6 +12,7 @@ public interface BillRepository extends JpaRepository<BillEntity, Long> {
 
     Optional<BillEntity> findByUserEntity(UserEntity userEntity);
 
+    BillEntity save(BillEntity billEntity);
 
 
 }
