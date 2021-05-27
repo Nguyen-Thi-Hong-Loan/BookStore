@@ -58,7 +58,7 @@
 								class="on fa fa-star-half-o"></i>
 						</div>
 						<h2>
-							<span th:text="${book.price}" ></span>VNĐ
+							<span th:text="${book.price}" class="money" ></span>VNĐ
 						</h2>
 						<h2>Tác giả:</h2>
 						<h3 th:text="${book.author}" ></h3>
@@ -140,7 +140,7 @@
 								<!-- Product Price -->
 								<div class="pro-price fix">
 									<p>
-										<span class="new" th:text="${suggestion.price}"></span><span>VNĐ</span>
+										<span class="new money" th:text="${suggestion.price}" ></span><span>VNĐ</span>
 									</p>
 								</div>
 							</div>
@@ -161,26 +161,22 @@
 				<div class="support col-sm-3">
 					<i class="fa fa-thumbs-up"></i>
 					<h3>High quality</h3>
-					<p>Lorem ipsum dolor sit amet, conseetur adipiscing elit,
-						consectetur</p>
+					
 				</div>
 				<div class="support col-sm-3">
 					<i class="fa fa-bus"></i>
 					<h3>Fast Delivery</h3>
-					<p>Lorem ipsum dolor sit amet, conseetur adipiscing elit,
-						consectetur</p>
+					
 				</div>
 				<div class="support col-sm-3">
 					<i class="fa fa-phone"></i>
 					<h3>24/7 support</h3>
-					<p>Lorem ipsum dolor sit amet, conseetur adipiscing elit,
-						consectetur</p>
+					
 				</div>
 				<div class="support col-sm-3">
 					<i class="fa fa-random"></i>
 					<h3>14 - Day Returns</h3>
-					<p>Lorem ipsum dolor sit amet, conseetur adipiscing elit,
-						consectetur</p>
+					
 				</div>
 			</div>
 		</div>
