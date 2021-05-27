@@ -52,7 +52,7 @@ public class BillEntityServiceImpl implements BillService {
 
             billEntity = new BillEntity();
 //            billEntity.setTotalMoney(totalPrice);
-            billEntity.setBillDetail(billDetailEntity);
+//            billEntity.setBillDetail(billDetailEntity);
             billEntity.setUserEntity(userEntity);
             billEntity.setCreateDate(new Date());
 
